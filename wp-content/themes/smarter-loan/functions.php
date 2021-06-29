@@ -792,3 +792,12 @@ function rmcc_team_listing_shortcode1( $atts ) {
 	
 	}
 
+
+function replace_jquery() {
+        wp_deregister_script( 'jquery-core' );
+        wp_enqueue_script( 'jquery-core', 'https://code.jquery.com/jquery-1.12.4.min.js',array(), '1.12.4' );
+        wp_deregister_script( 'jquery-migrate' );
+        wp_enqueue_script( 'jquery-migrate', 'https://code.jquery.com/jquery-migrate-1.4.1.min.js',array(), '1.12.4' );	   
+}
+add_action( 'wp_enqueue_scripts', 'replace_jquery' );
+
