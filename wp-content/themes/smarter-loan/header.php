@@ -48,7 +48,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 
 <link href="<?php bloginfo('template_url'); ?>/css/custom.css" rel="stylesheet">
-<script src="<?php bloginfo('template_url'); ?>/js/jquery-1.11.1.min.js"></script>	
+
 
 
 <?php wp_head(); ?>
