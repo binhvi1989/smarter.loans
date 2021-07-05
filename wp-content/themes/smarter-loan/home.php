@@ -162,7 +162,7 @@ get_header();
 
 
 
-<section id="page-content" class="home_content container">
+<section id="page-content" class="home_content">
 <?php echo the_content();  ?>
 </section>
 
@@ -199,48 +199,7 @@ get_header();
 
 
 
-<section class="home_section article_sec" id="la_sl">
-	<h1 class="text-center">Latest Articles</h1>
-	<div class="container">
-    	<div class="row">
-        
-        
-        	 <ul id="content-slider" class="content-slider">
-             
-             
-             <?php 
-					$args = array( 'post_type' => 'post', 'posts_per_page' => 10, 'order' =>'DESC', 'cat' => 194  );
-					$loop = new WP_Query( $args );
-					while ( $loop->have_posts() ) : $loop->the_post();						
-				?>
-        		 <li>
-                                
-                                <div class="arti_item" onClick="location.href='<?php the_permalink(); ?>'">
-                                    <a href="<?php the_permalink(); ?>">
-                                    	<?php the_post_thumbnail('common_thumb',array('class'=>'img-responsive center-block')); ?>                    
-                                        <h3><?php the_title(); ?></h3>
-                                    </a>
-                                </div>
-                                <span class="arti_author">By <a href="Javascript:;"><?php the_author(); ?></a></span>
-                                <p class="authorinfo"><?php esc_textarea(the_author_meta('description'));  ?></p>
-                                
-                                
-                           </li>
-                           
-                           
-                           <?php endwhile; ?>
-                           
-                           
-                           
-                           
-                
-             </ul>
-        
-        	
-            
-        </div>
-    </div>
-</section>
+
 
 <section class="home_section grey tesimonials_home">
 	<h1 class="text-center mix-heading">The word on the street...</h1>
@@ -311,42 +270,7 @@ get_header();
     </div>
 </section>
 
-<section class="home_section article_sec grey">
-	<h1 class="text-center">Learning Center</h1>
-	<div class="container">
-    	<div class="row">
-        	<ul id="learning_center" class="content-slider">
-             
-             
-             <?php 
-					$args = array( 'post_type' => 'post', 'posts_per_page' => 10, 'order' =>'DESC', 'cat' => 201  );
-					$loop = new WP_Query( $args );
-					while ( $loop->have_posts() ) : $loop->the_post();						
-				?>
-        		 <li>
-                                
-                                <div class="arti_item" onClick="location.href='<?php the_permalink(); ?>'">
-                                    <a href="<?php the_permalink(); ?>">
-                                    	<?php the_post_thumbnail('common_thumb',array('class'=>'img-responsive center-block')); ?>                    
-                                        <h3><?php the_title(); ?></h3>
-                                    </a>
-                                </div>
-                                <!--<span class="arti_author">By <a href="Javascript:;"><?php //the_author(); ?></a></span>-->
-                                
-                                
-                           </li>
-                           
-                           
-                           <?php endwhile; ?>
-                           
-                           
-                           
-                           
-                
-             </ul>
-        </div>
-    </div>
-</section>
+
 
  
 <?php get_footer(); ?>

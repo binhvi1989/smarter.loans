@@ -11,15 +11,14 @@
 <div class="col-md-4 col-sm-6">
     <div class="video_des_link">
         <a href="<?php the_permalink(); ?>" style="text-decoration: none;">
-                <div class="video_item">	  
-                    <!-- <iframe width="100%" height="195" src="<?php //echo get_field('video_link', get_the_ID()); ?>"></iframe>	                    -->
+                <div class="video_item">	                      
                     <?php
                     $youtube_link_array = explode('/',get_field('video_link', get_the_ID()));
                     $src = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full', false );
-                    if (!empty($src)) {
+                    if ($src[0]) {
                     ?>
                         <img width="100%" height="195" class="vide_img" src="<?php echo $src[0]; ?>" />
-                    <?}else{?>
+                    <?php }else{?>                        
                         <img width="100%" height="195" src="https://img.youtube.com/vi/<?php echo end($youtube_link_array); ?>/maxresdefault.jpg" />
                     <?php }?>
                     <div class="video_head_txt">
