@@ -12,6 +12,7 @@ define('CADEN_FRAME', TEMPLATEPATH . '/framework');
 define('CADEN_ADMIN', CADEN_FRAME . '/admin');
 define('CADEN_INCLUDES', TEMPLATEPATH . '/includes');
 define('CADEN_FUNCTIONS', CADEN_FRAME . '/functions');
+define('CADEN_FUNCTIONS', dev . '/dev');
 
 define('CADEN_JS', get_template_directory_uri() . '/js');
 
@@ -29,6 +30,7 @@ require_once(CADEN_ADMIN . '/options.php');
 // Load Admin Interface
 
 require_once(CADEN_ADMIN . '/theme.php');
+
 
 
 
@@ -800,4 +802,4 @@ function replace_jquery() {
         wp_enqueue_script( 'jquery-migrate', 'https://code.jquery.com/jquery-migrate-1.4.1.min.js',array(), '1.12.4' );	   
 }
 add_action( 'wp_enqueue_scripts', 'replace_jquery' );
-
+require_once(dev . '/dev-theme.php');

@@ -281,11 +281,14 @@ $myslug = $post->post_name;
     <?php endif; ?>
     
     
-    
+    <?php
+    videos_section();
+    ?>
+  
    
   </div>
   
-  
+     
  <?php
 
 /*
