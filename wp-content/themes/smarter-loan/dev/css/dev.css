@@ -8,6 +8,7 @@
 .shortcode-video .category-list span { border-radius: 50%; width: 40px; height: 40px; background: #E93E51;    line-height: 40px; text-align: center; color: #fff; font-weight: bold; margin-right: 10px;}
 @media screen and (max-width: 767px){
     .shortcode-video .col-md-4 { width: 100%; margin-left: 0; margin-right: 0}
+    .shortcode-video.video_portal_about img { height: auto!important}
     .mob_menu__container img {max-width: 100%; height: auto}
 }
 .container {margin-left: auto!important; margin-right: auto!important}
@@ -46,11 +47,16 @@
 .shortcode-latest-post .read-more a { color:  #fff}
 @media screen and (max-width: 767px){
     .shortcode-latest-post .other-news { display: block}
+    .shortcode-latest-post .other-news .c-right .-image { display: none}
+    .shortcode-latest-post .other-news .c-right .left-image,
     .shortcode-latest-post .other-news .c-left,
     .shortcode-latest-post .other-news .c-right { width: 100%;padding-left: 0; margin-left: 0; border-left: none}
+    .shortcode-latest-post .other-news .c-right .left-image { margin-top: 10px;display: block}
+    
 }
 
 .articles_video {margin-bottom: 40px}
 .articles_video .v-row { display: flex; flex-wrap: wrap}
 .articles_video .v-row iframe { max-width: 100%;padding-left: 10px; padding-right: 10px; box-sizing: border-box}
 .articles_video .v-row .video-embed {max-width: 100%; margin:  0 auto 10px}
+.admin-bar .navigation {top: 32px!important}

@@ -78,15 +78,26 @@ function ct_restyle_text($input){
 }
 function our_videos_fun ( $atts, $content = null) {
 	extract(shortcode_atts(array(
-		'items'		=> 3,		
+		'items'		=> 3,
+        'cats' => array()
 		), $atts));
+        $cat = explode(",",$cats);
 		$out ='';
 		$args = array(
             'posts_per_page'	=> $items,
             'post_type'		=> 'videos',
             'meta_key'		=> 'is_featured',
-            'meta_value'	=> 'Yes'
+            'meta_value'	=> 'Yes',            
         );
+        if(sizeof($cat)>0){
+            $args['tax_query'] = array(
+                array (
+                    'taxonomy' => 'videos_category',
+                    'field' => 'slug',
+                    'terms' => $cat
+                )
+            );
+        };
         $the_query = new WP_Query( $args );
         if( $the_query->have_posts() ){
             $out .='<div class="shortcode-video video_portal_about video-slider-warp"><div class="container"><div class="row">';
