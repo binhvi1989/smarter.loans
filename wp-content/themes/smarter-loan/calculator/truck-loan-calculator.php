@@ -188,8 +188,10 @@ input[type="range"]::-ms-fill-upper {
     </div>
 </div>
 
+<script src="<?php bloginfo("template_url")?>/calculator/js/highcharts.js"></script>
+<script src="<?php bloginfo("template_url")?>/calculator/js/exporting.js"></script>
 <script>
-    
+       (function($){
         function loadchart() {
             // With JQuery
             var chart = Highcharts.chart('container', {
@@ -1102,11 +1104,7 @@ input[type="range"]::-ms-fill-upper {
         }
 
        loadchart();
-        
+        })(this.jQuery);
 
     </script>    
 </head>
-<!--<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-<script src="/wp-content/themes/smarter-loan/calculator/js/highcharts.js"></script>
-<script src="/wp-content/themes/smarter-loan/calculator/js/exporting.js"></script>
