@@ -92,8 +92,12 @@ include "get-youtube-comment-viewer.php";
             <h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
             <div class="blog-flex">
               <div class="author-image">
-              <?php if($avatar = get_avatar(get_the_author_meta('ID')) !== FALSE): 
-                echo get_avatar( get_the_author_meta( 'ID' ) , 64 );
+                <?php
+                     $author_id=$post->post_author;
+                     $avatar = mt_profile_img($author_id, array('size' => array(96, 96), 'attr' => array('alt' => $alt, 'class' => "avatar avatar-{$size} photo"), 'echo' => false));
+                  ?>  
+              <?php if($avatar): 
+                echo $avatar;
               else: ?>
               <img src="<?php echo get_template_directory_uri();?>/images/client-1.png" alt="Author">
               <?php endif; ?>

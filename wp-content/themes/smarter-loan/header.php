@@ -3,7 +3,10 @@
 <html <?php language_attributes(); ?>>
 
 <head>
-
+<link rel="preload" href="https://smarter.loans/wp-content/themes/smarter-loan//webfonts/fa-solid-900.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://smarter.loans/wp-content/themes/smarter-loan/fonts/glyphicons-halflings-regular.woff2" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://smarter.loans/wp-content/themes/smarter-loan/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" crossorigin="anonymous">	
+<?php the_field("header_code","option")?>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
