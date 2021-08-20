@@ -185,14 +185,8 @@ function latest_posts_function ( $atts, $content = null) {
                 $terms = wp_get_object_terms( get_the_ID(), 'category',array("hide_empty"=>true) );
                 $coun =  $terms[0]->count;
                 $term_link = get_term_link( $terms[0] );
-                if($n==1){
-                    $out .="<div class='top-news'>
-                        <div class='-cat-name'><h4><a href='$term_link'>".$terms[0]->name."</a><span>".get_the_date('F j, Y')."</span></h4></div>
-                        <div class='-title'><h3><a href='$link'>$title</a></h3></div>
-                        <div class='-image'><a href='$link'>$image</a></div>
-                    </div>";
-                }else{
-                    if($n==2){
+             
+                    if($n==1){
                         $out .="<div class='other-news'><div class='c-left'>";
                     }                    
                     if($n==5){
@@ -206,10 +200,10 @@ function latest_posts_function ( $atts, $content = null) {
                         <div class='-des'><a href='$link'>$expert</a></div>
                         <div class='-image left-image'><a href='$link'>$image</a></div>
                     </div>";
-                    if($n==10){
+                    if($n==$items){
                         $out .="</div></div>";
                     }
-                }
+                
                 
             endwhile;
             $out .='</div><div class="read-more"><a href="'.$cat_link.'" class="pink_big_btn">See More Articles</a></div></div>';
