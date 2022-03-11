@@ -58,5 +58,45 @@
 .articles_video {margin-bottom: 40px}
 .articles_video .v-row { display: flex; flex-wrap: wrap}
 .articles_video .v-row iframe { max-width: 100%;padding-left: 10px; padding-right: 10px; box-sizing: border-box}
-.articles_video .v-row .video-embed {max-width: 100%; margin:  0 auto 10px}
+.articles_video .v-row .video-embed {max-width: 100%; margin:  0 auto 10px; width:calc(33.333% - 5px);    position: relative; padding-top: calc(((100% / 3) - 5px) / 1.778);}
+.articles_video .v-row .video-embed iframe {padding-left:0!important;padding-right:0!important;    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; width:100%;}
+
 .admin-bar .navigation {top: 32px!important}
+.single .single_video {width:760px; max-width:100%}
+@media screen and (max-width: 767px){
+	.articles_video .v-row .video-embed { width:100%;padding-top: calc(((100%)) / 1.778);}
+	.single .single_video img {height:auto!important}
+}
+
+.nf-form-cont label[aria-hidden="true"] { display:none;}
+.nf-form-cont .listcheckbox-wrap .nf-field-element ul,
+.nf-form-cont .list-radio-wrap .nf-field-element ul {display: flex;
+    flex-wrap: wrap;padding-left:0!important;}
+    .nf-form-cont .listcheckbox-wrap .nf-field-element ul li,
+    .nf-form-cont .list-radio-wrap .nf-field-element ul li { display:flex!important;    list-style: none!important;}
+    .nf-form-cont .listcheckbox-wrap .nf-field-element ul li label,
+.nf-form-cont .list-radio-wrap .nf-field-element li label {margin-left: 0 !important;}
+.nf-error-msg.nf-error-required-error {color:#e93e51!important;}
+
+
+.label-hidden .nf-field-label {
+    height: 0;
+    margin: 0!important;
+    width: 100%;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 767px){
+	.table_content img {height:40px; margin:10px auto}
+	.tab-pane .table_content {margin-bottom:0}
+	.tab-pane .table_content .row { display:flex; align-items:center;flex-wrap:wrap}
+	.table_content .col-md-2 {border:none;background:none;width:50%;padding:10px!important;    color: #6c757d;}
+	.table_content .col-md-2+.col-md-2+.col-md-2 {font-size:16px;line-height:1.4}
+	.table_content .col-md-2+.col-md-2+.col-md-2 {width:50%;padding:5px 10px!important;margin-top:0; margin-bottom:5px}
+	.table_content .col-md-2+.col-md-2+.col-md-2+.col-md-2 {opacity:0}
+	.table_content .col-md-2+.col-md-2+.col-md-2+.col-md-2+.col-md-2 {order:2;margin-top:-1.5em; opacity:1}
+	.table_content .col-md-2+.col-md-2+.col-md-2+.col-md-2+.apply-now {padding-bottom:15px!important;order:5;margin-top: -2.5em;}
+}

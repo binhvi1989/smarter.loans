@@ -209,16 +209,10 @@ function sfsi_social_media_metabox( $post ) { ?>
             <div class="imgContainer imgpicker">
 
                 <img src="<?php echo esc_url(SFSI_PLUGURL."images/no-image.jpg"); ?>" alt="no image" />
-
-                <?php
-                    
-                    $uploadBtnTitle = 'Add Picture';
-                    ?>
-
             </div>
 
             <div class="imgUploadBtn"><input  readonly disable type="button" disable class="button sfsi-post-meta-btn"
-                    value="<?php _e($uploadBtnTitle,'ultimate-social-media-icons'); ?>" /></div>
+                    value="<?php _e( 'Add Picture', 'ultimate-social-media-icons'); ?>" /></div>
         </div>
 
         <!--********************************** Image for PINTEREST CLOSES ***********************************************-->
@@ -274,27 +268,33 @@ function sfsi_social_media_metabox( $post ) { ?>
     </div>
     <div class="sfsi-port-meta-backdrop" style='display:none'></div>
     <div style='display:none; background: rgb(221, 221, 221);' class="sfsi-post-tooltip">
-    <span style="font-family: helvetica-light;    font-size: 17px;">Available in premium – </span>
-        <a target="_blank" href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_post_or_page&utm_campaign=usm_sharing_texts_and_images_section&utm_medium=banner"  class="font-italic text-success" style="color: #28a745!important;font-family: helvetica-light;font-size: 17px;">click to learn more</a>
+    <span style="font-family: helvetica-light;    font-size: 17px;"><?php _e( 'Available in premium – ', 'ultimate-social-media-icons' ); ?></span>
+        <a target="_blank" href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_post_or_page&utm_campaign=usm_sharing_texts_and_images_section&utm_medium=banner"  class="font-italic text-success" style="color: #28a745!important;font-family: helvetica-light;font-size: 17px;"><?php _e( 'click to learn more', 'ultimate-social-media-icons' ); ?></a>
     </div>  
 </div>
 
 <?php }
 
  
-function sfsi_icons_add_meta_boxes() {
-    $screen = "";
-    if (function_exists('get_current_screen')) {
-        $screen = get_current_screen();
-    } 
-    $option5           = unserialize(get_option('sfsi_section5_options',false));
-    $hideSectionVal    = (isset($option5['sfsi_custom_social_hide'])) ? $option5['sfsi_custom_social_hide']: 'no'; 
+function sfsi_icons_add_meta_boxes( $post_type ) {
 
-    if($hideSectionVal=='no'){
-        if(isset($screen->post_type) && ('page'==$screen->post_type || 'post'==$screen->post_type)){
-            add_meta_box( 'sfsi-social-media', 'Ultimate Social Media – Define which pictures & texts will get shared', 'sfsi_social_media_metabox', $screen->post_type, 'normal', 'low' );
-        }        
+    $option5        = maybe_unserialize( get_option( 'sfsi_section5_options', false ) );
+    $hideSectionVal = ( isset( $option5['sfsi_custom_social_hide'] ) ) ? $option5['sfsi_custom_social_hide'] : 'no';
+
+    if( $hideSectionVal == 'no' ) {
+        // Limit meta box to certain post types.
+        $post_types = array( 'post', 'page' );
+ 
+        if ( in_array( $post_type, $post_types ) ) {
+            add_meta_box( 
+                'sfsi-social-media',
+                __( 'Ultimate Social Media – Define which pictures & texts will get shared', 'ultimate-social-media-icons' ),
+                'sfsi_social_media_metabox',
+                $post_type,
+                'normal',
+                'low'
+            );
+        }
     }
 }
 add_action( 'add_meta_boxes', 'sfsi_icons_add_meta_boxes' );
-?>

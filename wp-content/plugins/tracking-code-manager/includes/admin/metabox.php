@@ -83,7 +83,7 @@ function tcmp_add_meta_box() {
         foreach ($screens as $screen) {
             add_meta_box(
                 'tcmp_sectionid'
-                , $tcmp->Lang->L('Tracking Code PRO by IntellyWP')
+                , $tcmp->Lang->L('Tracking Code by Data443')
                 , 'tcmp_ui_metabox'
                 , $screen
                 , 'side'

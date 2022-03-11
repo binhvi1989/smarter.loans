@@ -1,8 +1,8 @@
 <?php
 /* unserialize all saved option for  section 4 options */
-$option6 =  unserialize(get_option('sfsi_section6_options', false));
-$option4 =  unserialize(get_option('sfsi_section4_options', false));
-$option2 =  unserialize(get_option('sfsi_section2_options', false));
+$option6 = maybe_unserialize(get_option('sfsi_section6_options', false));
+$option4 = maybe_unserialize(get_option('sfsi_section4_options', false));
+$option2 = maybe_unserialize(get_option('sfsi_section2_options', false));
 if (!isset($option4['sfsi_facebook_mypageCounts'])) {
     $option4['sfsi_facebook_mypageCounts'] = '';
 }
@@ -10,12 +10,12 @@ if (!isset($option4['sfsi_facebook_mypageCounts'])) {
 /*
  * Sanitize, escape and validate values
  */
-$option4['sfsi_display_counts']         = (isset($option4['sfsi_display_counts'])) ? sanitize_text_field($option4['sfsi_display_counts']) : '';
-$option4['sfsi_email_countsFrom']         = (isset($option4['sfsi_email_countsFrom'])) ? sanitize_text_field($option4['sfsi_email_countsFrom']) : '';
-$option4['sfsi_email_manualCounts']     = (isset($option4['sfsi_email_manualCounts'])) ? intval($option4['sfsi_email_manualCounts']) : '';
-$option4['sfsi_rss_countsDisplay']         = (isset($option4['sfsi_rss_countsDisplay'])) ? sanitize_text_field($option4['sfsi_rss_countsDisplay']) : '';
-$option4['sfsi_rss_manualCounts']         = (isset($option4['sfsi_rss_manualCounts'])) ? intval($option4['sfsi_rss_manualCounts']) : '';
-$option4['sfsi_email_countsDisplay']     = (isset($option4['sfsi_email_countsDisplay'])) ? sanitize_text_field($option4['sfsi_email_countsDisplay']) : '';
+$option4['sfsi_display_counts']        = (isset($option4['sfsi_display_counts'])) ? sanitize_text_field($option4['sfsi_display_counts']) : '';
+$option4['sfsi_email_countsFrom']      = (isset($option4['sfsi_email_countsFrom'])) ? sanitize_text_field($option4['sfsi_email_countsFrom']) : '';
+$option4['sfsi_email_manualCounts']    = (isset($option4['sfsi_email_manualCounts'])) ? intval($option4['sfsi_email_manualCounts']) : '';
+$option4['sfsi_rss_countsDisplay']     = (isset($option4['sfsi_rss_countsDisplay'])) ? sanitize_text_field($option4['sfsi_rss_countsDisplay']) : '';
+$option4['sfsi_rss_manualCounts']      = (isset($option4['sfsi_rss_manualCounts'])) ? intval($option4['sfsi_rss_manualCounts']) : '';
+$option4['sfsi_email_countsDisplay']   = (isset($option4['sfsi_email_countsDisplay'])) ? sanitize_text_field($option4['sfsi_email_countsDisplay']) : '';
 
 $option4['sfsi_facebook_countsDisplay'] = (isset($option4['sfsi_facebook_countsDisplay']))
     ? sanitize_text_field($option4['sfsi_facebook_countsDisplay'])
@@ -107,6 +107,19 @@ $option4['sfsi_weibo_manualCounts']         = (isset($option4['sfsi_weibo_manual
 $option4['sfsi_wechat_countsDisplay']         = (isset($option4['sfsi_wechat_countsDisplay'])) ? sanitize_text_field($option4['sfsi_wechat_countsDisplay']) : '';
 $option4['sfsi_wechat_manualCounts']         = (isset($option4['sfsi_wechat_manualCounts'])) ? intval($option4['sfsi_wechat_manualCounts']) : '';
 
+$option4['sfsi_snapchat_countsDisplay']         = (isset($option4['sfsi_snapchat_countsDisplay'])) ? sanitize_text_field($option4['sfsi_snapchat_countsDisplay']) : '';
+$option4['sfsi_snapchat_manualCounts']         = (isset($option4['sfsi_snapchat_manualCounts'])) ? intval($option4['sfsi_snapchat_manualCounts']) : '20';
+
+$option4['sfsi_reddit_countsDisplay']         = (isset($option4['sfsi_reddit_countsDisplay'])) ? sanitize_text_field($option4['sfsi_reddit_countsDisplay']) : '';
+$option4['sfsi_reddit_manualCounts']         = (isset($option4['sfsi_reddit_manualCounts'])) ? intval($option4['sfsi_reddit_manualCounts']) : '20';
+
+$option4['sfsi_fbmessenger_countsDisplay']         = (isset($option4['sfsi_fbmessenger_countsDisplay'])) ? sanitize_text_field($option4['sfsi_fbmessenger_countsDisplay']) : '';
+$option4['sfsi_fbmessenger_manualCounts']         = (isset($option4['sfsi_fbmessenger_manualCounts'])) ? intval($option4['sfsi_fbmessenger_manualCounts']) : '20';
+
+$option4['sfsi_tiktok_countsDisplay']         = (isset($option4['sfsi_tiktok_countsDisplay'])) ? sanitize_text_field($option4['sfsi_tiktok_countsDisplay']) : '';
+$option4['sfsi_tiktok_manualCounts']         = (isset($option4['sfsi_tiktok_manualCounts'])) ? intval($option4['sfsi_tiktok_manualCounts']) : '20';
+
+
 $option4['sfsi_whatsapp_countsDisplay']         = (isset($option4['sfsi_whatsapp_countsDisplay'])) ? sanitize_text_field($option4['sfsi_whatsapp_countsDisplay']) : '';
 $option4['sfsi_whatsapp_manualCounts']         = (isset($option4['sfsi_whatsapp_manualCounts'])) ? intval($option4['sfsi_whatsapp_manualCounts']) : '';
 
@@ -132,6 +145,7 @@ if (isset($option4['sfsi_youtube_channelId']) && !empty($option4['sfsi_youtube_c
 
 /* fetch counts for admin sections */
 $counts = sfsi_getCounts();
+
 /* check for email icon display */
 $email_image = "email.png";
 
@@ -248,20 +262,41 @@ $hide = "display:none;";
             </a>
             <span><?php _e('12k','ultimate-social-media-icons') ?></span>
         </li>
+        <li class="snapchat_section">
+            <a href="#" title="snapchat">
+                <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_snapchat.png" height="50px" alt="snapchat" />
+            </a>
+            <span>12k</span>
+        </li>
+        <li class="reddit_section">
+            <a href="#" title="reddit">
+                <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_reddit.png" height="50px" alt="reddit" />
+            </a>
+            <span>12k</span>
+        </li>
+        <li class="fbmessenger_section">
+            <a href="#" title="fbmessenger">
+                <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_fbmessenger.png" height="50px" alt="fbmessenger" />
+            </a>
+            <span>12k</span>
+        </li>
+        <li class="tiktok_section">
+            <a href="#" title="tiktok">
+                <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_tiktok.png" height="50px" alt="tiktok" />
+            </a>
+            <span>12k</span>
+        </li>
     </ul>
     <!-- END sample icons -->
 
-    <p>
-        <?php 
-                printf(
-                    __( 'Of course, if you start at 0, you shoot yourself in the foot with that. So we suggest that you only turn this feature on once you have a good number of followers/likes/shares (min. of 20 – no worries if it’s not too many, it should just not be 0).%1sNew:%2sIn the Premium Plugin you can define a threshold (min. number of counts) when it will automatically switch to showing the counts.%3sGo Premium%4s','ultimate-social-media-icons' ),
-                    '<b>',
-                    '</b>',
-                    '<a style="cursor:pointer" class="pop-up" data-id="sfsi_quickpay-overlay" onclick="sfsi_open_quick_checkout(event)" class="sfisi_font_bold" target="_blank">',
-                    '</a>'
-                );
-            ?>
-    </p>
+    <p><?php 
+        printf(
+            __( 'Of course, if you start at 0, you shoot yourself in the foot with that. So we suggest that you only turn this feature on once you have a good number of followers/likes/shares (min. of 20 – no worries if it’s not too many, it should just not be 0). %1sNew:%2s In the Premium Plugin you can define a threshold (min. number of counts) when it will automatically switch to showing the counts. %3sGo Premium%4s','ultimate-social-media-icons' ),
+            '<b>',
+            '</b>',
+            '<a style="cursor:pointer" class="pop-up" href="https://www.ultimatelysocial.com/usm-premium/?withqp=1&utm_source=usmi_settings_page&utm_campaign=top_banner&utm_medium=link" class="sfisi_font_bold" target="_blank">',
+            '</a>'
+        ); ?></p>
     <h4><?php _e('Enough waffling. So do you want to display counts?','ultimate-social-media-icons') ?></h4>
 
     <!-- show/hide counts for icons section  START -->
@@ -274,8 +309,6 @@ $hide = "display:none;";
         </li>
     </ul>
     <!-- END  show/hide counts for icons section -->
-
-
 
     <!-- show/hide counts for all icons section  START -->
 
@@ -334,7 +367,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
             <ul>
-                    <li><?php _e('We cannot track this. So enter the figure here:','ultimate-social-media-icons') ?> <input name="sfsi_rss_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_rss_manualCounts'] != '') ?  $option4['sfsi_rss_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e('We cannot track this. So enter the figure here:','ultimate-social-media-icons') ?> <input name="sfsi_rss_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_rss_manualCounts'] != '') ? $option4['sfsi_rss_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -358,7 +391,7 @@ $hide = "display:none;";
             <div class="listing">
                 <ul>
                     <li><input name="sfsi_email_countsFrom" <?php echo ($option4['sfsi_email_countsFrom'] == 'source') ?  'checked="true"' : ''; ?> type="radio" value="source" class="styled" /><?php _e('Retrieve the number of subscribers automatically','ultimate-social-media-icons') ?></li>
-                    <li><input name="sfsi_email_countsFrom" <?php echo ($option4['sfsi_email_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e('Enter the figure manually:','ultimate-social-media-icons') ?><input name="sfsi_email_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_email_manualCounts'] != '') ?  $option4['sfsi_email_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_email_countsFrom'] == 'source') ?  'display:none;' : ''; ?>" /></li>
+                    <li><input name="sfsi_email_countsFrom" <?php echo ($option4['sfsi_email_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e('Enter the figure manually:','ultimate-social-media-icons') ?><input name="sfsi_email_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_email_manualCounts'] != '') ? $option4['sfsi_email_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_email_countsFrom'] == 'source') ?  'display:none;' : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -377,7 +410,7 @@ $hide = "display:none;";
             <div class="listing">
                 <ul class="sfsi_fb_popup_contain">
                     <li>
-                    <input name="sfsi_facebook_countsFrom" <?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes') ?  'checked="true"' : ''; ?> type="radio" value="likes" class="styled" /><?php _e('Retrieve the number of likes','ultimate-social-media-icons') ?><strong><?php _e('of your blog','ultimate-social-media-icons') ?></strong>
+                    <input name="sfsi_facebook_countsFrom" <?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes') ?  'checked="true"' : ''; ?> type="radio" value="likes" class="styled" /><?php _e('Retrieve the number of likes ','ultimate-social-media-icons') ?><strong><?php _e('of your blog','ultimate-social-media-icons') ?></strong>
                         <div class="sfsi_prem_fbpgiddesc">
                             <div class="sfsi_prem_fbpgidwpr" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"></div>
 
@@ -388,29 +421,29 @@ $hide = "display:none;";
                         <?php _e('Retrieve the number of likes ','ultimate-social-media-icons') ?><strong><?php _e('of your Facebook page ','ultimate-social-media-icons') ?></strong><br>
                         <div class="sfsi_fbpgiddesc sfsi_fbpaget">
                             <div class="sfsi_fbpgidwpr sfsi_count" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">Facebook page ID:</div>
-                            <input name="sfsi_facebook_mypageCounts" type="text" class="input mypginpt" value="<?php echo ($option4['sfsi_facebook_mypageCounts'] != '') ?  $option4['sfsi_facebook_mypageCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>" />
+                            <input name="sfsi_facebook_mypageCounts" type="text" class="input mypginpt" value="<?php echo ($option4['sfsi_facebook_mypageCounts'] != '') ? $option4['sfsi_facebook_mypageCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>" />
                             <div class="sfsi_fbpgidwpr sfsi_fbpgiddesc sfsi_facebook_count" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"><?php _e("(You'll find it at the bottom of the ",'ultimate-social-media-icons') ?><code>
                                     <<</code><?php _e("About",'ultimate-social-media-icons') ?> <code>>>
                                 </code><?php _e("-tab on your facebook page)",'ultimate-social-media-icons') ?></div>
                         </div>
                     </li>
                     <li>
-                        <input name="sfsi_facebook_countsFrom" <?php echo ($option4['sfsi_facebook_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" />Enter the figure manually:<input name="sfsi_facebook_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_facebook_manualCounts'] != '') ?  $option4['sfsi_facebook_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'mypage') ?  'display:none;' : ''; ?>" />
+                        <input name="sfsi_facebook_countsFrom" <?php echo ($option4['sfsi_facebook_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" />Enter the figure manually:<input name="sfsi_facebook_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_facebook_manualCounts'] != '') ? $option4['sfsi_facebook_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_facebook_countsFrom'] == 'likes' || $option4['sfsi_facebook_countsFrom'] == 'followers' || $option4['sfsi_facebook_countsFrom'] == 'mypage') ?  'display:none;' : ''; ?>" />
                     </li>
                 </ul>
                 <div class="sfsi_facebook_pagedeasc" style="<?php echo (isset($option4['sfsi_facebook_countsFrom']) && $option4['sfsi_facebook_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
 
                     <?php 
                         printf(
-                            __( '%1sNote:%2sThis plugin uses%3sone%4sAPI shared by all users of this plugin. There is a limit (set by Facebook) how often this API can get the counts per day, so it may happen that it returns “0 counts”later in the day.%5sTherefore we implemented a solution as part of our Premium Plugin where you can%6seasily%7sset up your own API in a few steps, which will fix this problem.%8sor learn more%9s','ultimate-social-media-icons' ),
+                            __( '%1$sNote:%2$s This plugin uses %3$sone%4$s API shared by all users of this plugin. There is a limit (set by Facebook) how often this API can get the counts per day, so it may happen that it returns “0 counts”later in the day.%5$sTherefore we implemented a solution as part of our Premium Plugin where you can %6$seasily%7$s set up your own API in a few steps, which will fix this problem.%8$s or learn more.%9$s','ultimate-social-media-icons' ),
                             '<p class="sfsi_shared_premium"><b>',
                             '</b>',
                             '<u>',
                             '</u>',
                             '<br><br>',
                             '<b>',
-                            ' </b>',
-                            '<br><br><a style="cursor:pointer;border-bottom: 1px solid #12a252;color: #12a252 !important" class="pop-up" data-id="sfsi_quickpay-overlay" onclick="sfsi_open_quick_checkout(event)" style="border-bottom: 1px solid #12a252;color: #12a252 !important" class="sfisi_font_bold" target="_blank">Go premium now<a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=facebook_counts&utm_medium=banner" class="sfsi_font_inherit" style="color: #12a252 !important" target="_blank">',
+                            '</b>',
+                            '<br><br><a style="cursor:pointer;border-bottom: 1px solid #12a252;color: #12a252 !important" class="pop-up" href="https://www.ultimatelysocial.com/usm-premium/?withqp=1&utm_source=usmi_settings_page&utm_campaign=top_banner&utm_medium=link" style="border-bottom: 1px solid #12a252;color: #12a252 !important" class="sfisi_font_bold" target="_blank">Go premium now<a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=facebook_counts&utm_medium=banner" class="sfsi_font_inherit" style="color: #12a252 !important" target="_blank">',
                             '</a>'
                         );
                     ?> 
@@ -446,25 +479,25 @@ $hide = "display:none;";
                     <ul class="SFSI_lsngfrm">
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                                 <label><?php _e("Enter Consumer Key:",'ultimate-social-media-icons') ?></label>
-                                <input name="tw_consumer_key" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_consumer_key']) && $option4['tw_consumer_key'] != '') ?  $option4['tw_consumer_key'] : ''; ?>" />
+                                <input name="tw_consumer_key" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_consumer_key']) && $option4['tw_consumer_key'] != '') ? $option4['tw_consumer_key'] : ''; ?>" />
                             </li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                                 <label><?php _e("Enter Consumer Secret:",'ultimate-social-media-icons') ?></label>
-                                <input name="tw_consumer_secret" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_consumer_secret']) && $option4['tw_consumer_secret'] != '') ?  $option4['tw_consumer_secret'] : ''; ?>" />
+                                <input name="tw_consumer_secret" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_consumer_secret']) && $option4['tw_consumer_secret'] != '') ? $option4['tw_consumer_secret'] : ''; ?>" />
                             </li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                                 <label><?php _e("Enter Access Token:",'ultimate-social-media-icons') ?></label>
-                                <input name="tw_oauth_access_token" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_oauth_access_token']) && $option4['tw_oauth_access_token'] != '') ?  $option4['tw_oauth_access_token'] : ''; ?>" />
+                                <input name="tw_oauth_access_token" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_oauth_access_token']) && $option4['tw_oauth_access_token'] != '') ? $option4['tw_oauth_access_token'] : ''; ?>" />
                             </li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                                 <label><?php _e("Enter Access Token Secret:",'ultimate-social-media-icons') ?></label>
-                                <input name="tw_oauth_access_token_secret" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_oauth_access_token_secret']) && $option4['tw_oauth_access_token_secret'] != '') ?  $option4['tw_oauth_access_token_secret'] : ''; ?>" />
+                                <input name="tw_oauth_access_token_secret" class="input_facebook" type="text" value="<?php echo (isset($option4['tw_oauth_access_token_secret']) && $option4['tw_oauth_access_token_secret'] != '') ? $option4['tw_oauth_access_token_secret'] : ''; ?>" />
                             </li>
                         </ul>
                         <ul class="SFSI_instructions">
-                            <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"><?php _e(" Please make sure you have entered the",'ultimate-social-media-icons') ?> <b><?php _e("Username",'ultimate-social-media-icons') ?> </b> <?php _e("for",'ultimate-social-media-icons') ?> <b><?php _e('Follow me on Twitter:"','ultimate-social-media-icons') ?></b><?php _e(" in twitter settings under question number 2.",'ultimate-social-media-icons') ?> </li>
+                            <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"><?php _e(" Please make sure you have entered the",'ultimate-social-media-icons') ?> <b><?php _e("Username",'ultimate-social-media-icons') ?> </b> <?php _e("for",'ultimate-social-media-icons') ?> <b><?php _e('Follow me on Twitter:"','ultimate-social-media-icons') ?></b><?php _e(" in Twitter settings under question number 2.",'ultimate-social-media-icons') ?> </li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
-                                <!-- <h3> --><b><?php _e("To get this information :",'ultimate-social-media-icons') ?> </b><!-- </h3> -->
+                                <!-- <h3> --><b><?php _e("To get this information:",'ultimate-social-media-icons') ?> </b><!-- </h3> -->
                             </li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"><?php _e("1: Go to",'ultimate-social-media-icons') ?> <a href="http://apps.twitter.com" target="_blank">apps.twitter.com</a></li>
                             <li class="tw_follow_options" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>"><?php _e('2: Click on "Create new app"','ultimate-social-media-icons') ?></li>
@@ -474,7 +507,7 @@ $hide = "display:none;";
                         </ul>
                     </li>
                     <li>
-                    <input name="sfsi_twitter_countsFrom" <?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_twitter_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_twitter_manualCounts'] != '') ?  $option4['sfsi_twitter_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'source') ?  'display:none;' : ''; ?>" />
+                    <input name="sfsi_twitter_countsFrom" <?php echo ($option4['sfsi_twitter_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_twitter_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_twitter_manualCounts'] != '') ? $option4['sfsi_twitter_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_twitter_countsFrom'] == 'source') ?  'display:none;' : ''; ?>" />
                     </li>
                 </ul>
             </div>
@@ -496,14 +529,14 @@ $hide = "display:none;";
             <div class="listing">
                 <ul>
 
-                    <?php /*?><li><input name="sfsi_linkedIn_countsFrom" <?php echo ($option4['sfsi_linkedIn_countsFrom']=='follower') ?  'checked="true"' : '' ;?>  type="radio" value="follower" class="styled"  />Retrieve the number of Linkedin followers</li>
+                    <?php /*?><li><input name="sfsi_linkedIn_countsFrom" <?php echo ($option4['sfsi_linkedIn_countsFrom']=='follower') ?  'checked="true"' : '' ;?>  type="radio" value="follower" class="styled" />Retrieve the number of Linkedin followers</li>
             <li class="SFSI_tglli">
                 <ul class="SFSI_lsngfrm">
                     
-                    <li class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter Company Name </label><input name="ln_company" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_company']) && $option4['ln_company']!='') ?  $option4['ln_company'] : '' ;?>"  /> </li>
-                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter API Key </label><input name="ln_api_key" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_api_key']) && $option4['ln_api_key']!='') ?  $option4['ln_api_key'] : '' ;?>"  /> </li>
-                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter Secret Key </label><input name="ln_secret_key" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_secret_key']) && $option4['ln_secret_key']!='') ?  $option4['ln_secret_key'] : '' ;?>"  /> </li>
-                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>" ><label>Enter OAuth User Token</label> <input name="ln_oAuth_user_token" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_oAuth_user_token']) && $option4['ln_oAuth_user_token']!='') ?  $option4['ln_oAuth_user_token'] : '' ;?>"  /> </li>
+                    <li class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter Company Name </label><input name="ln_company" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_company']) && $option4['ln_company']!='') ? $option4['ln_company'] : '' ;?>" /> </li>
+                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter API Key </label><input name="ln_api_key" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_api_key']) && $option4['ln_api_key']!='') ? $option4['ln_api_key'] : '' ;?>" /> </li>
+                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><label>Enter Secret Key </label><input name="ln_secret_key" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_secret_key']) && $option4['ln_secret_key']!='') ? $option4['ln_secret_key'] : '' ;?>" /> </li>
+                    <li  class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>" ><label>Enter OAuth User Token</label> <input name="ln_oAuth_user_token" class="input_facebook" type="text" value="<?php echo (isset($option4['ln_oAuth_user_token']) && $option4['ln_oAuth_user_token']!='') ? $option4['ln_oAuth_user_token'] : '' ;?>" /> </li>
                 </ul>
                 <ul class="SFSI_instructions">
                     <li class="linkedIn_options" style="<?php echo ($option4['sfsi_linkedIn_countsFrom']=='manual') ?  'display:none;' : '' ;?>"><h3>To get the API key for LinkedIn:</h3></li>
@@ -516,7 +549,7 @@ $hide = "display:none;";
              </li><?php */ ?>
 
 
-                <li><input name="sfsi_linkedIn_countsFrom" <?php echo ($option4['sfsi_linkedIn_countsFrom'] == 'manual' || $option4['sfsi_linkedIn_countsFrom'] == 'follower') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_linkedIn_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_linkedIn_manualCounts'] != '') ?  $option4['sfsi_linkedIn_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_linkedIn_countsFrom'] == 'follower') ?  'display:none;' : ''; ?>" /></li>
+                <li><input name="sfsi_linkedIn_countsFrom" <?php echo ($option4['sfsi_linkedIn_countsFrom'] == 'manual' || $option4['sfsi_linkedIn_countsFrom'] == 'follower') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_linkedIn_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_linkedIn_manualCounts'] != '') ? $option4['sfsi_linkedIn_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_linkedIn_countsFrom'] == 'follower') ?  'display:none;' : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -536,18 +569,18 @@ $hide = "display:none;";
                     <li class="youtube_options" style="<?php echo (!isset($option4['sfsi_youtube_countsFrom']) || empty($option4['sfsi_youtube_countsFrom']) || $option4['sfsi_youtube_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                         <div>
                             <label><?php _e("Enter Youtube User name:",'ultimate-social-media-icons') ?></label>
-                            <input name="sfsi_youtube_user" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_youtube_user']) && $option4['sfsi_youtube_user'] != '') ?  $option4['sfsi_youtube_user'] : ''; ?>" />
+                            <input name="sfsi_youtube_user" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_youtube_user']) && $option4['sfsi_youtube_user'] != '') ? $option4['sfsi_youtube_user'] : ''; ?>" />
                         </div>
                     </li>
                     <li class="youtube_options" style="<?php echo (!isset($option4['sfsi_youtube_countsFrom']) || empty($option4['sfsi_youtube_countsFrom']) || $option4['sfsi_youtube_countsFrom'] == 'manual') ?  'display:none;' : ''; ?>">
                         <div>
                             <label><?php _e("Enter Youtube Channel Id:",'ultimate-social-media-icons') ?></label>
-                            <input name="sfsi_youtube_channelId" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_youtube_channelId']) && $option4['sfsi_youtube_channelId'] != '') ?  $option4['sfsi_youtube_channelId'] : ''; ?>" />
+                            <input name="sfsi_youtube_channelId" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_youtube_channelId']) && $option4['sfsi_youtube_channelId'] != '') ? $option4['sfsi_youtube_channelId'] : ''; ?>" />
                         </div>
 
                     </li>
                     <li>
-                        <input name="sfsi_youtube_countsFrom" type="radio" value="manual" <?php echo ($option4['sfsi_youtube_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_youtube_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_youtube_manualCounts'] != '') ?  $option4['sfsi_youtube_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_youtube_countsFrom'] == 'subscriber') ?  'display:none;' : ''; ?>" />
+                        <input name="sfsi_youtube_countsFrom" type="radio" value="manual" <?php echo ($option4['sfsi_youtube_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> class="styled" /><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?><input name="sfsi_youtube_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_youtube_manualCounts'] != '') ? $option4['sfsi_youtube_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_youtube_countsFrom'] == 'subscriber') ?  'display:none;' : ''; ?>" />
                     </li>
                 </ul>
             </div>
@@ -564,25 +597,50 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
+                    <li class="sfsi_show_via_onhover disabled_checkbox d-flex sfsi-max-content clear">
+                        <label class="sfsi_tooltip_premium d-flex flex-row">
+                            <div class="sfsiicnsdvwrp">
+                                <span class="radio" style="background-position:0px 0px!important;"></span>
+                            </div>
+                            <div class="sfsicnwrp-no-margin">
+                                <?php
+                                    _e( 'Retrieve the number of Pinterest (+1) (on your blog)', 'ultimate-social-media-icons' );
+                                    echo sfsi_premium_tooltip_content();
+                                ?>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="sfsi_show_via_onhover disabled_checkbox d-flex sfsi-max-content clear">
+                        <label class="sfsi_tooltip_premium d-flex flex-row">
+                            <div class="sfsiicnsdvwrp">
+                                <span class="radio" style="background-position:0px 0px!important;"></span>
+                            </div>
+                            <div class="sfsicnwrp-no-margin">
+                                <?php
+                                    _e( 'Retrieve the number of pins of board from your pinterest account', 'ultimate-social-media-icons' );
+                                    echo sfsi_premium_tooltip_content();
+                                ?>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="sfsi_show_via_onhover disabled_checkbox d-flex sfsi-max-content clear">
+                        <label class="sfsi_tooltip_premium d-flex flex-row">
+                            <div class="sfsiicnsdvwrp">
+                                <span class="radio" style="background-position:0px 0px!important;"></span>
+                            </div>
+                            <div class="sfsicnwrp-no-margin">
+                                <?php
+                                    _e( 'Retrieve the number of pinterest followers', 'ultimate-social-media-icons' );
+                                    echo sfsi_premium_tooltip_content();
+                                ?>
+                            </div>
+                        </label>
+                    </li>
                     <li><input name="sfsi_pinterest_countsFrom" <?php echo ($option4['sfsi_pinterest_countsFrom'] == 'pins') ?  'checked="true"' : ''; ?> type="radio" value="pins" class="styled" /><?php _e("Retrieve the number of Pins",'ultimate-social-media-icons') ?></li>
-                    <li><input name="sfsi_pinterest_countsFrom" <?php echo ($option4['sfsi_pinterest_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><label class="high_prb"><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?></label><input name="sfsi_pinterest_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_pinterest_manualCounts'] != '') ?  $option4['sfsi_pinterest_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_pinterest_countsFrom'] == 'pins') ?  'display:none;' : ''; ?>" /></li>
+                    <li><input name="sfsi_pinterest_countsFrom" <?php echo ($option4['sfsi_pinterest_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><label class="high_prb"><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?></label><input name="sfsi_pinterest_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_pinterest_manualCounts'] != '') ? $option4['sfsi_pinterest_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_pinterest_countsFrom'] == 'pins') ?  'display:none;' : ''; ?>" /></li>
                 </ul>
             </div>
-            <div class="sfsi_new_prmium_follw" style="margin-top: 38px;">
-                <?php 
-                        printf(
-                            __( '%1s New: %2s In the Premium Plugin you can also automatically show the number of PINs from your Pinterest account, or of a specific board, or the number of your Pinterest followers. %3s Go premium now %4s  or learn more. %5s','ultimate-social-media-icons' ),
-                            '<p><b>',
-                            '</b>',
-                            '<a style="cursor:pointer;border-bottom: 1px solid #12a252;color: #12a252 !important;font-weight:bold" class="pop-up" data-id="sfsi_quickpay-overlay" onclick="sfsi_open_quick_checkout(event)" class="sfisi_font_bold" target="_blank">',
-                            '</a><a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_pinterest_counts&utm_medium=banner" class="sfsi_font_inherit" target="_blank"> ',
-                            '</a></p>'
-                        );
-                ?>     
-            </div>
         </div>
-
-
         <!-- END PINIT ICON COUNT SECTION-->
 
         <!-- INSTAGRAM ICON COUNT SECTION-->
@@ -602,17 +660,17 @@ $hide = "display:none;";
                         <div class="sfsi_instagramFields">
                             <div>
                                 <label><?php _e("Enter Instagram User name:",'ultimate-social-media-icons') ?></label>
-                                <input name="sfsi_instagram_User" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_User']) && $option4['sfsi_instagram_User'] != '') ?  $option4['sfsi_instagram_User'] : ''; ?>" />
+                                <input name="sfsi_instagram_User" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_User']) && $option4['sfsi_instagram_User'] != '') ? $option4['sfsi_instagram_User'] : ''; ?>" />
                             </div>
-                            <div>
+                            <div style="display:none">
                                 <label><?php _e("Enter Instagram Client Id:",'ultimate-social-media-icons') ?></label>
-                                <input name="sfsi_instagram_clientid" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_clientid']) && $option4['sfsi_instagram_clientid'] != '') ?  $option4['sfsi_instagram_clientid'] : ''; ?>" />
+                                <input name="sfsi_instagram_clientid" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_clientid']) && $option4['sfsi_instagram_clientid'] != '') ? $option4['sfsi_instagram_clientid'] : ''; ?>" />
                             </div>
-                            <div>
+                            <div style="display:none">
                                 <label><?php _e("Enter Instagram Redirect Url:",'ultimate-social-media-icons') ?></label>
-                                <input name="sfsi_instagram_appurl" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_appurl']) && $option4['sfsi_instagram_appurl'] != '') ?  $option4['sfsi_instagram_appurl'] : ''; ?>" />
+                                <input name="sfsi_instagram_appurl" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_appurl']) && $option4['sfsi_instagram_appurl'] != '') ? $option4['sfsi_instagram_appurl'] : ''; ?>" />
                             </div>
-                            <div class="sfsi_tokenGenerateButton">
+                            <div class="sfsi_tokenGenerateButton" style="display:none">
                                 <p>
                                 <?php 
                                     printf(
@@ -622,12 +680,12 @@ $hide = "display:none;";
                                     );
                                 ?>
                             </div>
-                            <div>
+                            <div style="display:none">
                                 <label><?php _e("Enter Instagram Token:",'ultimate-social-media-icons') ?></label>
-                                <input name="sfsi_instagram_token" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_token']) && $option4['sfsi_instagram_token'] != '') ?  $option4['sfsi_instagram_token'] : ''; ?>" />
+                                <input name="sfsi_instagram_token" class="input_facebook" type="text" value="<?php echo (isset($option4['sfsi_instagram_token']) && $option4['sfsi_instagram_token'] != '') ? $option4['sfsi_instagram_token'] : ''; ?>" />
                             </div>
                         </div>
-                        <div class="sfsi_instagramInstruction">
+                        <div class="sfsi_instagramInstruction" style="display:none">
                             <p><?php _e("To complete the process please follow these steps:",'ultimate-social-media-icons') ?></p>
                             <ol>
                                 <li><?php _e("Go to ",'ultimate-social-media-icons') ?><a href="https://www.instagram.com/developer" target="_blank">https://www.instagram.com/developer</a></li>
@@ -642,7 +700,7 @@ $hide = "display:none;";
                         </div>
                     </li>
                     <li>
-                        <input name="sfsi_instagram_countsFrom" <?php echo ($option4['sfsi_instagram_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><label class="high_prb"><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?></label><input name="sfsi_instagram_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_instagram_manualCounts'] != '') ?  $option4['sfsi_instagram_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_instagram_countsFrom'] == 'followers') ?  'display:none;' : ''; ?>" />
+                        <input name="sfsi_instagram_countsFrom" <?php echo ($option4['sfsi_instagram_countsFrom'] == 'manual') ?  'checked="true"' : ''; ?> type="radio" value="manual" class="styled" /><label class="high_prb"><?php _e("Enter the figure manually:",'ultimate-social-media-icons') ?></label><input name="sfsi_instagram_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_instagram_manualCounts'] != '') ? $option4['sfsi_instagram_manualCounts'] : ''; ?>" style="<?php echo ($option4['sfsi_instagram_countsFrom'] == 'followers') ?  'display:none;' : ''; ?>" />
                     </li>
 
                 </ul>
@@ -667,7 +725,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_telegram_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_telegram_manualCounts'] != '') ?  $option4['sfsi_telegram_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_telegram_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_telegram_manualCounts'] != '') ? $option4['sfsi_telegram_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -690,7 +748,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_vk_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_vk_manualCounts'] != '') ?  $option4['sfsi_vk_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_vk_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_vk_manualCounts'] != '') ? $option4['sfsi_vk_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -713,7 +771,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e(" We cannot track this. So enter the figure here: ",'ultimate-social-media-icons') ?><input name="sfsi_ok_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_ok_manualCounts'] != '') ?  $option4['sfsi_ok_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e(" We cannot track this. So enter the figure here: ",'ultimate-social-media-icons') ?><input name="sfsi_ok_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_ok_manualCounts'] != '') ? $option4['sfsi_ok_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -736,7 +794,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_whatsapp_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_whatsapp_manualCounts'] != '') ?  $option4['sfsi_whatsapp_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_whatsapp_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_whatsapp_manualCounts'] != '') ? $option4['sfsi_whatsapp_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -759,7 +817,7 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_weibo_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_weibo_manualCounts'] != '') ?  $option4['sfsi_weibo_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_weibo_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_weibo_manualCounts'] != '') ? $option4['sfsi_weibo_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
@@ -782,11 +840,103 @@ $hide = "display:none;";
             </div>
             <div class="listing">
                 <ul>
-                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?>  <input name="sfsi_wechat_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_wechat_manualCounts'] != '') ?  $option4['sfsi_wechat_manualCounts'] : ''; ?>" /></li>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?>  <input name="sfsi_wechat_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_wechat_manualCounts'] != '') ? $option4['sfsi_wechat_manualCounts'] : ''; ?>" /></li>
                 </ul>
             </div>
         </div>
         <!-- END wechat ICON COUNT SECTION-->
+
+        <!-- Snapchat ICON COUNT SECTION-->
+        <div class="specify_counts snapchat_section">
+            <div class="radio_section">
+                <input name="sfsi_snapchat_countsDisplay" <?php echo ( isset( $option4['sfsi_snapchat_countsDisplay'] ) && $option4['sfsi_snapchat_countsDisplay'] == 'yes' ) ? 'checked="true"' : ''; ?> type="checkbox" value="yes" class="styled" />
+            </div>
+            <div class="social_icon_like">
+                <ul class="like_icon">
+                    <li>
+                        <a title="snapchat">
+                            <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_snapchat.png" height="50px" alt="snapchat" />
+                            <span><?php echo ( isset( $counts['snapchat_count'] ) ) ? $counts['snapchat_count'] : '20'; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="listing">
+                <ul>
+                    <li><?php _e("We cannot track this. So enter the figure here:",'ultimate-social-media-icons') ?> <input name="sfsi_snapchat_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_snapchat_manualCounts'] != '') ? $option4['sfsi_snapchat_manualCounts'] : ''; ?>" /></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END ICON COUNT SECTION-->
+
+        <!-- Reddit ICON COUNT SECTION-->
+        <div class="specify_counts reddit_section">
+            <div class="radio_section">
+                <input name="sfsi_reddit_countsDisplay" <?php echo (isset($option4['sfsi_reddit_countsDisplay']) && $option4['sfsi_reddit_countsDisplay'] == 'yes') ?  'checked="true"' : ''; ?> type="checkbox" value="yes" class="styled" />
+            </div>
+            <div class="social_icon_like">
+                <ul class="like_icon">
+                    <li>
+                        <a title="reddit">
+                            <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_reddit.png" height="50px" alt="reddit" />
+                            <span><?php echo ( isset( $counts['reddit_count'] ) ) ? $counts['reddit_count'] : '20'; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="listing">
+                <ul>
+                    <li><?php _e( 'We cannot track this. So enter the figure here:', 'ultimate-social-media-icons' ); ?> <input name="sfsi_reddit_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_reddit_manualCounts'] != '') ? $option4['sfsi_reddit_manualCounts'] : ''; ?>" /></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END ICON COUNT SECTION-->
+
+        <!-- FB Messenger ICON COUNT SECTION-->
+        <div class="specify_counts fbmessenger_section">
+            <div class="radio_section">
+                <input name="sfsi_fbmessenger_countsDisplay" <?php echo (isset($option4['sfsi_fbmessenger_countsDisplay']) && $option4['sfsi_fbmessenger_countsDisplay'] == 'yes') ?  'checked="true"' : ''; ?> type="checkbox" value="yes" class="styled" />
+            </div>
+            <div class="social_icon_like">
+                <ul class="like_icon">
+                    <li>
+                        <a title="fbmessenger">
+                            <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_fbmessenger.png" height="50px" alt="fbmessenger" />
+                            <span><?php echo ( isset( $counts['fbmessenger_count'] ) ) ? $counts['fbmessenger_count'] : '20'; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="listing">
+                <ul>
+                    <li><?php _e( 'We cannot track this. So enter the figure here:', 'ultimate-social-media-icons' ); ?> <input name="sfsi_fbmessenger_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_fbmessenger_manualCounts'] != '') ? $option4['sfsi_fbmessenger_manualCounts'] : ''; ?>" /></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END ICON COUNT SECTION-->
+
+        <!-- FB Messenger ICON COUNT SECTION-->
+        <div class="specify_counts tiktok_section">
+            <div class="radio_section">
+                <input name="sfsi_tiktok_countsDisplay" <?php echo (isset($option4['sfsi_tiktok_countsDisplay']) && $option4['sfsi_tiktok_countsDisplay'] == 'yes') ?  'checked="true"' : ''; ?> type="checkbox" value="yes" class="styled" />
+            </div>
+            <div class="social_icon_like">
+                <ul class="like_icon">
+                    <li>
+                        <a title="tiktok">
+                            <img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_tiktok.png" height="50px" alt="tiktok" />
+                            <span><?php echo ( isset( $counts['tiktok_count'] ) ) ? $counts['tiktok_count'] : '20'; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="listing">
+                <ul>
+                    <li><?php _e( 'We cannot track this. So enter the figure here:', 'ultimate-social-media-icons' ); ?> <input name="sfsi_tiktok_manualCounts" type="text" class="input" value="<?php echo ($option4['sfsi_tiktok_manualCounts'] != '') ? $option4['sfsi_tiktok_manualCounts'] : ''; ?>" /></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END ICON COUNT SECTION-->
 
         <h4 style="clear: both;"><?php _e("For which icons do you want to show the counts?",'ultimate-social-media-icons') ?></h4>
         <!-- wechat ICON COUNT SECTION-->

@@ -8,6 +8,8 @@ use ShortPixel\Model\ImageModel as ImageModel;
 
 use ShortPixel\Controller\AdminNoticesController as AdminNoticesController;
 
+use \Exception as Exception;
+
 class WPShortPixel {
 
     const BULK_EMPTY_QUEUE = 0;
@@ -131,7 +133,7 @@ class WPShortPixel {
 
             //toolbar notifications
             add_action( 'admin_bar_menu', array( &$this, 'toolbar_shortpixel_processing'), 999 );
-            add_action( 'wp_head', array( $this, 'headCSS')); // for the front-end
+        //    add_action( 'wp_head', array( $this, 'headCSS')); // for the front-end
             //deactivate plugin
             add_action( 'admin_post_shortpixel_deactivate_plugin', array(&$this, 'deactivatePlugin'));
             //only if the key is not yet valid or the user hasn't bought any credits.
@@ -678,7 +680,7 @@ class WPShortPixel {
             if(   !is_plugin_active('image-watermark/image-watermark.php')
                && !is_plugin_active('amazon-s3-and-cloudfront/wordpress-s3.php')
                && !is_plugin_active('amazon-s3-and-cloudfront-pro/amazon-s3-and-cloudfront-pro.php')
-               && !is_plugin_active('easy-watermark/index.php')) {
+               && !is_plugin_active('easy-watermark/easy-watermark.php')) {
                 try {
                     $URLsAndPATHs = $this->getURLsAndPATHs($itemHandler);
                     //send a processing request right after a file was uploaded, do NOT wait for response
@@ -1422,7 +1424,7 @@ class WPShortPixel {
             //$prio = $this->prioQ->remove($ID);
             $prio = $this->prioQ->remove($itemId);
             if(isset($result["Code"])
-               && (   $result["Code"] == "write-fail" //could not write
+               && (   in_array($result["Code"], array("write-fail", "backup-fail")) //could not write
                    || (in_array(0+$result["Code"], array(-201)) && $meta->getRetries() >= 3))) { //for -201 (invalid image format) we retry only 3 times.
                 //put this one in the failed images list - to show the user at the end
                 $prio = $this->prioQ->addToFailed($itemHandler->getQueuedId());
@@ -2032,6 +2034,10 @@ class WPShortPixel {
             $fsFile = $fs->getFile($png2jpgMain); // original is non-existing at this time. :: Target
             $bkFile = $fs->getFile($bkFolder->getPath() . $fsFile->getFileName()); // Update this, because of filename (extension)
 
+						// Do the mime type
+						wp_update_post(array('ID' => $attachmentID, 'post_mime_type' => 'image/png' ));
+
+
         }
 
         //first check if the file is readable by the current user - otherwise it will be unaccessible for the web browser
@@ -2101,9 +2107,10 @@ class WPShortPixel {
                     {
                         $bkOrigFile = $origFile->getBackUpFile();
                         if ($bkOrigFile && $bkOrigFile->exists())
-                          $bkOrigFile->move($origFile);
+                        {  $bkOrigFile->move($origFile);
 
-                        Log::addDebug('Restore result - Backup original file', array($bkOrigFile, $origFile));
+                        	Log::addDebug('Restore result - Backup original file', array($bkOrigFile->getFullPath(), $origFile->getFullPath() ));
+												}
                     }
                     //$this->renameWithRetina($bkFile, $file);
                     if (! $bkFile->move($fsFile))
@@ -2175,7 +2182,15 @@ class WPShortPixel {
                     $crtMeta['height'] = $height;
                 }
                 if($png2jpgMain) {
-                    $crtMeta['file'] = trailingslashit(dirname($crtMeta['file'])) . $fsFile->getFileName();
+
+                    $dirname = dirname($crtMeta['file']);
+                    if ($dirname == '.')
+                      $dirname = '';
+                    else
+                      $dirname = trailingslashit($dirname);
+
+                    $crtMeta['file'] = $dirname . $fsFile->getFileName();
+
                     update_attached_file($ID, $crtMeta['file']);
 
                     if($png2jpgSizes && count($png2jpgSizes)) {
@@ -2952,6 +2967,10 @@ class WPShortPixel {
 
         $stats = $this->countAllIfNeeded($this->_settings->currentStats, 300);
 
+				$webpActive = ($this->_settings->createWebp) ? true : false;
+				$avifActive = ($this->_settings->createAvif) ? true : false;
+
+
         //$proposal = wp_remote_post($this->_settings->httpProto . "://shortpixel.com/propose-upgrade-frag", array(
         //echo("<div style='color: #f50a0a; position: relative; top: -59px; right: -255px; height: 0px; font-weight: bold; font-size: 1.2em;'>atentie de trecut pe live propose-upgrade</div>");
         $proposal = wp_remote_post("https://shortpixel.com/propose-upgrade-frag", array(
@@ -2980,6 +2999,8 @@ class WPShortPixel {
                 'm4' => $stats['totalM4'],
                 'filesTodo' => $stats['totalFiles'] - $stats['totalProcessedFiles'],
                 'estimated' => $this->_settings->optimizeUnlisted || $this->_settings->optimizeRetina ? 'true' : 'false',
+								'webp' => $webpActive,
+								'avif' => $avifActive,
                 /* */
                 'iconsUrl' => base64_encode(wpSPIO()->plugin_url('res/img'))
             ))),
@@ -3212,8 +3233,8 @@ class WPShortPixel {
                 str_replace('https://', 'http://', $requestURL) :
                 str_replace('http://', 'https://', $requestURL);
             // add or remove the sslverify
-            if($this->_settings->httpProto === 'http') {
-                $args['sslverify'] = false;
+            if($this->_settings->httpProto === 'https') {
+                $args['sslverify'] = apply_filters('shortpixel/system/sslverify', true);
             } else {
                 unset($args['sslverify']);
             }
@@ -3667,11 +3688,14 @@ Log::addDebug('GetQuotaInformation Result ', $dataArray);
             $pos = strrpos($path, ".");
             $pathFile = $fs->getFile($path);
             if ($pos !== false) {
-                //$webpPath = substr($path, 0, $pos) . ".webp";
-                //echo($webpPath . "<br>");
+								// Webp single extension
                 $file = $fs->getFile(substr($path, 0, $pos) . ".webp");
                 $file->delete();
+								// Webp Retina @2x.
                 $file = $fs->getFile(substr($path, 0, $pos) . "@2x.webp");
+                $file->delete();
+								// Avif single extension
+                $file = $fs->getFile(substr($path, 0, $pos) . ".avif");
                 $file->delete();
 
                 // Check for double extension. Everything is going, so delete if it's not us anyhow.
@@ -3811,34 +3835,41 @@ Log::addDebug('GetQuotaInformation Result ', $dataArray);
     }
 
     static public function matchExcludePattern($target, $pattern) {
-        if(strlen($pattern) == 0)  // can happen on faulty input in settings.
+            if(strlen($pattern) == 0)  // can happen on faulty input in settings.
           return false;
 
         $first = substr($pattern, 0,1);
 
+				$matchRegEx = false;
+
+				// Check for RegEx.
+				// if pattern is not proper regex, just try strpos. It can be a path like /sites/example.com/etc
         if ($first == '/')
         {
           if (@preg_match($pattern, false) !== false)
           {
-            $m = preg_match($pattern,  $target);
-            if ($m !== false && $m > 0) // valid regex, more hits than zero
-            {
-              return true;
-            }
-          }
-        }
-        else
-        {
+						$matchRegEx = true;
+					}
+				}
+
+				if (! $matchRegEx)
+				{
           if (strpos($target, $pattern) !== false)
           {
             return true;
           }
-        }
+				}
+				else
+				{
+						$m = preg_match($pattern,  $target);
+            if ($m !== false && $m > 0) // valid regex, more hits than zero
+            {
+              return true;
+            }
+				}
+
         return false;
 
-        /*return (
-            $pattern[0] == '/' && @preg_match($pattern, false) !== false && preg_match($pattern,  $target) //search as regex pattern if starts with a / and regex is valid
-            || $pattern[0] != '/' && strpos($target, $pattern) !== false ); //search as a substring if not */
     }
 
     //return an array with URL(s) and PATH(s) for this file

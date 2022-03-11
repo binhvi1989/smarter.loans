@@ -23,7 +23,7 @@
                 <a target="_blank" href="<?php echo SFSI_SUPPORT_FORM; ?>" class="go-to-support-forum"><?php _e("Go to Support Forum>",'ultimate-social-media-icons') ?></a>
             </div>
             <div class="sfsi-info-text">
-                <p><?php _e("If you're not a Wordpress user yet, please sign up – it's quick! Once logged in you‘ll see a section at the bottom where you can ask your question.",'ultimate-social-media-icons') ?></p>
+                <p><?php _e("If you're not a WordPress user yet, please sign up – it's quick! Once logged in you‘ll see a section at the bottom where you can ask your question.",'ultimate-social-media-icons') ?></p>
             </div>
         </div>
         <div class="sfsi-popup-footer">

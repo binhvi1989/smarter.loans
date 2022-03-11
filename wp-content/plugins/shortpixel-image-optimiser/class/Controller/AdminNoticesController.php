@@ -17,11 +17,13 @@ class AdminNoticesController extends \ShortPixel\Controller
     const MSG_COMPAT = 'Error100';  // Plugin Compatility, warn for the ones that disturb functions.
     const MSG_FILEPERMS = 'Error101'; // File Permission check, if Queue is file-based.
     const MSG_UNLISTED_FOUND = 'Error102'; // SPIO found unlisted images, but this setting is not on
+    const MSG_AVIF_ERROR = 'Error103'; // Detected unexpected or wrong AVIF headers when avif is on.
 
     //const MSG_NO_
     const MSG_QUOTA_REACHED = 'QuotaReached100';
     const MSG_UPGRADE_MONTH = 'UpgradeNotice200';  // When processing more than the subscription allows on average..
     const MSG_UPGRADE_BULK = 'UpgradeNotice201'; // when there is no enough for a bulk run.
+
 
     const MSG_NO_APIKEY = 'ApiNotice300'; // API Key not found
     const MSG_NO_APIKEY_REPEAT = 'ApiNotice301';  // First Repeat.
@@ -356,6 +358,7 @@ class AdminNoticesController extends \ShortPixel\Controller
     }
 
 
+
     protected function doHelpOptInNotices()
     {
        return; // this is disabled pending review.
@@ -580,7 +583,7 @@ class AdminNoticesController extends \ShortPixel\Controller
         wp_enqueue_style('short-pixel-modal.min.css', plugins_url('/res/css/short-pixel-modal.min.css',SHORTPIXEL_PLUGIN_FILE), array(), SHORTPIXEL_IMAGE_OPTIMISER_VERSION);
 
         $message = '<div id="shortPixelProposeUpgradeShade" class="sp-modal-shade" style="display:none;">
-            <div id="shortPixelProposeUpgrade" class="shortpixel-modal shortpixel-hide" style="min-width:610px;margin-left:-305px;">
+            <div id="shortPixelProposeUpgrade" class="shortpixel-modal shortpixel-hide" style="min-width:650px;margin-left:-305px;">
                 <div class="sp-modal-title">
                     <button type="button" class="sp-close-upgrade-button" onclick="ShortPixel.closeProposeUpgrade()">&times;</button>' .
                      __('Upgrade your ShortPixel account', 'shortpixel-image-optimiser') . '

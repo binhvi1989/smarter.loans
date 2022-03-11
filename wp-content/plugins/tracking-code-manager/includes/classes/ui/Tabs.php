@@ -275,7 +275,7 @@ class TCMP_Tabs {
                 <span style="font-weight:700; font-size:13px; color:#555;"><?php $tcmp->Lang->P('Rate us')?></span>
                 <div id="tcmp-rate" class="starrr" data-connected-input="tcmp-rate-rank"></div>
                 <input type="hidden" id="tcmp-rate-rank" name="tcmp-rate-rank" value="5" />
-                <?php  $tcmp->Utils->twitter('intellywp') ?>
+                <?php  $tcmp->Utils->twitter('data443risk') ?>
             </div>
             <script>
                 jQuery(function() {

@@ -1,0 +1,36 @@
+# Translation of Plugins - WordPress WPO Tweaks &amp; Optimizations - Development (trunk) in English (Canada)
+# This file is distributed under the same license as the Plugins - WordPress WPO Tweaks &amp; Optimizations - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-04-29 16:38:25+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: en_CA\n"
+"Project-Id-Version: Plugins - WordPress WPO Tweaks &amp; Optimizations - Development (trunk)\n"
+
+#. Plugin Name of the plugin
+msgid "WPO Tweaks & Optimizations"
+msgstr "WPO Tweaks & Optimizations"
+
+#: wordpress-wpo-tweaks.php:51
+msgid "Powered by <a target=\"_blank\" href=\"https://wordpress.org/\">WordPress</a> | Optimized with <a href=\"%s\" title=\"WordPress WPO Tweaks by Fernando Tellado\" target=\"_blank\">WPO Tweaks</a>"
+msgstr "Powered by <a target=\"_blank\" href=\"https://en-ca.wordpress.org/\">WordPress</a> | Optimized with <a href=\"%s\" title=\"WordPress WPO Tweaks by Fernando Tellado\" target=\"_blank\">WPO Tweaks</a>"
+
+#. Description of the plugin
+msgid "Several WordPress WPO Optimizations to save hosting resources, Speed Up WordPress and get better results in Google PageSpeed, GTMetrix, Pingdom Tools & WebPageTest"
+msgstr "Several WordPress WPO Optimizations to save hosting resources, Speed Up WordPress and get better results in Google PageSpeed, GTMetrix, Pingdom Tools & WebPageTest"
+
+#. Author URI of the plugin
+msgid "https://tellado.es/"
+msgstr "https://tellado.es/"
+
+#. Author of the plugin
+msgid "Fernando Tellado"
+msgstr "Fernando Tellado"
+
+#. Plugin URI of the plugin
+msgid "https://servicios.ayudawp.com/"
+msgstr "https://servicios.ayudawp.com/"

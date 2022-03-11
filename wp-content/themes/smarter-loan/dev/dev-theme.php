@@ -12,7 +12,7 @@ function _remove_query_strings_3( $src, $handle ){
                    $ver = '?ver='.filemtime(get_template_directory(). '/dev/js/dev.js');
                     break;
                 case 'dev_style':
-                    $ver = '?ver='.filemtime(get_template_directory(). '/dev/css/dev.css');
+                    $ver = '?ver=111qweq';
                     break;
             }
             return $rqs[0].$ver;
@@ -227,4 +227,45 @@ function videos_section() {
         <?php
     }  
 }
+
+
+
+/* Add svg files to upload media type */
+add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+  $filetype = wp_check_filetype( $filename, $mimes );
+  return [
+      'ext'             => $filetype['ext'],
+      'type'            => $filetype['type'],
+      'proper_filename' => $data['proper_filename']
+  ];
+}, 10, 4 );
+
+function cc_mime_types1( $mimes ){
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter( 'upload_mimes', 'cc_mime_types1' );
+function fix_svg() {
+    ?>
+<style type="text/css">
+        .attachment-266x266, .thumbnail img {
+             width: 100% !important;
+             height: auto !important;
+        }
+        .wp-core-ui select[multiple]{    overflow: scroll;}
+    tr.user-facebook-wrap,
+    tr.user-instagram-wrap,
+    tr.user-linkedin-wrap,
+    tr.user-myspace-wrap,
+    tr.user-pinterest-wrap,
+    tr.user-soundcloud-wrap,
+    tr.user-tumblr-wrap,
+    tr.user-twitter-wrap,
+    tr.user-youtube-wrap,
+    tr.user-wikipedia-wrap { display: none}
+        </style>
+
+    <?php
+}
+add_action( 'admin_head', 'fix_svg' );
 ?>

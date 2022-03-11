@@ -4,7 +4,7 @@
    * File for our cool Carousel in the footer
    *
    * @category Child Plugin
-   * @version v0.1.0
+   * @version v0.2.0
    * @since v0.1.0
    * @author iClyde <kontakt@iclyde.pl>
    */
@@ -32,6 +32,7 @@
         private $cdp_premium = 'copy-delete-posts-premium/copy-delete-posts-premium.php';
         private $cdp_slug = 'copy-delete-posts/copy-delete-posts.php';
         private $mpu_slug = 'pop-up-pop-up/pop-up-pop-up.php';
+        private $redi_slug = 'redirect-redirection/redirect-redirection.php';
 
         /*
         * Compile some variables for "future us"
@@ -44,7 +45,7 @@
           $this->_root_dir = $root_dir;
 
           // Add handler for Ajax request
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Check if slug is defined
             if (isset($_POST['slug']) && !empty($_POST['slug'])) {
@@ -219,6 +220,20 @@
             }
           }
 
+          if (!isset($this->menu)) {
+            $hhr = ['httpsremover', 'httphttpsremover'];
+            if (in_array($this->slug_low, $hhr)) {
+              $this->menu = 'httphttpsRemoval';
+            }
+          }
+
+          if (!isset($this->menu)) {
+            $wpc = ['wp-clone', 'wp-clone', 'wpclonebywpacademy'];
+            if (in_array($this->slug_low, $wpc)) {
+              $this->menu = 'wp-clone';
+            }
+          }
+
           // Make sure it found something
           if (isset($this->menu)) return true;
           else return $this->fail(6);
@@ -338,29 +353,41 @@
 
             if (is_null($activate)) {
 
+              $url = admin_url('', 'admin');
+
               // CDP has special alert when installed with quick-install module
               if ($_POST['slug'] === 'cdp') {
                 update_option('_cdp_cool_installation', true);
                 update_option('_cdp_redirect', true);
+                $url = admin_url() . 'admin.php?page=copy-delete-posts';
               }
 
               // Redirection for MPU
               if ($_POST['slug'] === 'mpu') {
                 update_option('wp_mypopups_do_activation_redirect', true);
+                $url = admin_url() . 'admin.php?page=wp-mypopups';
               }
 
               // Redirection for USM
               if ($_POST['slug'] === 'usm') {
                 update_option('sfsi_plugin_do_activation_redirect', true);
+                $url = admin_url() . 'admin.php?page=sfsi-options';
               }
 
               // Redirection for BMI
               if ($_POST['slug'] === 'bmi') {
                 update_option('_bmi_redirect', true);
+                $url = admin_url() . 'admin.php?page=backup-migration';
+              }
+
+              // Redirection for RED
+              if ($_POST['slug'] === 'redi') {
+                update_option('irrp_activation_redirect', true);
+                $url = admin_url() . 'admin.php?page=irrp-redirection';
               }
 
               // Send success
-              wp_send_json_success([ 'installed' => true ]);
+              wp_send_json_success([ 'installed' => true, 'url' => $url ]);
 
               // I don't know what happened here and if it's even possible
             } else wp_send_json_error();
@@ -414,6 +441,10 @@
 
             $this->install($this->mpu_slug, 'pop-up-pop-up');
 
+          } elseif ($slug == 'redi') {
+
+            $this->install($this->redi_slug, 'redirect-redirection');
+
             // Anything else error
           } else wp_send_json_error();
 
@@ -426,7 +457,7 @@
     if (!defined('INISEV_CAROUSEL')) {
 
       // Make sure settings/menu page slug exsits
-      if (!empty($_GET['page']) || $_SERVER['REQUEST_METHOD'] === 'POST') {
+      if (!empty($_GET['page']) || (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')) {
 
         // Initialize the Carousel
         $carousel = new Inisev_Carousel(__FILE__, __DIR__);

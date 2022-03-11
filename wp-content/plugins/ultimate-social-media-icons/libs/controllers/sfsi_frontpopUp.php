@@ -1,11 +1,26 @@
 <?php
 
 /* show a pop on the as per user chose under section 7 */
-function sfsi_frontPopUp()
-{
-    ob_start();
-    echo sfsi_FrontPopupDiv();
-    echo  $output = ob_get_clean();
+function sfsi_frontPopUp() {
+    
+    $option7 = maybe_unserialize( get_option( 'sfsi_section7_options', false ) );
+    $output = '';
+    
+    if ( !isset( $option7['sfsi_popup_show_on_mobile'] ) && !isset( $option7['sfsi_popup_show_on_desktop'] ) ) {
+        ob_start();
+            echo sfsi_FrontPopupDiv();
+        echo $output = ob_get_clean();
+    } else if ( wp_is_mobile() ) {
+        if ( isset( $option7['sfsi_popup_show_on_mobile'] ) && $option7['sfsi_popup_show_on_mobile'] == 'yes' ) {
+            ob_start();
+                echo sfsi_FrontPopupDiv();
+            echo $output = ob_get_clean();
+        }
+    } else if ( isset( $option7['sfsi_popup_show_on_desktop'] ) && $option7['sfsi_popup_show_on_desktop'] == 'yes' ) {
+        ob_start();
+            echo sfsi_FrontPopupDiv();
+        echo $output = ob_get_clean();
+    }
 }
 /* check where to be pop-shown */
 function sfsi_check_PopUp($content)
@@ -15,21 +30,28 @@ function sfsi_check_PopUp($content)
 
     $content = '';
 
-    $sfsi_section7_options =  unserialize(get_option('sfsi_section7_options', false));
+    $sfsi_section7_options = maybe_unserialize(get_option('sfsi_section7_options', false));
 
-    if (isset($sfsi_section7_options['sfsi_Show_popupOn']) && !empty($sfsi_section7_options['sfsi_Show_popupOn'])) {
+    if ( isset( $sfsi_section7_options['sfsi_Show_popupOn'] ) && !empty( $sfsi_section7_options['sfsi_Show_popupOn'] ) ) {
 
-        if ($sfsi_section7_options['sfsi_Show_popupOn'] == "blogpage") {
-            if (!is_feed() && !is_home() && !is_page()) {
-                $content =  sfsi_frontPopUp() . $content;
-            }
-        } else if ($sfsi_section7_options['sfsi_Show_popupOn'] == "selectedpage") {
-            if (!empty($post->ID) && !empty($sfsi_section7_options['sfsi_Show_popupOn_PageIDs'])) {
-                if (is_page() && in_array($post->ID,  unserialize($sfsi_section7_options['sfsi_Show_popupOn_PageIDs']))) {
-                    $content =  sfsi_frontPopUp() . $content;
+        if ( $sfsi_section7_options['sfsi_Show_popupOn'] == 'somepages' || $sfsi_section7_options['sfsi_Show_popupOn'] == "blogpage" || $sfsi_section7_options['sfsi_Show_popupOn'] == "selectedpage" ) {
+            if ( $sfsi_section7_options['sfsi_Show_popupOn'] == "blogpage" || ( isset( $sfsi_section7_options['sfsi_Show_popupOn_somepages_blogpage'] ) && $sfsi_section7_options['sfsi_Show_popupOn_somepages_blogpage'] == 'blogpage' ) ) {
+                if (!is_feed() && !is_home() && !is_page()) {
+                    $content = sfsi_frontPopUp() . $content;
+                }
+            } 
+
+            if ( $sfsi_section7_options['sfsi_Show_popupOn'] == "selectedpage" || ( isset( $sfsi_section7_options['sfsi_Show_popupOn_somepages_selectedpage'] ) && $sfsi_section7_options['sfsi_Show_popupOn_somepages_selectedpage'] == 'selectedpage' ) ) {
+
+                $post_id = $post->ID;
+
+                if ( !empty( $post_id ) && !empty( $sfsi_section7_options['sfsi_Show_popupOn_PageIDs'] ) ) {
+                    if ( is_page() && in_array( $post_id,  maybe_unserialize( $sfsi_section7_options['sfsi_Show_popupOn_PageIDs'] ) ) ) {
+                        $content = sfsi_frontPopUp() . $content;
+                    }
                 }
             }
-        } else if ($sfsi_section7_options['sfsi_Show_popupOn'] == "everypage") {
+        } else if ( $sfsi_section7_options['sfsi_Show_popupOn'] == "everypage" ) {
             $content = sfsi_frontPopUp() . $content;
         }
     }
@@ -103,16 +125,16 @@ function sfsi_FrontPopupDiv()
 {
     global $wpdb;
     /* get all settings for icons saved in admin */
-    $sfsi_section1_options =  unserialize(get_option('sfsi_section1_options', false));
+    $sfsi_section1_options = maybe_unserialize(get_option('sfsi_section1_options', false));
     $custom_i = unserialize($sfsi_section1_options['sfsi_custom_files']);
     if ($sfsi_section1_options['sfsi_rss_display'] == 'no' &&  $sfsi_section1_options['sfsi_email_display'] == 'no' && $sfsi_section1_options['sfsi_facebook_display'] == 'no' && $sfsi_section1_options['sfsi_twitter_display'] == 'no' && $sfsi_section1_options['sfsi_youtube_display'] == 'no' && $sfsi_section1_options['sfsi_pinterest_display'] == 'no' && $sfsi_section1_options['sfsi_linkedin_display'] == 'no' && empty($custom_i)) {
         $icons = '';
         return $icons;
         exit;
     }
-    $sfsi_section7_options =  unserialize(get_option('sfsi_section7_options', false));
-    $sfsi_section5 =  unserialize(get_option('sfsi_section5_options', false));
-    $sfsi_section4 =  unserialize(get_option('sfsi_section4_options', false));
+    $sfsi_section7_options = maybe_unserialize(get_option('sfsi_section7_options', false));
+    $sfsi_section5 = maybe_unserialize(get_option('sfsi_section5_options', false));
+    $sfsi_section4 = maybe_unserialize(get_option('sfsi_section4_options', false));
     /* calculate the width and icons display alignments */
     $heading_text = (isset($sfsi_section7_options['sfsi_popup_text'])) ? $sfsi_section7_options['sfsi_popup_text'] : 'Enjoy this site? Please follow and like us!';
     $div_bgColor = (isset($sfsi_section7_options['sfsi_popup_background_color'])) ? $sfsi_section7_options['sfsi_popup_background_color'] : '#fff';
@@ -146,6 +168,10 @@ function sfsi_FrontPopupDiv()
         $sfsi_section5['sfsi_weiboIcon_order'] => 'weibo',
         $sfsi_section5['sfsi_wechatIcon_order'] => 'wechat',
         $sfsi_section5['sfsi_whatsappIcon_order'] => 'whatsapp',
+        $sfsi_section5['sfsi_snapchatIcon_order'] => 'snapchat',
+        $sfsi_section5['sfsi_redditIcon_order'] => 'reddit',
+        $sfsi_section5['sfsi_fbmessengerIcon_order'] => 'fbmessenger',
+        $sfsi_section5['sfsi_tiktokIcon_order'] => 'tiktok',
 
     );
     $icons = array();
@@ -173,11 +199,11 @@ function sfsi_FrontPopupDiv()
         }
     endif;
     ksort($icons_order);     /* short icons in order to display */
-    $icons = '<div class="sfsi_outr_div" > <div class="sfsi_FrntInner_chg" style="' . $style . '">';
+    $icons = '<div class="sfsi_outr_div"><div class="sfsi_FrntInner_chg" style="' . $style . '">';
     //adding close button
     $icons .= '<div class="sfsiclpupwpr" onclick="sfsihidemepopup();"><img src="' . SFSI_PLUGURL . 'images/close.png" alt="error" /></div>';
 
-    if (!empty($heading_text)) {
+    if ( $heading_text ) {
         $icons .= '<h2 style="' . $h_style . '">' . $heading_text . '</h2>';
     }
     $ulmargin = "";
@@ -188,7 +214,7 @@ function sfsi_FrontPopupDiv()
     $icons .= '<ul style="' . $ulmargin . '">';
     foreach ($icons_order  as $index => $icn) :
 
-        if (is_array($icn)) {
+        if ( is_array( $icn ) ) {
             $icon_arry = $icn;
             $icn = "custom";
         }
@@ -239,8 +265,7 @@ function sfsi_FrontPopupDiv()
                 break;
         endswitch;
     endforeach;
-    $icons .= '</ul></div ></div >';
+    $icons .= '</ul></div></div>';
 
     return $icons;
 }
-?>

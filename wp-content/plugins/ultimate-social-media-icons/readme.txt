@@ -1,9 +1,9 @@
-=== Social Media Share Buttons Popup & Pop Up Social Sharing Icons  ===
+=== Social Media Share Buttons & Social Sharing Icons  ===
 Contributors: socialdude, socialtech
-Tags: share, pop up, popup, share icons, share buttons, social media, social, popups, sharing icons, sharing buttons, social share, sharing
+Tags: share, social, share icons, social media, widget, sharing icons, sharing buttons, social share, sharing
 Requires at least: 3.5
-Tested up to: 5.7
-Stable tag: 2.6.6
+Tested up to: 5.9.1
+Stable tag: 2.7.3
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ Share buttons and pop up share icons for social media sharing
 
 == Description ==
 
-**Try it out on your free dummy site: Click here => [https://tastewp.com/new/?pre-installed-plugin-slug=ultimate-social-media-icons](https://tastewp.com/new/?pre-installed-plugin-slug=ultimate-social-media-icons)** 
+**Try it out on your free dummy site: Click here => [https://tastewp.com/new/?pre-installed-plugin-slug=ultimate-social-media-icons](https://tastewp.com/new/?pre-installed-plugin-slug=ultimate-social-media-icons)**
 
 Social media plugin which let's you add share icons for RSS, Email, Facebook, Twitter, LinkedIn, Pinterest, Instagram, Youtube, 'Share' (covering 200+ other social media platforms) and upload custom share icons of your choice. 
 
@@ -54,7 +54,7 @@ We hope you enjoy the free social media plugin!
 
 We released a premium social share plugin with many more exciting features: 
 
-- **Many more social networks** supported, including Snapchat share buttons, Whatsapp share buttons, Yummly share buttons, Phone button, Yelp share buttons, Soundcloud share buttons, Skype share buttons Flickr share buttons, Blogger share buttons, Reddit share buttons, Vimeo share buttons, Tumblr share buttons, Xing share buttons, Vkontakte share buttons (VK), Telegram share buttons, Amazon share buttons, Goodreads share buttons, Angies list share buttons, Steam share buttons, Twitch share buttons, Spotify share buttons, Odnoklassniki share buttons (OK), Buffer share buttons, Weibo share buttons, Pocket share buttons, Meneame share buttons, Frype share buttons, LiveJournal share buttons, Patreon share buttons, Dloky share buttons, Discord share buttons, Github share buttons, Wordpress buttons, Etsy share buttons, Better Business Bureau share buttons, Digg share buttons, Delicious share buttons, Print share buttons, and many other share buttons!
+- **Many more social networks** supported, including Snapchat share buttons, Whatsapp share buttons, Yummly share buttons, Phone button, Yelp share buttons, Soundcloud share buttons, Skype share buttons Flickr share buttons, Blogger share buttons, Reddit share buttons, Vimeo share buttons, Tumblr share buttons, Xing share buttons, Xhenta, Vkontakte share buttons (VK), Telegram share buttons, Amazon share buttons, Goodreads share buttons, Angies list share buttons, Steam share buttons, Twitch share buttons, Spotify share buttons, Odnoklassniki share buttons (OK), Buffer share buttons, Weibo share buttons, Pocket share buttons, Meneame share buttons, Frype share buttons, LiveJournal share buttons, Patreon share buttons, Dloky share buttons, Discord share buttons, Github share buttons, Wordpress buttons, Etsy share buttons, Better Business Bureau share buttons, Digg share buttons, Delicious share buttons, Print share buttons, and many other share buttons!
 - **More design styles** to make your social share icons look really cool & matching the design of your website
 - **Themed design styles**, e.g. if you have a website about cats you can pick from social media logos which look like cats etc.
 - **Better social sharing and following features**, e.g. you can define the Tweet-texts better (e.g. pull the post titles into your Tweets automatically), let people follow you on Facebook directly without leaving your site etc.
@@ -253,6 +253,30 @@ Yes, you can disable the share icons under question 5. In our new Premium Plugin
 
 You cannot use the same plugin twice, however you can install both the USM as well as the Premiuem plugin (https://www.ultimatelysocial.com/usm-premium/). We've developed the code so that there are no conflicts and you can place the share icons in one way with one plugin, and select other share icons with the other plugin and place them differently.
 
+= Is the plugin also available in my language? =
+
+It depends on which language you speak :) however probably the answer is “yes”, as we recently translated it into the most common languages: 
+
+- French: [Boutons de partage de médias sociaux et icônes de partage social](https://fr.wordpress.org/plugins/ultimate-social-media-icons)
+- Spanish: [Botones para compartir en redes sociales e íconos para compartir en redes sociales](https://es.wordpress.org/plugins/ultimate-social-media-icons)
+- Portuguese: [Botões de compartilhamento de mídia social e ícones de compartilhamento social](https://br.wordpress.org/plugins/ultimate-social-media-icons/) 
+- Greek: [Κουμπιά κοινής χρήσης μέσων κοινωνικής δικτύωσης και εικονίδια κοινής χρήσης μέσων κοινωνικής δικτύωσης](https://el.wordpress.org/plugins/ultimate-social-media-icons/)
+- Dutch: [Knoppen voor het delen van sociale media en pictogrammen voor sociaal delen](https://nl.wordpress.org/plugins/ultimate-social-media-icons/)
+- German: [Schaltflächen zum Teilen in soziale Medien und Symbole zum Teilen in soziale Netzwerke](https://de.wordpress.org/plugins/ultimate-social-media-icons/)
+- Italian: [Pulsanti di condivisione dei social media e icone di condivisione sui social](https://it.wordpress.org/plugins/ultimate-social-media-icons/)
+- Finnish: [Sosiaalisen median jakopainikkeet ja sosiaalisen jakamisen kuvakkeet](https://fi.wordpress.org/plugins/ultimate-social-media-icons/)
+- Russian: [Кнопки «Поделиться в социальных сетях» и значки «Поделиться в социальных сетях»](https://ru.wordpress.org/plugins/ultimate-social-media-icons/)
+- Turkish: [Sosyal Medya Paylaşım Düğmeleri ve Sosyal Paylaşım Simgeleri](https://tr.wordpress.org/plugins/ultimate-social-media-icons/)
+- Ukrainian: [Кнопки обміну в соціальних мережах і піктограми обміну в соціальних мережах](https://uk.wordpress.org/plugins/ultimate-social-media-icons/)
+- Croatian: [Gumbi za dijeljenje na društvenim mrežama i ikone za dijeljenje na društvenim mrežama](https://hr.wordpress.org/plugins/ultimate-social-media-icons/)
+- Hungarian: [Közösségi média megosztási gombok és közösségi megosztási ikonok](https://hu.wordpress.org/plugins/ultimate-social-media-icons/)
+- Arabic: [أزرار مشاركة الوسائط الاجتماعية وأيقونات المشاركة الاجتماعية](https://ar.wordpress.org/plugins/ultimate-social-media-icons/)
+- Indonesian: [Tombol Berbagi Media Sosial & Ikon Berbagi Sosial](https://id.wordpress.org/plugins/ultimate-social-media-icons/)
+- Chinese: [社交媒体分享按钮和社交分享图标](https://cn.wordpress.org/plugins/ultimate-social-media-icons/)
+- English: [Social Media Share Buttons & Social Sharing Icons](https://wordpress.org/plugins/ultimate-social-media-icons/)
+- Vietnamese: [Các nút chia sẻ trên mạng xã hội & biểu tượng chia sẻ trên mạng xã hội](https://vi.wordpress.org/plugins/ultimate-social-media-icons/)
+- Polish: [Przyciski udostępniania w mediach społecznościowych i ikony udostępniania w mediach społecznościowych](https://pl.wordpress.org/plugins/ultimate-social-media-icons/)
+- Persian: [دکمه های اشتراک گذاری رسانه های اجتماعی و نمادهای اشتراک گذاری اجتماعی](https://fa.wordpress.org/plugins/ultimate-social-media-icons/)
 
 == Screenshots ==
 
@@ -276,6 +300,57 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 
 == Changelog ==
+= 2.7.3 =
+* Update: Check WordPress 5.9.1 compatibility
+* Fixed: Optimize CSS/JS code
+* Fixed: Some minor fixes
+
+= 2.7.2 =
+* Check PHP 8.1 compatibility
+* Fixed: Widget loading issue Admin > Widgets
+* Fixed: Some minor fixes
+
+= 2.7.1 =
+* Update: Check WordPress 5.9 compatibility
+* Fixed: Fix new version update string offset notice.
+* Fixed: Some minor fixes
+
+= 2.7.0 =
+* New: Added Background color option for Flat icon style
+* New: Added a new tab "Get advice for more shares & traffic"
+* Update: Check WordPress 5.8.3 compatibility
+* Update: Update Facebook API
+* Update: Footer banner
+* Fixed: Some minor fixes
+
+= 2.6.9 =
+* Update: Banners
+* Fixed: Optimize CSS/JS code
+* Fixed: Some minor fixes
+
+= 2.6.8 =
+* New: Added Snapchat, Reddit, Facebook Messenger, TikTok sharing platform.
+* New: Added VK sharing option in Q2
+* New: Added 'Sticky bar' features
+* New: Added new Animated Icons, Flat Squared and Icons Only style for icon theme
+* New: Added horizontally/vertically icons alignments option in floating icons, widget, shortcode
+* New: Added Pinterest and share count in Responsive icons
+* New: Added Language for like, share and subscribe buttons (Facebook, Twitter, Youtube) in Q6
+* Update: WordPress 5.8.2 compatibility
+* Update: Instagram and FB Messenger icons for some icon themes
+* Update: Popup shown option for On some pages
+* Fixed: Share counter display issue for Q3
+* Fixed: Duplicate localize script
+* Fixed: Fix some errors shown on W3C Markup Validation
+* Fixed: Some minor fixes
+
+= 2.6.7 =
+* Check PHP 8.0 compatibility
+* Change unserialize to maybe_unserialize
+* Update Instagram icons
+* Fix transaltion issues
+* Some minor fixes
+
 = 2.6.6 =
 * Vulnerability fix
 * Some minor fixes
@@ -984,5 +1059,5 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 == Upgrade Notice ==
 
-= 2.6.6 =
+= 2.7.3 =
 Please upgrade

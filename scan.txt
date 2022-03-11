@@ -1,0 +1,6 @@
+<pre>OK: Connected to Sucuri and running the cleanup.
+Starting Sucuri Clean up (BETA) v20220228_0843...
+WARN: Found suspicious file: ./wp-content/nitropack/vgODAJwHtuSHrPfFEcAkgebhklvwqDRr/data/pagecache/mobile/647551852f91700c19614f0aa57d6166/ssl-d41d8cd98f00b204.html (NOT CLEANED) - Manual inspection required (rex.link_sequence.001): Content: '<li><a href="https://smarter.loans/ontario/newmark'.
+WARN: The ./wp-content/cache_old/min/1 directory contains 44 possible spam files - Manual review required.
+Scanning completed.
+</pre>

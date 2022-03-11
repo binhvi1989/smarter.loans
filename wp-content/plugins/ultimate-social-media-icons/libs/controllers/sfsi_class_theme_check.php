@@ -62,7 +62,7 @@ class sfsi_ThemeCheck
 		                    array_push($themeDataArr, (object)$themeArr);
 			            } 
 			    }
-		    }	    	
+		    }
 	    }
 
 	    return $themeDataArr;
@@ -73,7 +73,7 @@ class sfsi_ThemeCheck
 	    $keywordData    = @file_get_contents($keywordFile);
 	    $keywordEnglish = array_map("str_getcsv", explode("\n", $keywordData));
 	    $keywordEnglish = array_map('array_filter', $keywordEnglish);
-		$keywordEnglish = array_filter(array_map(sfsi_returningElement($element), $keywordEnglish)); 	    
+		$keywordEnglish = array_filter(array_map(sfsi_returningElement($element), $keywordEnglish));
 	    return $keywordEnglish;
 	}
 	public function sfsi_plus_regex_for_keywords($arrKeyWords){
@@ -96,12 +96,12 @@ class sfsi_ThemeCheck
 						$strRegex .= "/(".$val."|";
 					}
 					elseif ($i==$count-1) {
-						$strRegex .= $val.")/im";				
+						$strRegex .= $val.")/im";
 					}
 					else{
 						$strRegex.= $val."|";
-					}			
-				}	        	
+					}
+				}
 	        }
 		}
 		return $strRegex;
@@ -128,7 +128,7 @@ class sfsi_ThemeCheck
 		                        $strRegex .= "/".$val."|";
 		                  }
 		                  elseif ($i==$count-1) {
-		                        $strRegex .= $val."/i";                       
+		                        $strRegex .= $val."/i";
 		                  }
 		                  else{
 		                        $strRegex.= $val."|";
@@ -189,7 +189,7 @@ class sfsi_ThemeCheck
 	                        }
 
 	                        $j++;
-	                    }       
+	                    }
 	                }
 
 	                $rightcatflag = false;
@@ -242,14 +242,14 @@ class sfsi_ThemeCheck
 	                    {
 	                        if($rightcatflag)
 	                        {
-	                            $catflag = true;           
+	                            $catflag = true;
 	                        }
 	                    }
 	                    elseif(!empty($left) && empty($right))
 	                    {
 	                        if($leftcatflag)
 	                        {
-	                            $catflag = true;           
+	                            $catflag = true;
 	                        }
 	                    }
 	                }
@@ -274,7 +274,7 @@ class sfsi_ThemeCheck
 	                    $boolSeparateWord = $this->sfsi_plus_match_separate_word_with_csv_data($val,$domainname);
 
 	                    if($boolSeparateWord) {
-	                    	break;	                    	
+	                    	break;
 	                    }
 
 	                }
@@ -290,7 +290,7 @@ class sfsi_ThemeCheck
  		$metaArray = $this->sfsi_plus_GetMetaName($domainname);
  		foreach($metaArray as $index=>$meta){
  			if($this->sfsi_plus_noBrainerKeywordCheck($arrNoBrainerKeywords, $domainname)){
-                $flag = true;	                
+                $flag = true;
             }
             else if($this->sfsi_plus_SeparateKeywordCheck($arrSeparateKeywords,$domainname)){
                 $flag = true;
@@ -402,9 +402,9 @@ class sfsi_ThemeCheck
 	    	
 	    	if(preg_match($this->sfsi_plus_regex_for_keywords($arrNoBrainerKeywords), $domainname)){
 	        	$bflag = true;
-	    	}	    	
+	    	}
 	    }
-	    return $bflag;		
+	    return $bflag;
 	}
 
 	public function sfsi_plus_check_type_of_websiteWithNoBrainerAndSeparateAndNegativeKeywords($strCheckForThemeType,$arrNoBrainerKeywords,$arrSeparateKeywords,$arrNoBrainerAndSeparateKeywords,$arrNegativeKeywords,$domainname){
@@ -420,7 +420,7 @@ class sfsi_ThemeCheck
 		                if(isset($arrNegativeKeywords) && is_array($arrNegativeKeywords) && count($arrNegativeKeywords)){
 		                    $domainname = preg_replace($this->sfsi_plus_regex_forNegative_keywords($arrNegativeKeywords), '', $domainname);              
 		                    $explode    = explode(".", $domainname);
-		                    $domainname = @$explode[0];                    
+		                    $domainname = @$explode[0];
 		                }
 			        }
 		               
@@ -514,10 +514,14 @@ class sfsi_ThemeCheck
  	public function sfsi_plus_bannereHtml_main($title, $siteLink, $bannerImage, $buttonTitle)
 	{
 		echo '<script type="text/javascript">
-		SFSI(".sfsi_webtheme").show();
-		SFSI(".sfsi_webtheme a").attr("href", "'.$siteLink.'");
-		SFSI(".icns_tab_3.sfsi_premium_ad span ").css("background-image", \'url('.$bannerImage.')\');
-		SFSI(".sfsi_premium_ad_lable").text(\''.$title.'\');
+		( function ($) {
+			$( document ).ready( function () {
+				$(".sfsi_webtheme").show();
+				$(".sfsi_webtheme a").attr("href", "'.$siteLink.'");
+				$(".icns_tab_3.sfsi_premium_ad span ").css("background-image", \'url('.$bannerImage.')\');
+				$(".sfsi_premium_ad_lable").text(\''.$title.'\');
+			});
+		})( jQuery );
 		</script>';
 	}		
 
@@ -542,11 +546,8 @@ class sfsi_ThemeCheck
 	                <a href="'.$siteLink.'">
 	                    '.$buttonTitle.' >
 	                </a>
-	            </div>    
+	            </div>
 	        </div>
 	    </div>';
-	}	
-
-	
+	}
 }
-?>

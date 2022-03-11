@@ -15,7 +15,7 @@ Button.BuyPRO=UPGRADE TO PREMIUM NOW ››
 CodeAddNotice=Tracking code "#{0} ({1})" successfully added
 CodeDeleteNotice=Tracking code "#{0} ({1})" successfully deleted
 CodeUpdateNotice=Tracking code "#{0} ({1})" successfully updated
-ConversionDynamicFields1=*** PREMIUM FEATURE *** If you need to use dynamic conversion values, to track additional data in your conversions (like in Facebook Ads or Google Adwords), you can check <a href="http://support.intellywp.com/article/28-dynamic-conversion-values?utm_campaign=plugin-editor" target="_blank">this documentation to see how </a>.<br>
+ConversionDynamicFields1=*** PREMIUM FEATURE *** If you need to use dynamic conversion values, to track additional data in your conversions (like in Facebook Ads or Google Adwords), you can check <a href="https://data443.atlassian.net/servicedesk/customer/portal/17/article/947486813" target="_blank">this documentation to see how </a>.<br>
 ConversionDynamicFields2=See Dynamic conversion values tags below:
 ConversionDynamicFields3=<b>@@ORDERID@@</b>: return the order id
 ConversionDynamicFields4=<b>@@CURRENCY@@</b>: return the currency
@@ -105,8 +105,11 @@ License.licenseSiteCount=License site count
 License.metabox=In "<b>{0}</b>"
 LicenseSection=License information
 LicenseSectionSubtitle=Insert the activation key received by email in the text below to see all the settings
+Priority.tcmpHookPriority=Priority
+PrioritySection=Priority Setting
+PrioritySectionSubtitle=Change the priority used to insert the scripts onto the page. (Default priority is 10, 1 is the highest priority and lower priorities are higher numbers.)
 Manager=
-ManagerTitle=Welcome to "<b>Tracking Code Manager</b> (v.{0})", an <a href="https://intellywp.com/" target="_blank"><b>IntellyWP</b></a> plugin.
+ManagerTitle=Welcome to "<b>Tracking Code Manager</b> (v.{0})", a <a href="https://data443.com/" target="_blank"><b>Data443</b></a> plugin.
 MetaboxSection=Metabox information
 MetaboxSectionSubtitle=Check in which post type do you want integrate our metabox widget
 Name=
@@ -155,12 +158,12 @@ Sidebar2.Url=https://intellywp.com/plugins
 Sidebar3.Name=Contact support
 Sidebar3.Url=https://data443.atlassian.net/servicedesk/customer/portal/17
 Sidebar4.Name=Like us on Facebook
-Sidebar4.Url=https://www.facebook.com/intellywp/
+Sidebar4.Url=https://www.facebook.com/data443/
 Sidebar5.Name=Follow us on Twitter
-Sidebar5.Url=https://twitter.com/intellywp
+Sidebar5.Url=https://twitter.com/data443risk
 Sidebar6.Name=Rate us on Wordpress
 Sidebar6.Url=https://wordpress.org/support/plugin/tracking-code-manager/reviews/#postform
-SnippetsLimitNotice=You are using {0} slots or {1} available slots in the FREE version. You can unlock this limit visiting this <a href="{2}">LINK</a> (IntellyWP site).
+SnippetsLimitNotice=You are using {0} of {1} available slots in the FREE version. You can unlock this limit visiting this <a href="{2}">LINK</a> (IntellyWP site).
 SnippetsLimitReached=You have reached the limit of {0} tracking codes. You can unlock this limit visiting this <a href="{1}">LINK</a> (IntellyWP site).
 Specific Pages=
 WhatsNewTitle=Introducing Ecommerce Conversion Tracking

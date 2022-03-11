@@ -1,6 +1,6 @@
 <?php
 
-$option9   = unserialize(get_option('sfsi_section9_options', false));
+$option9 = maybe_unserialize(get_option('sfsi_section9_options', false));
 $analyst_cache = (get_option("analyst_cache"));
 $sfsi_willshow_analyst_popup = false;
 if (!is_null($analyst_cache) && isset($analyst_cache["plugin_to_install"])) {
@@ -41,71 +41,91 @@ if (!is_null($analyst_cache) && isset($analyst_cache["plugin_to_install"])) {
 
 		<!--**********************  Show them after post****************************************-->
 
-
-
 		<?php @include(SFSI_DOCROOT . '/views/subviews/que3/sfsi_que3_place_via_after_posts.php'); ?>
+
+		<!--**********************  Place via Sticky bar ****************************************-->
+		
+		<?php @include(SFSI_DOCROOT . '/views/subviews/que3/sfsi_que3_place_via_sticky_bar.php'); ?>
 
 		<!--**********************  Show pinterest over image hover  post****************************************-->
 
 
-		<li class="sfsi_show_via_onhover disabled_checkbox">
-
-
-
-			<div class="radio_section tb_4_ck">
-
-				<span class="checkbox" style="background-position:0px 0px!important;width:31px"></span>
-
-				<input name="" type="checkbox" disable value="" class="hide" style="display:none;" />
-			</div>
-
-
-
-			<div class="sfsi_right_info">
-
-				<p style="display:block">
-
-					<span class="sfsi_toglepstpgspn" style="display:inline-block;"><?php _e("Show a Pinterest icon over images on mouse-over ",'ultimate-social-media-icons') ?></span>
-					<span> - <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=pinterest_icon_mouse_over&utm_medium=link" target="_blank" style="font-weight:800;color: #777;"><?php _e("Premium feature",'ultimate-social-media-icons') ?></a>
-					</span>
-
-				</p>
-
-
-			</div>
-
+		<li class="sfsi_show_via_onhover">
+			<div class="radio_section extra_sp">
+                <label class="sfsi_tooltip_premium d-flex flex-row align-items-center sfsi-max-content clear">
+                    <div class="sfsiicnsdvwrp" style="margin-right: 20px; width: auto;">
+                        <span class="checkbox" style="background-position:0px 0px!important;"></span>
+                    </div>
+                    <div class="sfsicnwrp" style="margin-top: 5px;">
+                        <?php
+                        	_e( 'Show a Pinterest icon over images on mouse-over', 'ultimate-social-media-icons' );
+                        	echo sfsi_premium_tooltip_content( 'tp-checkbox-link' );
+                        ?>
+                    </div>
+                </label>
+            </div>
 		</li>
 
-		<?php
-		$sfsi_woocommerce_path = "woocommerce/woocommerce.php";
-		if (is_plugin_active($sfsi_woocommerce_path)) {
-			?>
+		<?php if ( class_exists( 'woocommerce' ) ) { ?>
 			<li class="sfsi_show_via_onhover disabled_checkbox">
 				<div class="radio_section tb_4_ck">
-					<span class="checkbox" style="background-position:0px 0px!important;width:31px"></span>
-					<input name="" type="checkbox" disable value="" class="hide" style="display:none;" /></div>
+					<span class="checkbox" style="background-position:0px 0px!important;"></span>
+				</div>
 
 				<div class="sfsi_right_info sfsi_Woocommerce_disable">
 					<p style="display:block">
 						<span class="sfsi_toglepstpgspn" style="display:inline-block;"><?php _e("On your Woocommerce product pages ",'ultimate-social-media-icons') ?></span> - <span><a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=woocomerce_placement&utm_medium=link" target="_blank" style="font-weight:800;color:#777">Premium feature</a></span>
 					</p>
 				</div>
-
 			</li>
-		<?php
-		}
-		?>
+		<?php } ?>
 	</ul>
 
-
-
-
-
-	<p class="sfsi_premium_feature_note">
-
-		<?php _e("In the Premium Plugin you can also <b>exclude icons</b> from showing on certain pages.",'ultimate-social-media-icons') ?> <a target="_blank" href="https://www.ultimatelysocial.com/usm-premium/"><b><?php _e("See all features",'ultimate-social-media-icons') ?></b></a>
-
-	</p>
+	<div class='row sfsi_include_exclude_wrapper'>
+		<h1><?php _e( 'Include or exclude pages where icons should show', 'ultimate-social-media-icons' ); ?></h1>
+		<div class="sfsi_plus_include_exclude_div">
+			<ul class="sfsi_include_exclude_container sfsi_icn_listing8">
+				<li class="sfsi_show_via_onhover disabled_checkbox sfsi-max-content clear">
+					<div class="d-flex flex-row bd-highlight">
+						<div class="sfsiicnsdvwrp">
+							<span class="radio" style="background-position:0px -41px!important;width:42px"></span>
+						</div>
+						<div style="margin: 5px 0 0 5px;">
+						<label style="font-size: large">
+							<?php _e( 'No restrictions', 'ultimate-social-media-icons' ); ?>
+						</label>
+						</div>
+					</div>
+				</li>
+				<li class="sfsi_show_via_onhover disabled_checkbox sfsi-max-content clear">
+                    <label class="sfsi_tooltip_premium d-flex flex-row">
+                        <div class="sfsiicnsdvwrp" style="margin-right: 15px; width: auto;">
+                            <span class="radio" style="background-position:0px 0px;"></span>
+                        </div>
+                        <div class="sfsicnwrp" style="margin-top: 8px;">
+                            <?php 
+                            	_e( 'Only show icons on certain pages (Inclusion rules)', 'ultimate-social-media-icons' );
+                            	echo sfsi_premium_tooltip_content();
+                            ?>
+                        </div>
+                    </label>
+                </li>
+                <li class="sfsi_show_via_onhover disabled_checkbox sfsi-max-content clear">
+                    <label class="sfsi_tooltip_premium d-flex flex-row">
+                        <div class="sfsiicnsdvwrp" style="margin-right: 15px; width: auto;">
+                            <span class="radio" style="background-position:0px 0px;"></span>
+                        </div>
+                        <div class="sfsicnwrp" style="margin-top: 8px;">
+                            <?php
+                            	_e( 'Show icons on all except the following pages (Exclusion rules)', 'ultimate-social-media-icons' );
+                            	echo sfsi_premium_tooltip_content();
+                            ?>
+                        </div>
+                    </label>
+                </li>
+			</ul>
+		</div>
+	</div>
 
 	<?php sfsi_ask_for_help(9); ?>
 
@@ -163,5 +183,3 @@ function sfsi_premium_isSeletcted($givenVal, $value)
 
 		return '';
 }
-
-?>

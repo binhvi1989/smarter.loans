@@ -80,14 +80,16 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
   margin-bottom: 16px;
-  line-height: normal; 
+  line-height: normal;
+  display:inline-block;
 }
 
-.rmp-amp-rating-widget__fieldset > label {
+.rmp-amp-rating-widget__fieldset > label, .rmp-amp-rating-widget__fieldset > input[type=radio] + label {
   display: inline-block;
   position: relative;
   width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
   width: calc(var(--star-size) / 3 * 1.1em);
+  font-size:2rem;
 }
 .rmp-amp-rating-widget__fieldset > *:hover,
 .rmp-amp-rating-widget__fieldset > *:hover ~ label,

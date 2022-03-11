@@ -32,6 +32,44 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: montserrat-bold;
+    src: url(fonts/montserrat-bold.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: montserrat-semibold;
+    src: url(fonts/montserrat-semibold.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: montserrat-regular;
+    src: url(fonts/montserrat-regular.ttf) format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: montserrat-extrabold;
+    src: url(fonts/montserrat-extrabold.ttf) format('truetype');
+    font-style: normal;
+}
+@font-face {
+    font-family: montserrat-medium;
+    src: url(fonts/montserrat-medium.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: URL('fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
 #sfsi-social-media .inside {
     min-height: 950px;
     overflow: hidden;
@@ -157,4 +195,214 @@ a.sfsi_disable_usm_ogtags_setting_change {color: #444;cursor: pointer;font-weigh
 
 #wp__notice-list.woocommerce-layout__notice-list-hide {
     display: block !important;
+}
+
+/* New banner */
+
+.sfsi_new_premium_banner_body {
+    padding: 10px 60px 10px 60px;
+    margin: 15px 40px 45px;
+    clear: both;
+    background-image: url(../images/banner/premium_banner_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 1678px;
+    width: auto;
+    float: none;
+}
+
+.sfsi_new_premium_banner_body .premium_banner_wrapper {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sfsi_new_premium_banner_body p {
+    font-family: 'montserrat-regular';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.sfsi_new_premium_banner_body .banner-img {
+    margin-right: 5%;
+}
+
+.sfsi_new_premium_banner_body p span {
+    font-family: 'montserrat-bold';
+}
+
+.sfsi_new_premium_banner_body p span.italic {
+    font-family: 'montserrat-medium';
+    font-style: italic;
+}
+
+.sfsi_new_premium_banner_body p span.color-style {
+    color: #00B47C;
+}
+
+.sfsi_new_premium_banner_body p span.font-600 {
+    font-family: 'montserrat-medium';
+}
+
+.sfsi_new_premium_banner_body p span.font-700 {
+    font-family: 'montserrat-semibold';
+}
+
+.sfsi_new_premium_banner_body p span.big_font_style {
+    font-family: 'montserrat-bold';
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.sfsi_new_premium_banner_body p a {
+    font-family: 'montserrat-medium';
+    color: #FFA200;
+    text-decoration: none;
+}
+
+.sfsi_new_premium_banner_body p a.font-700 {
+    font-family: 'montserrat-semibold';
+}
+
+.sfsi_new_premium_banner_body p a.normal_font_style {
+    font-family: 'montserrat-regular';
+    color: #000000;
+}
+
+.offer-btn {
+    background: #00B47C;
+    border-radius: 0px 0px 10px 28px;
+    font-family: 'montserrat-bold';
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding: 8px 40px 8px 60px;
+    position: absolute;
+    bottom: -26px;
+    right: 0;
+}
+
+.offer-btn span {
+    margin-right: 25px;
+}
+
+.offer-btn a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.offer-btn a:focus {
+    box-shadow: none;
+}
+
+.offer-btn img {
+    vertical-align: middle;
+}
+
+.dismiss-btn {
+    position: absolute;
+    right: 29px;
+    top: 19px;
+}
+
+.sfsi_new_premium_banner_body .sfsi_premiumNoticeDismiss input {
+    border: 0;
+    background: transparent;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #BABABA;
+    cursor: pointer;
+}
+
+.premium_banner_unique_style8 .banner-img img {
+    height: 42px;
+    transform: scale(4.2) translate(17px, -1px);
+}
+
+.premium_banner_unique_style8 p {
+    transform: translateX(133px);
+}
+
+.premium_banner_unique_style4 .banner-img img {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 767px) {
+    .sfsi_new_premium_banner_body {
+        padding: 45px 20px 10px 20px;
+        margin: 15px 40px 45px;
+    }
+    
+    .sfsi_new_premium_banner_body .premium_banner_wrapper {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .sfsi_new_premium_banner_body .banner-img {
+        margin-right: 0;
+    }
+    
+    .sfsi_new_premium_banner_body p {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .dismiss-btn {
+        right: 10px;
+        top: 10px;
+    }
+
+    .offer-btn {
+        padding: 8px 30px 9px 50px;
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .sfsi_new_premium_banner_body {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .sfsi_new_premium_banner_body .sfsi_premiumNoticeDismiss input {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .sfsi_new_premium_banner_body p {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .offer-btn {
+        font-size: 16px;
+        line-height: 22px;
+        padding: 8px 20px 9px 30px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .offer-btn {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .offer-btn span {
+        margin-right: 10px;
+    }
 }

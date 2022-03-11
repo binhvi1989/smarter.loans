@@ -1,0 +1,51 @@
+div#wpcontent form div > div > table.form-table > tbody > tr.warning > th,
+div#wpcontent form div > div > table.form-table > tbody > tr > th span.warning
+{
+    color: #cc9900;
+}
+div#wpcontent form div > div > table.form-table > tbody > tr.success > th {
+    color: #10a010;
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr.failure > th {
+    color: red;
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr.detail {
+    padding-top: 0.25px;
+    padding-bottom: 0
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr.action > td > fieldset > p {
+    //padding-bottom: 1.5rem
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr.warning.detail > th {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr.warning.detail > th label span {
+    font-weight: 400;
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr > td,
+div#wpcontent form div > div > table.form-table > tbody > tr > th {
+    padding-bottom: 0.5em;
+    padding-top: 0.25em;
+}
+
+div#wpcontent form div > div > table.form-table > tbody > tr > th {
+    text-align: right;
+}
+
+p.topinfo {
+    font-size: 14px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+p.topinfo:last-of-type {
+    margin-bottom: 2em;
+}
+
+

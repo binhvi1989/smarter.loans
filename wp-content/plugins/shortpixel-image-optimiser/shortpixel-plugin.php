@@ -145,19 +145,21 @@ class ShortPixelPlugin
             }
             add_action('wp_handle_replace', array($admin,'handleReplaceHook'));
 
-            if($this->settings()->autoMediaLibrary) {
 
+						// && $this->env()->is_front === false  removed - otherwise it won't work in Gutenberg image upload
+            if($this->settings()->autoMediaLibrary ) {
                 add_filter( 'wp_generate_attachment_metadata', array($admin,'handleImageUploadHook'), 10, 2 );
                 // @todo Document what plugin does mpp
                 add_filter( 'mpp_generate_metadata', array($admin,'handleImageUploadHook'), 10, 2 );
             }
           }
+		      if($this->settings()->frontBootstrap && $this->env()->is_front)
+		      {
+						// We want this only to work when the automedialibrary setting is on.
+		        add_filter( 'wp_generate_attachment_metadata', array($admin,'handleImageUploadHook'), 10, 2 );
+		      }
       }
-      elseif($this->settings()->frontBootstrap && $this->env()->is_front)
-      {
-        // if automedialibrary is off, but we do want to auto-optimize on the front, still load the hook.
-        add_filter( 'wp_generate_attachment_metadata', array($admin,'handleImageUploadHook'), 10, 2 );
-      }
+
 
       // *** AJAX HOOKS  @todo These must be moved from wp-short-pixel in future */
       add_action('wp_ajax_shortpixel_helpscoutOptin', array(\wpSPIO()->settings(), 'ajax_helpscoutOptin'));

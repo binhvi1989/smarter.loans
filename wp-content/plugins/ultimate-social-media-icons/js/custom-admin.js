@@ -65,12 +65,20 @@ function sfsi_section_Display(s, i) {
 }
 
 function sfsi_depened_sections() {
+    var sfsi_plugin_url = SFSI( "#plugin_url" ).val();
     if ("sfsi" == SFSI("input[name='sfsi_rss_icons']:checked").val()) {
         for (i = 0; 16 > i; i++) {
             var s = i + 1,
                 e = 74 * i;
-            SFSI(".row_" + s + "_2").css("background-position", "-588px -" + e + "px");
+            SFSI(".row_" + s + "_2").css("background-position", "-594px -" + e + "px");
         }
+
+        /* Update email icon based on Q2 selection */
+        SFSI( ".row_17_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/flat_square/flat_square_sf.png)" );
+        SFSI( ".row_18_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/flat_squared/flat_squared_sf.png)" );
+        SFSI( ".row_19_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/icons_only/icons_only_sf.png)" );
+        SFSI( ".row_20_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/animated_icons/animated_icons_sf.gif)" );
+
         var t = SFSI(".icon_img").attr("src");
         if (t) {
             if (t.indexOf("subscribe") != -1) {
@@ -80,6 +88,23 @@ function sfsi_depened_sections() {
             }
             SFSI(".icon_img").attr("src", n);
         }
+
+        /* Update Img based on icon selection */
+        var tImg = SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src" );
+        if ( tImg ) {
+            if ( tImg.indexOf("subscribe") != -1 ) {
+                var n = tImg.replace("subscribe.png", "sf.png");
+            } else {
+                var n = tImg.replace("email.png", "sf.png");
+            }
+            SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src", n );
+        }
+
+        if ( !SFSI("input[name=sfsi_email_bgColor]").val() || SFSI("input[name=sfsi_email_bgColor]").val() == '#343D44' || SFSI("input[name=sfsi_email_bgColor]").val() == '#a2a2a2' ) {
+            SFSI( ".row_2_2 .sfsi_icon_img_wrapper" ).css( "background", "#05B04E" );
+            SFSI( "#sfsi_email_bgColor" ).attr( 'data-default-color', '#05B04E' );
+        }
+
     } else {
         if ("email" == SFSI("input[name='sfsi_rss_icons']:checked").val()) {
             for (SFSI(".row_1_2").css("background-position", "-65px 0"), i = 0; 16 > i; i++) {
@@ -87,6 +112,10 @@ function sfsi_depened_sections() {
                     e = 74 * i;
                 SFSI(".row_" + s + "_2").css("background-position", "-65px -" + e + "px");
             }
+
+            /* Update email icon based on Q2 selection */
+            SFSI( ".row_17_2, .row_18_2, .row_19_2, .row_20_2" ).css( "background-image", "" );
+
             var t = SFSI(".icon_img").attr("src");
             if (t) {
                 if (t.indexOf("sf_arow_icn") != -1) {
@@ -96,12 +125,34 @@ function sfsi_depened_sections() {
                 }
                 SFSI(".icon_img").attr("src", n);
             }
+
+            /* Update Img based on icon selection */
+            var tImg = SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src" );
+            if ( tImg ) {
+                if (tImg.indexOf("sf_arow_icn") != -1) {
+                    var n = tImg.replace("sf_arow_icn.png", "email.png");
+                } else {
+                    var n = tImg.replace("subscribe.png", "email.png");
+                }
+                SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src", n );
+            }
+            if ( !SFSI("input[name=sfsi_email_bgColor]").val() || SFSI("input[name=sfsi_email_bgColor]").val() == '#05B04E' || SFSI("input[name=sfsi_email_bgColor]").val() == '#a2a2a2' ) {
+                SFSI( ".row_2_2 .sfsi_icon_img_wrapper" ).css( "background", "#343D44" );
+                SFSI( "#sfsi_email_bgColor" ).attr( 'data-default-color', '#343D44' );
+            }
         } else {
             for (SFSI(".row_1_2").css("background-position", "-649px 0"), i = 0; 16 > i; i++) {
                 var s = i + 1,
                     e = 74 * i;
-                SFSI(".row_" + s + "_2").css("background-position", "-649px -" + e + "px");
+                SFSI(".row_" + s + "_2").css("background-position", "-656px -" + e + "px");
             }
+
+            /* Update email icon based on Q2 selection */
+            SFSI( ".row_17_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/flat_square/flat_square_subscribe.png)" );
+            SFSI( ".row_18_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/flat_squared/flat_squared_subscribe.png)" );
+            SFSI( ".row_19_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/icons_only/icons_only_subscribe.png)" );
+            SFSI( ".row_20_2" ).css( "background-image", "url( "+sfsi_plugin_url+"/images/icons_theme/animated_icons/animated_icons_subscribe.gif)" );
+
             var t = SFSI(".icon_img").attr("src");
             if (t) {
                 if (t.indexOf("email") != -1) {
@@ -110,6 +161,20 @@ function sfsi_depened_sections() {
                     var n = t.replace("sf_arow_icn.png", "subscribe.png");
                 }
                 SFSI(".icon_img").attr("src", n);
+            }
+            /* Update Img based on icon selection */
+            var tImg = SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src" );
+            if ( tImg ) {
+                if (tImg.indexOf("email") != -1) {
+                    var n = tImg.replace("email.png", "subscribe.png");
+                } else {
+                    var n = tImg.replace("sf_arow_icn.png", "subscribe.png");
+                }
+                SFSI( ".row_2_2 .sfsi_icon_img_wrapper img" ).attr( "src", n );
+            }
+            if ( !SFSI("input[name=sfsi_email_bgColor]").val() || SFSI("input[name=sfsi_email_bgColor]").val() == '#343D44' || SFSI("input[name=sfsi_email_bgColor]").val() == '#05B04E' ) {
+                SFSI( ".row_2_2 .sfsi_icon_img_wrapper" ).css( "background", "#a2a2a2" );
+                SFSI( "#sfsi_email_bgColor" ).attr( 'data-default-color', '#a2a2a2' );
             }
         }
     }
@@ -127,6 +192,10 @@ function sfsi_depened_sections() {
         SFSI("input[name='sfsi_instagram_display']").prop("checked") ? sfsi_section_Display("instagram_section", "show") : sfsi_section_Display("instagram_section", "hide"),
         SFSI("input[name='sfsi_linkedin_display']").prop("checked") ? sfsi_section_Display("linkedin_section", "show") : sfsi_section_Display("linkedin_section", "hide"),
         SFSI("input[name='sfsi_whatsapp_display']").prop("checked") ? sfsi_section_Display("whatsapp_section", "show") : sfsi_section_Display("whatsapp_section", "hide"),
+        SFSI("input[name='sfsi_snapchat_display']").prop("checked") ? sfsi_section_Display("snapchat_section", "show") : sfsi_section_Display("snapchat_section", "hide"),
+        SFSI("input[name='sfsi_reddit_display']").prop("checked") ? sfsi_section_Display("reddit_section", "show") : sfsi_section_Display("reddit_section", "hide"),
+        SFSI("input[name='sfsi_fbmessenger_display']").prop("checked") ? sfsi_section_Display("fbmessenger_section", "show") : sfsi_section_Display("fbmessenger_section", "hide"),
+        SFSI("input[name='sfsi_tiktok_display']").prop("checked") ? sfsi_section_Display("tiktok_section", "show") : sfsi_section_Display("tiktok_section", "hide"),
         SFSI("input[element-type='cusotm-icon']").prop("checked") ? sfsi_section_Display("custom_section", "show") : sfsi_section_Display("custom_section", "hide");
 }
 
@@ -239,64 +308,6 @@ function sfsi_newcustomicon_upload(s, nonce, nonce2) {
         }
     });
 }
-function sfsi_intro_banner_hide() {
-    var nonce = SFSI("#sfsi_intro_btn_show_intro_id").attr("data-nonce");
-    var d = true,
-        I = {
-            action: "introHide",
-            sfsi_display_section: d,
-            nonce: nonce
-        };
-    SFSI.ajax({
-        url: sfsi_icon_ajax_object.ajax_url,
-        type: "post",
-        data: I,
-        async: !0,
-        dataType: "json",
-        success: function (i) {
-            if (i == "wrong_nonce") {
-                showErrorSuc("error", "Unauthorised Request, Try again after refreshing page", 1);
-                s = !1;
-                afterLoad();
-            } else {
-                if("success" == i){
-                    SFSI(".sfsi_new_intro").show();
-                    console.log(SFSI("#sfsi_intro_btn_show_intro_id").hide(),'sdnfkndsf');
-                    SFSI("#sfsi_intro_btn_show_intro_id").hide()
-                }  
-            }
-        }
-    });
-}
-function sfsi_intro_banner_show() {
-    var nonce = SFSI("#sfsi_intro_btn_ok_got_it_id").attr("data-nonce");
-    var d = false,
-        I = {
-            action: "introshow",
-            sfsi_display_section: d,
-            nonce: nonce
-        };
-    SFSI.ajax({
-        url: sfsi_icon_ajax_object.ajax_url,
-        type: "post",
-        data: I,
-        async: !0,
-        dataType: "json",
-        success: function (i) {
-            if (i == "wrong_nonce") {
-                showErrorSuc("error", "Unauthorised Request, Try again after refreshing page", 1);
-                s = !1;
-                afterLoad();
-            } else {
-                if("success" == i){
-                    SFSI(".sfsi_intro_section2").show();
-                    SFSI(".sfsi_new_intro").hide();
-                    SFSI("#sfsi_intro_btn_show_intro_id").show();
-                }  
-            }
-        }
-    });
-}
 
 function sfsi_update_step1() {
     var nonce = SFSI("#sfsi_save1").attr("data-nonce");
@@ -316,6 +327,10 @@ function sfsi_update_step1() {
         wb = SFSI("input[name='sfsi_weibo_display']:checked").val(),
         _ = SFSI("input[name='sfsi_instagram_display']:checked").val(),
         wa = SFSI("input[name='sfsi_whatsapp_display']:checked").val(),
+        snap = SFSI("input[name='sfsi_snapchat_display']:checked").val(),
+        messg = SFSI("input[name='sfsi_fbmessenger_display']:checked").val(),
+        redd = SFSI("input[name='sfsi_reddit_display']:checked").val(),
+        tik = SFSI("input[name='sfsi_tiktok_display']:checked").val(),
         l = SFSI("input[name='sfsi_custom1_display']:checked").val(),
         S = SFSI("input[name='sfsi_custom2_display']:checked").val(),
         u = SFSI("input[name='sfsi_custom3_display']:checked").val(),
@@ -337,6 +352,10 @@ function sfsi_update_step1() {
             sfsi_weibo_display: wb,
             sfsi_instagram_display: _,
             sfsi_whatsapp_display: wa,
+            sfsi_snapchat_display: snap,
+            sfsi_fbmessenger_display: messg,
+            sfsi_reddit_display: redd,
+            sfsi_tiktok_display: tik,
             sfsi_custom1_display: l,
             sfsi_custom2_display: S,
             sfsi_custom3_display: u,
@@ -401,6 +420,7 @@ function sfsi_update_step2() {
         O = SFSI("input[name='sfsi_linkedin_recommendBusines']:checked").val(),
         T = SFSI("input[name='sfsi_linkedin_recommendProductId']").val(),
         j = SFSI("input[name='sfsi_linkedin_recommendCompany']").val(),
+        telegram_msg_option = 1 == SFSI("input[name='sfsi_telegram_msg_option']").prop("disabled") ? "" : SFSI("input[name='sfsi_telegram_msg_option']:checked").val(),
         tp = 1 == SFSI("input[name='sfsi_telegram_page']").prop("disabled") ? "" : SFSI("input[name='sfsi_telegram_page']:checked").val(),
         tpu = SFSI("input[name='sfsi_telegram_pageURL']").val(),
         tm = SFSI("input[name='sfsi_telegram_message']").val(),
@@ -408,9 +428,23 @@ function sfsi_update_step2() {
         wp = 1 == SFSI("input[name='sfsi_weibo_page']").prop("disabled") ? "" : SFSI("input[name='sfsi_weibo_page']:checked").val(),
         wpu = SFSI("input[name='sfsi_weibo_pageURL']").val(),
         vp = 1 == SFSI("input[name='sfsi_vk_page']").prop("disabled") ? "" : SFSI("input[name='sfsi_vk_page']:checked").val(),
+        vk_share = 1 == SFSI("input[name='sfsi_vk_share']").prop("disabled") ? "" : SFSI("input[name='sfsi_vk_share']:checked").val(),
         vpu = SFSI("input[name='sfsi_vk_pageURL']").val(),
         op = 1 == SFSI("input[name='sfsi_ok_page']").prop("disabled") ? "" : SFSI("input[name='sfsi_ok_page']:checked").val(),
         opu = SFSI("input[name='sfsi_ok_pageURL']").val(),
+
+        redd_pageShare = 1 == SFSI("input[name='sfsi_reddit_pageShare']").prop("disabled") ? "" : SFSI("input[name='sfsi_reddit_pageShare']:checked").val(),
+        redd_pageVisit = 1 == SFSI("input[name='sfsi_reddit_page_visit']").prop("disabled") ? "" : SFSI("input[name='sfsi_reddit_page_visit']").val(),
+        snap_pageURL = SFSI("input[name='sfsi_snapchat_pageURL']").val(),
+        tik_page = 1 == SFSI("input[name='sfsi_tiktok_page']").prop("disabled") ? "" : SFSI("input[name='sfsi_tiktok_page']:checked").val(),
+        tik_pageURL = SFSI("input[name='sfsi_tiktok_pageURL']").val(),
+        fbM_share = 1 == SFSI("input[name='sfsi_fbmessenger_share']").prop("disabled") ? "" : SFSI("input[name='sfsi_fbmessenger_share']:checked").val(),
+        fbM_contact = 1 == SFSI("input[name='sfsi_fbmessenger_contact']").prop("disabled") ? "" : SFSI("input[name='sfsi_fbmessenger_contact']:checked").val(),
+        whatsapp_msg = 1 == SFSI("input[name='sfsi_whatsapp_msg']").prop("disabled") ? "" : SFSI("input[name='sfsi_whatsapp_msg']:checked").val(),
+        whatsapp_share = 1 == SFSI("input[name='sfsi_whatsapp_share']").prop("disabled") ? "" : SFSI("input[name='sfsi_whatsapp_share']:checked").val(),
+        wechat_follow = 1 == SFSI("input[name='sfsi_wechat_follow']").prop("disabled") ? "" : SFSI("input[name='sfsi_wechat_follow']:checked").val(),
+        wechat_share = 1 == SFSI("input[name='sfsi_wechat_share']").prop("disabled") ? "" : SFSI("input[name='sfsi_wechat_share']:checked").val(),
+
         P = {};
     SFSI("input[name='sfsi_CustomIcon_links[]']").each(function () {
         P[SFSI(this).attr("file-id")] = this.value;
@@ -448,6 +482,7 @@ function sfsi_update_step2() {
         sfsi_linkedin_recommendCompany: j,
         sfsi_linkedin_recommendProductId: T,
         sfsi_custom_links: P,
+        sfsi_telegram_msg_option: telegram_msg_option,
         sfsi_telegram_page: tp,
         sfsi_telegram_pageURL: tpu,
         sfsi_telegram_message: tm,
@@ -456,10 +491,23 @@ function sfsi_update_step2() {
         sfsi_weibo_pageURL: wpu,
         sfsi_vk_page: vp,
         sfsi_vk_pageURL: vpu,
+        sfsi_vk_share: vk_share,
         sfsi_ok_page: op,
         sfsi_ok_pageURL: opu,
+        sfsi_reddit_pageShare : redd_pageShare,
+        sfsi_reddit_page_visit : redd_pageVisit,
+        sfsi_snapchat_pageURL: snap_pageURL,
+        sfsi_tiktok_page: tik_page,
+        sfsi_tiktok_pageURL: tik_pageURL,
+        sfsi_fbmessenger_contact: fbM_contact,
+        sfsi_fbmessenger_share: fbM_share,
+        sfsi_whatsapp_msg: whatsapp_msg,
+        sfsi_whatsapp_share: whatsapp_share,
+        sfsi_wechat_share: wechat_share,
+        sfsi_wechat_follow: wechat_follow,
         nonce: nonce
     };
+    
     SFSI.ajax({
         url: sfsi_icon_ajax_object.ajax_url,
         type: "post",
@@ -498,9 +546,30 @@ function sfsi_update_step3() {
         l = SFSI("#sfsi_specialIcon_Firstload_Icons option:selected").val(),
         S = SFSI("input[name='sfsi_specialIcon_interval']:checked").val(),
         u = SFSI("input[name='sfsi_specialIcon_intervalTime']").val(),
-        f = SFSI("#sfsi_specialIcon_intervalIcons option:selected").val();
+        f = SFSI("#sfsi_specialIcon_intervalIcons option:selected").val(),
+
+        /* Flat color settings */
+        sfsi_rss_bgColor = SFSI("input[name='sfsi_rss_bgColor']").val(),
+        sfsi_email_bgColor = SFSI("input[name='sfsi_email_bgColor']").val(),
+        sfsi_facebook_bgColor = SFSI("input[name='sfsi_facebook_bgColor']").val(),
+        sfsi_twitter_bgColor = SFSI("input[name='sfsi_twitter_bgColor']").val(),
+        sfsi_youtube_bgColor = SFSI("input[name='sfsi_youtube_bgColor']").val(),
+        sfsi_pinterest_bgColor = SFSI("input[name='sfsi_pinterest_bgColor']").val(),
+        sfsi_linkedin_bgColor = SFSI("input[name='sfsi_linkedin_bgColor']").val(),
+        sfsi_instagram_bgColor = SFSI("input[name='sfsi_instagram_bgColor']").val(),
+        sfsi_snapchat_bgColor = SFSI("input[name='sfsi_snapchat_bgColor']").val(),
+        sfsi_whatsapp_bgColor = SFSI("input[name='sfsi_whatsapp_bgColor']").val(),
+        sfsi_reddit_bgColor = SFSI("input[name='sfsi_reddit_bgColor']").val(),
+        sfsi_fbmessenger_bgColor = SFSI("input[name='sfsi_fbmessenger_bgColor']").val(),
+        sfsi_ok_bgColor = SFSI("input[name='sfsi_ok_bgColor']").val(),
+        sfsi_telegram_bgColor = SFSI("input[name='sfsi_telegram_bgColor']").val(),
+        sfsi_vk_bgColor = SFSI("input[name='sfsi_vk_bgColor']").val(),
+        sfsi_wechat_bgColor = SFSI("input[name='sfsi_wechat_bgColor']").val(),
+        sfsi_weibo_bgColor = SFSI("input[name='sfsi_weibo_bgColor']").val(),
+        sfsi_tiktok_bgColor = SFSI("input[name='sfsi_tiktok_bgColor']").val();
 
     var mouseover_effect_type = 'same_icons'; //SFSI("input[name='sfsi_mouseOver_effect_type']:checked").val();
+
 
     d = {
         action: "updateSrcn3",
@@ -519,6 +588,26 @@ function sfsi_update_step3() {
         sfsi_specialIcon_interval: S,
         sfsi_specialIcon_intervalTime: u,
         sfsi_specialIcon_intervalIcons: f,
+
+        sfsi_rss_bgColor: sfsi_rss_bgColor,
+        sfsi_email_bgColor: sfsi_email_bgColor,
+        sfsi_facebook_bgColor: sfsi_facebook_bgColor,
+        sfsi_twitter_bgColor: sfsi_twitter_bgColor,
+        sfsi_youtube_bgColor: sfsi_youtube_bgColor,
+        sfsi_pinterest_bgColor: sfsi_pinterest_bgColor,
+        sfsi_linkedin_bgColor: sfsi_linkedin_bgColor,
+        sfsi_instagram_bgColor: sfsi_instagram_bgColor,
+        sfsi_snapchat_bgColor: sfsi_snapchat_bgColor,
+        sfsi_whatsapp_bgColor: sfsi_whatsapp_bgColor,
+        sfsi_reddit_bgColor: sfsi_reddit_bgColor,
+        sfsi_fbmessenger_bgColor: sfsi_fbmessenger_bgColor,
+        sfsi_ok_bgColor: sfsi_ok_bgColor,
+        sfsi_telegram_bgColor: sfsi_telegram_bgColor,
+        sfsi_vk_bgColor: sfsi_vk_bgColor,
+        sfsi_wechat_bgColor: sfsi_wechat_bgColor,
+        sfsi_weibo_bgColor: sfsi_weibo_bgColor,
+        sfsi_tiktok_bgColor: sfsi_tiktok_bgColor,
+
         nonce: nonce
     };
     SFSI.ajax({
@@ -743,6 +832,13 @@ function sfsi_update_step5() {
         vw = SFSI("#sfsi_icons_Alignment_via_widget").val(),
         vs = SFSI("#sfsi_icons_Alignment_via_shortcode").val(),
 
+        followicon = SFSI("#sfsi_follow_icons_language").val(),
+        facebookicon = SFSI("#sfsi_facebook_icons_language").val(),
+        youtubeicon = SFSI("#sfsi_youtube_icons_language").val(),
+        twittericon = SFSI("#sfsi_twitter_icons_language").val(),
+        linkedinicon = SFSI("#sfsi_linkedin_icons_language").val(),
+        lang = SFSI("#sfsi_icons_language").val(),
+
         o = SFSI("input[name='sfsi_icons_ClickPageOpen']:checked").val(),
 
         se = SFSI("input[name='sfsi_icons_suppress_errors']:checked").val(),
@@ -762,7 +858,10 @@ function sfsi_update_step5() {
         wbi = SFSI("#sfsi_weiboIcon_order").attr("data-index"),
         wci = SFSI("#sfsi_wechatIcon_order").attr("data-index"),
         wap = SFSI("#sfsi_whatsappIcon_order").attr("data-index"),
-
+        snapI = SFSI("#sfsi_snapchatIcon_order").attr("data-index"),
+        reddI = SFSI("#sfsi_redditIcon_order").attr("data-index"),
+        fbMI = SFSI("#sfsi_fbmessengerIcon_order").attr("data-index"),
+        tikI = SFSI("#sfsi_tiktokIcon_order").attr("data-index"),
 
         h = new Array();
 
@@ -787,6 +886,10 @@ function sfsi_update_step5() {
         wb = 1 == SFSI("input[name='sfsi_weibo_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_weibo_MouseOverText']").val(),
         wc = 1 == SFSI("input[name='sfsi_wechat_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_wechat_MouseOverText']").val(),
         wa = 1 == SFSI("input[name='sfsi_whatsapp_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_whatsapp_MouseOverText']").val(),
+        redd = 1 == SFSI("input[name='sfsi_reddit_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_reddit_MouseOverText']").val(),
+        snap = 1 == SFSI("input[name='sfsi_snapchat_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_snapchat_MouseOverText']").val(),
+        fbM = 1 == SFSI("input[name='sfsi_fbmessenger_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_fbmessenger_MouseOverText']").val(),
+        tik = 1 == SFSI("input[name='sfsi_tiktok_MouseOverText']").prop("disabled") ? "" : SFSI("input[name='sfsi_tiktok_MouseOverText']").val(),
         O = {};
     SFSI("input[name='sfsi_custom_MouseOverTexts[]']").each(function () {
         O[SFSI(this).attr("file-id")] = this.value;
@@ -801,6 +904,14 @@ function sfsi_update_step5() {
         sfsi_icons_Alignment_via_widget: vw,
         sfsi_icons_Alignment_via_shortcode: vs,
         sfsi_icons_perRow: e,
+
+        sfsi_follow_icons_language: followicon,
+        sfsi_facebook_icons_language: facebookicon,
+        sfsi_youtube_icons_language: youtubeicon,
+        sfsi_twitter_icons_language: twittericon,
+        sfsi_linkedin_icons_language: linkedinicon,
+        sfsi_icons_language: lang,
+
         sfsi_icons_spacing: t,
         sfsi_icons_ClickPageOpen: o,
         sfsi_icons_suppress_errors: se,
@@ -819,6 +930,10 @@ function sfsi_update_step5() {
         sfsi_ok_MouseOverText: ok,
         sfsi_weibo_MouseOverText: wb,
         sfsi_wechat_MouseOverText: wc,
+        sfsi_reddit_MouseOverText: redd,
+        sfsi_snapchat_MouseOverText: snap,
+        sfsi_fbmessenger_MouseOverText: fbM,
+        sfsi_tiktok_MouseOverText: tik,
         sfsi_custom_MouseOverTexts: O,
         sfsi_rssIcon_order: p,
         sfsi_emailIcon_order: _,
@@ -834,6 +949,10 @@ function sfsi_update_step5() {
         sfsi_weiboIcon_order: wbi,
         sfsi_wechatIcon_order: wci,
         sfsi_whatsappIcon_order:wap,
+        sfsi_snapchatIcon_order:snapI,
+        sfsi_redditIcon_order:reddI,
+        sfsi_fbmessengerIcon_order:fbMI,
+        sfsi_tiktokIcon_order:tikI,
         sfsi_whatsapp_MouseOverText: wa,
         sfsi_custom_orders: h,
         sfsi_custom_social_hide: sfsi_custom_social_hide,
@@ -969,6 +1088,10 @@ function sfsi_update_step7() {
         r = SFSI("input[name='sfsi_popup_border_thickness']").val(),
         c = SFSI("input[name='sfsi_popup_border_shadow']:checked").val(),
         p = SFSI("input[name='sfsi_Show_popupOn']:checked").val(),
+        pb = SFSI("input[name='sfsi_Show_popupOn_somepages_blogpage']:checked").val(),
+        ps = SFSI("input[name='sfsi_Show_popupOn_somepages_selectedpage']:checked").val(),
+        pd = SFSI("input[name='sfsi_popup_show_on_desktop']:checked").val(),
+        pm = SFSI("input[name='sfsi_popup_show_on_mobile']:checked").val(),
         _ = [];
     SFSI("#sfsi_Show_popupOn_PageIDs :selected").each(function (s, i) {
         _[s] = SFSI(i).val();
@@ -988,6 +1111,10 @@ function sfsi_update_step7() {
             sfsi_popup_border_thickness: r,
             sfsi_popup_border_shadow: c,
             sfsi_Show_popupOn: p,
+            sfsi_Show_popupOn_somepages_blogpage: pb,
+            sfsi_Show_popupOn_somepages_selectedpage: ps,
+            sfsi_popup_show_on_desktop: pd,
+            sfsi_popup_show_on_mobile: pm,
             sfsi_Show_popupOn_PageIDs: _,
             sfsi_Shown_pop: l,
             sfsi_Shown_popupOnceTime: S,
@@ -1110,10 +1237,48 @@ function sfsi_update_step9() {
         i_floatMl = SFSI("input[name='sfsi_icons_floatMargin_left']").val(),
         i_floatMr = SFSI("input[name='sfsi_icons_floatMargin_right']").val(),
         i_disableFloat = SFSI("input[name='sfsi_disable_floaticons']:checked").val(),
+        i_float_make_icons = SFSI("input[name='sfsi_make_icons']:checked").val(),
+        i_float_alignment = SFSI("select[name='sfsi_float_alignment']").val(),
+        i_float_mob_section_option = SFSI("input[name='sfsi_mob_option']:checked").val(),
 
         show_via_widget = SFSI("input[name='sfsi_show_via_widget']").val(),
+        i_widget_alignment = SFSI("select[name='sfsi_widget_alignment']").val(),
+
         show_via__shortcode = SFSI("input[name='sfsi_show_via_shortcode']:checked").length == 0 ? "no" : "yes",
-        sfsi_show_via_afterposts = SFSI("input[name='sfsi_show_via_afterposts']").val();
+        i_shortcode_alignment = SFSI("select[name='sfsi_shortcode_alignment']").val(),
+        sfsi_show_via_afterposts = SFSI("input[name='sfsi_show_via_afterposts']").val()
+
+        sfsi_responsive_icons_after_post = SFSI("input[name='sfsi_responsive_icons_after_post']:checked").length == 0 ? "no" : "yes",
+        sfsi_responsive_icons_after_post_on_taxonomy = SFSI("input[name='sfsi_responsive_icons_after_post_on_taxonomy']:checked").length == 0 ? "no" : "yes",
+        sfsi_responsive_icons_after_pages = SFSI("input[name='sfsi_responsive_icons_after_pages']:checked").length == 0 ? "no" : "yes",
+        sfsi_display_after_woocomerce_desc = SFSI("input[name='sfsi_display_after_woocomerce_desc']:checked").length == 0 ? "no" : "yes";
+
+    var sticky_bar_icons = {
+        "default_icons": {},
+        "custom_icons": {},
+        "settings": {}
+    };
+
+    SFSI('.sfsi_premium_sticky_default_icon_container input[type="checkbox"]').each(function (index, obj) {
+        var data_obj = {};
+        data_obj.active = ( true == SFSI(obj).prop('checked')) ? 'yes' : 'no';
+        var iconname = SFSI(obj).attr('data-icon');
+        var next_section_sticky = SFSI(obj).parent().parent();
+        console.log('sticky bar',data_obj.active,SFSI(obj).attr('checked'),iconname,next_section_sticky );
+
+        data_obj.url = next_section_sticky.find('input[name="sfsi_premium_sticky_' + iconname + '_url_input"]').val();
+        sticky_bar_icons.default_icons[iconname] = data_obj;
+    });
+
+    sticky_bar_icons.settings.desktop = SFSI("input[name='sfsi_sticky_bar_desktop']:checked").val() || 'no';
+    sticky_bar_icons.settings.desktop_width = SFSI("input[name='sfsi_sticky_bar_desktop_width']").val();
+    sticky_bar_icons.settings.desktop_placement = SFSI("select[name='sfsi_sticky_bar_desktop_placement']").val();
+    sticky_bar_icons.settings.display_position = SFSI("input[name='sfsi_sticky_bar_display_position']").val();
+    sticky_bar_icons.settings.desktop_placement_direction = SFSI("select[name='sfsi_sticky_bar_desktop_placement_direction']").val();
+    sticky_bar_icons.settings.mobile = SFSI("input[name='sfsi_sticky_bar_mobile']:checked").val() || 'no';
+    sticky_bar_icons.settings.mobile_width = SFSI("input[name='sfsi_sticky_bar_mobile_width']").val();
+    sticky_bar_icons.settings.mobile_placement = SFSI("select[name='sfsi_sticky_bar_mobile_placement']").val();
+    var sfsi_sticky_bar = SFSI("input[name='sfsi_sticky_bar']:checked").val();
 
     var f = {
 
@@ -1126,10 +1291,26 @@ function sfsi_update_step9() {
         sfsi_icons_floatMargin_left: i_floatMl,
         sfsi_icons_floatMargin_right: i_floatMr,
         sfsi_disable_floaticons: i_disableFloat,
+        sfsi_make_icons: i_float_make_icons,
+        sfsi_float_alignment: i_float_alignment,
+        sfsi_mob_section_option: i_float_mob_section_option,
 
         sfsi_show_via_widget: show_via_widget,
+        sfsi_widget_alignment: i_widget_alignment,
+        
         sfsi_show_via_shortcode: show_via__shortcode,
+        sfsi_shortcode_alignment: i_shortcode_alignment,
+        
         sfsi_show_via_afterposts: sfsi_show_via_afterposts,
+
+        sfsi_responsive_icons_after_post: sfsi_responsive_icons_after_post,
+        sfsi_responsive_icons_after_post_on_taxonomy: sfsi_responsive_icons_after_post_on_taxonomy,
+        sfsi_responsive_icons_after_pages: sfsi_responsive_icons_after_pages,
+        sfsi_display_after_woocomerce_desc: sfsi_display_after_woocomerce_desc,
+
+        sfsi_sticky_bar: sfsi_sticky_bar,
+        sfsi_sticky_icons: sticky_bar_icons,
+
         nonce: nonce
     };
     SFSI.ajax({
@@ -1148,6 +1329,10 @@ function sfsi_update_step9() {
             }
         }
     });
+}
+
+function sfsi_update_step10() {
+    sfsicollapse( "#sfsi-tab9" );
 }
 
 function sfsi_validationStep2() {
@@ -1234,34 +1419,68 @@ function sfsi_validationStep2() {
             return false;
         }
     }
+
     /* telegram validation */
-    if (sfsi_validator(SFSI('input[name="sfsi_telegram_display"]'), 'checked')) {
-        if (!sfsi_validator(SFSI('input[name="sfsi_telegram_username"]'), 'blank')) {
-            showErrorSuc("error", "Error : Invalid telegram username ", 2);
-            SFSI('input[name="sfsi_telegram_username"]').addClass('inputError');
-            return false;
-        }
-    }
-    /* telegram validation */
-    if (sfsi_validator(SFSI('input[name="sfsi_telegram_display"]'), 'checked')) {
+    if (sfsi_validator(SFSI('input[name="sfsi_telegram_msg_option"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_telegram_msg_option"]'), 'checked')) {
         if (!sfsi_validator(SFSI('input[name="sfsi_telegram_message"]'), 'blank')) {
             showErrorSuc("error", "Error : Invalid Message ", 2);
             SFSI('input[name="sfsi_telegram_message"]').addClass('inputError');
             return false;
         }
     }
+    if (sfsi_validator(SFSI('input[name="sfsi_telegram_msg_option"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_telegram_msg_option"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_telegram_username"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid telegram username ", 2);
+            SFSI('input[name="sfsi_telegram_username"]').addClass('inputError');
+            return false;
+        } 
+    }
+
+    /* telegram validation */
+    /*if (sfsi_validator(SFSI('input[name="sfsi_telegram_display"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_telegram_username"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid telegram username ", 2);
+            SFSI('input[name="sfsi_telegram_username"]').addClass('inputError');
+            return false;
+        }
+    }
+
+    if (sfsi_validator(SFSI('input[name="sfsi_telegram_display"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_telegram_message"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid Message ", 2);
+            SFSI('input[name="sfsi_telegram_message"]').addClass('inputError');
+            return false;
+        }
+    }*/
+
     /* vk validation */
-    if (sfsi_validator(SFSI('input[name="sfsi_vk_display"]'), 'checked')) {
+    if (sfsi_validator(SFSI('input[name="sfsi_vk_page"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_vk_page"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_vk_pageURL"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid VK page url ", 2);
+            SFSI('input[name="sfsi_vk_pageURL"]').addClass('inputError');
+            return false;
+        }
+    }
+    /*if (sfsi_validator(SFSI('input[name="sfsi_vk_display"]'), 'checked')) {
         if (!sfsi_validator(SFSI('input[name="sfsi_vk_pageURL"]'), 'blank')) {
             showErrorSuc("error", "Error : Invalid vk url ", 2);
             SFSI('input[name="sfsi_vk_pageURL"]').addClass('inputError');
             return false;
         }
-    }
+    }*/
     /* ok validation */
-    if (sfsi_validator(SFSI('input[name="sfsi_ok_display"]'), 'checked')) {
+    /*if (sfsi_validator(SFSI('input[name="sfsi_ok_display"]'), 'checked')) {
         if (!sfsi_validator(SFSI('input[name="sfsi_ok_pageURL"]'), 'blank')) {
             showErrorSuc("error", "Error : Invalid ok url ", 2);
+            SFSI('input[name="sfsi_ok_pageURL"]').addClass('inputError');
+            return false;
+        }
+    }*/
+
+    /* ok validation */
+    if (sfsi_validator(SFSI('input[name="sfsi_ok_page"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_ok_page"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_ok_pageURL"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid VK page url ", 2);
             SFSI('input[name="sfsi_ok_pageURL"]').addClass('inputError');
             return false;
         }
@@ -1290,11 +1509,29 @@ function sfsi_validationStep2() {
             return false;
         }
     }
+
+    /* Snapchat validation */
+    if (sfsi_validator(SFSI('input[name="sfsi_snapchat_display"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_snapchat_pageURL"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid Snapchat page url ", 2);
+            SFSI('input[name="sfsi_snapchat_pageURL"]').addClass('inputError');
+            return false;
+        }
+    }
+
+    /* Tiktok validation */
+    if (sfsi_validator(SFSI('input[name="sfsi_tiktok_display"]'), 'checked')) {
+        if (!sfsi_validator(SFSI('input[name="sfsi_tiktok_pageURL"]'), 'blank')) {
+            showErrorSuc("error", "Error : Invalid Tiktok page url ", 2);
+            SFSI('input[name="sfsi_tiktok_pageURL"]').addClass('inputError');
+            return false;
+        }
+    }
     /* validate custom links */
     var er = 0;
     SFSI("input[name='sfsi_CustomIcon_links[]']").each(function () {
 
-        //if(!sfsi_validator(SFSI(this),'blank') || !sfsi_validator(SFSI(SFSI(this)),'url') )
+        /*if(!sfsi_validator(SFSI(this),'blank') || !sfsi_validator(SFSI(SFSI(this)),'url') )*/
         if (!sfsi_validator(SFSI(this), 'blank')) {
             showErrorSuc("error", "Error : Please Enter a valid Custom link ", 2);
             SFSI(this).addClass('inputError');
@@ -1306,7 +1543,7 @@ function sfsi_validationStep2() {
 }
 
 function sfsi_validationStep3() {
-    SFSI('input').removeClass('inputError'); // remove previous error  
+    SFSI('input').removeClass('inputError'); /* remove previous error */
     /* validate shuffle effect  */
     if (sfsi_validator(SFSI('input[name="sfsi_shuffle_icons"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_shuffle_icons"]'), 'checked')) {
         if ((!sfsi_validator(SFSI('input[name="sfsi_shuffle_Firstload"]'), 'activte') || !sfsi_validator(SFSI('input[name="sfsi_shuffle_Firstload"]'), 'checked')) && (!sfsi_validator(SFSI('input[name="sfsi_shuffle_interval"]'), 'activte') || !sfsi_validator(SFSI('input[name="sfsi_shuffle_interval"]'), 'checked'))) {
@@ -1336,7 +1573,7 @@ function sfsi_validationStep3() {
 }
 
 function sfsi_validationStep4() {
-    //var class_name= SFSI(element).hasAttr('sfsi_validate');
+    /*var class_name= SFSI(element).hasAttr('sfsi_validate');*/
     /* validate email */
     if (sfsi_validator(SFSI('input[name="sfsi_email_countsDisplay"]'), 'activte') && sfsi_validator(SFSI('input[name="sfsi_email_countsDisplay"]'), 'checked')) {
         if (SFSI('input[name="sfsi_email_countsFrom"]:checked').val() == 'manual') {
@@ -1491,7 +1728,7 @@ function sfsi_validationStep4() {
 }
 
 function sfsi_validationStep5() {
-    //var class_name= SFSI(element).hasAttr('sfsi_validate');
+    /*var class_name= SFSI(element).hasAttr('sfsi_validate');*/
     /* validate size   */
     if (!sfsi_validator(SFSI('input[name="sfsi_icons_size"]'), 'int')) {
         showErrorSuc("error", "Error : Please enter a numeric value only ", 5);
@@ -1531,17 +1768,17 @@ function sfsi_validationStep5() {
         return false;
     }
     /* validate icons effects   */
-    // if(SFSI('input[name="sfsi_icons_float"]:checked').val()=="yes" && SFSI('input[name="sfsi_icons_stick"]:checked').val()=="yes")
-    // {   
-    // 	showErrorSuc("error","Error : Only one allow from Sticking & floating ",5);
-    // 	SFSI('input[name="sfsi_icons_float"][value="no"]').prop("checked", true);
-    // 	return false;
-    // }
+    /*if(SFSI('input[name="sfsi_icons_float"]:checked').val()=="yes" && SFSI('input[name="sfsi_icons_stick"]:checked').val()=="yes")
+    {   
+    	showErrorSuc("error","Error : Only one allow from Sticking & floating ",5);
+    	SFSI('input[name="sfsi_icons_float"][value="no"]').prop("checked", true);
+    	return false;
+    }*/
     return true;
 }
 
 function sfsi_validationStep7() {
-    //var class_name= SFSI(element).hasAttr('sfsi_validate');
+    /*var class_name= SFSI(element).hasAttr('sfsi_validate');*/
     /* validate border thikness   */
     if (!sfsi_validator(SFSI('input[name="sfsi_popup_border_thickness"]'), 'int')) {
         showErrorSuc("error", "Error : Please enter a numeric value only ", 7);
@@ -1588,7 +1825,7 @@ function sfsi_validationStep7() {
 
 function sfsi_validator(element, valType) {
     var Vurl = new RegExp("^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\@\?\'\\\+&amp;%\$#\=~_\-]+))*$");
-    //var Vurl = /http:\/\/[A-Za-z0-9\.-]{3,}\.[A-Za-z]{3}/;
+    /*var Vurl = /http:\/\/[A-Za-z0-9\.-]{3,}\.[A-Za-z]{3}/;*/
 
     switch (valType) {
         case "blank":
@@ -1637,7 +1874,7 @@ function afterIconSuccess(s, nonce) {
         s.key = s.key, s.img_path += "?" + d.getTime(), 5 > e && SFSI(".icn_listing").append('<li id="c' + i + '" class="custom bdr_btm_non"><div class="radio_section tb_4_ck"><span class="checkbox" dynamic_ele="yes" style=" 0px 0px;"></span><input name="sfsiICON_' + i + '"  type="checkbox" value="yes" class="styled" style="display:none;" element-type="cusotm-icon" isNew="yes" /></div> <span class="custom-img"><img src="' + SFSI("#plugin_url").val() + 'images/custom.png" id="CImg_' + i + '" alt="error"  /> </span> <span class="custom custom-txt">Custom' + t + ' </span> <div class="right_info"> <p><span>It depends:</span> Upload a custom icon if you have other accounts/websites you want to link to.</p><div class="inputWrapper"></div></li>'),
             SFSI(".custom_section").show(),
             SFSI('<div class="row  sfsiICON_' + s.key + ' cm_lnk"> <h2 class="custom"> <span class="customstep2-img"> <img   src="' + s.img_path + "?" + d.getTime() + '" style="border-radius:48%" alt="error" /> </span> <span class="sfsiCtxt">Custom ' + e + '</span> </h2> <div class="inr_cont "><p>Where do you want this icon to link to?</p> <p class="radio_section fb_url custom_section  sfsiICON_' + s.key + '" ><label>Link :</label><input file-id="' + s.key + '" name="sfsi_CustomIcon_links[]" type="text" value="" placeholder="http://" class="add" /></p></div></div>').insertBefore('.notice_custom_icons_premium');
-        //SFSI(".custom-links").append(' <div class="row  sfsiICON_' + s.key + ' cm_lnk"> <h2 class="custom"> <span class="customstep2-img"> <img   src="' + s.img_path + "?" + d.getTime() + '" style="border-radius:48%" /> </span> <span class="sfsiCtxt">Custom ' + e + '</span> </h2> <div class="inr_cont "><p>Where do you want this icon to link to?</p> <p class="radio_section fb_url custom_section  sfsiICON_' + s.key + '" ><label>Link :</label><input file-id="' + s.key + '" name="sfsi_CustomIcon_links[]" type="text" value="" placeholder="http://" class="add" /></p></div></div>');
+        /*SFSI(".custom-links").append(' <div class="row  sfsiICON_' + s.key + ' cm_lnk"> <h2 class="custom"> <span class="customstep2-img"> <img   src="' + s.img_path + "?" + d.getTime() + '" style="border-radius:48%" /> </span> <span class="sfsiCtxt">Custom ' + e + '</span> </h2> <div class="inr_cont "><p>Where do you want this icon to link to?</p> <p class="radio_section fb_url custom_section  sfsiICON_' + s.key + '" ><label>Link :</label><input file-id="' + s.key + '" name="sfsi_CustomIcon_links[]" type="text" value="" placeholder="http://" class="add" /></p></div></div>');*/
         SFSI(".notice_custom_icons_premium").show();
         SFSI("#c" + s.key).append('<input type="hidden" name="nonce" value="' + nonce + '">');
         var o = SFSI("div.custom_m").find("div.mouseover_field").length;
@@ -1687,13 +1924,18 @@ function showErrorSuc(s, i, e) {
 }
 
 function beForeLoad() {
-    SFSI(".loader-img").show(), SFSI(".save_button >a").html("Saving..."), SFSI(".save_button >a").css("pointer-events", "none");
+    SFSI( ".loader-img" ).show(),
+    SFSI( ".save_button >a" ).html( "Saving..." ),
+    SFSI( ".save_button >a" ).css( "pointer-events", "none" );
 }
 
 function afterLoad() {
-    SFSI("input").removeClass("inputError"), SFSI(".save_button >a").html("Save"), SFSI(".tab10>div.save_button >a").html("Save All Settings"),
-        SFSI(".save_button >a").css("pointer-events", "auto"), SFSI(".save_button >a").removeAttr("onclick"),
-        SFSI(".loader-img").hide();
+    SFSI( "input" ).removeClass( "inputError" ),
+    SFSI( ".save_button >a" ).html( "Save" ),
+    SFSI( ".tab10 div.save_button > a" ).html( "Save All Settings" ),
+    SFSI( ".save_button >a" ).css( "pointer-events", "auto" ),
+    SFSI( ".save_button >a" ).removeAttr( "onclick" ),
+    SFSI( ".loader-img" ).hide();
 }
 
 function sfsi_make_popBox() {
@@ -1719,7 +1961,7 @@ function sfsi_stick_widget(s) {
     0 == initTop.length && (SFSI(".sfsi_widget").each(function (s) {
             initTop[s] = SFSI(this).position().top;
         })
-        //  console.log(initTop)
+        /*console.log(initTop)*/
     );
     var i = SFSI(window).scrollTop(),
         e = [],
@@ -1780,7 +2022,7 @@ window.onerror = function () {},
         SFSI("#sfpageLoad").fadeOut(2e3);
     });
 
-//changes done {Monad}
+/*changes done {Monad}*/
 function selectText(containerid) {
     if (document.selection) {
         var range = document.body.createTextRange();
@@ -1814,7 +2056,7 @@ function create_suscriber_form() {
 
     SFSI('input[name="sfsi_form_background"]').val() != "" ? (SFSI(".sfsi_subscribe_Popinner").css("background-color", SFSI('input[name="sfsi_form_background"]').val())) : '';
 
-    //Heading customization
+    /*Heading customization*/
     SFSI('input[name="sfsi_form_heading_text"]').val() != "" ? (SFSI(".sfsi_subscribe_Popinner > form > h5").html(SFSI('input[name="sfsi_form_heading_text"]').val())) : SFSI(".sfsi_subscribe_Popinner > form > h5").html('');
 
     SFSI('#sfsi_form_heading_font').val() != "" ? (SFSI(".sfsi_subscribe_Popinner > form > h5").css("font-family", SFSI("#sfsi_form_heading_font").val())) : '';
@@ -1835,7 +2077,7 @@ function create_suscriber_form() {
 
     SFSI('#sfsi_form_heading_fontalign').val() != "" ? (SFSI(".sfsi_subscribe_Popinner > form > h5").css("text-align", SFSI("#sfsi_form_heading_fontalign").val())) : '';
 
-    //Field customization
+    /*Field customization*/
     SFSI('input[name="sfsi_form_field_text"]').val() != "" ? (SFSI(".sfsi_subscribe_Popinner").find('input[name="email"]').attr("placeholder", SFSI('input[name="sfsi_form_field_text"]').val())) : SFSI(".sfsi_subscribe_Popinner").find('input[name="email"]').attr("placeholder", '');
 
     SFSI('input[name="sfsi_form_field_text"]').val() != "" ? (SFSI(".sfsi_left_container > .sfsi_subscribe_Popinner").find('input[name="email"]').val(SFSI('input[name="sfsi_form_field_text"]').val())) : SFSI(".sfsi_left_container > .sfsi_subscribe_Popinner").find('input[name="email"]').val('');
@@ -1860,7 +2102,7 @@ function create_suscriber_form() {
 
     SFSI('#sfsi_form_field_fontalign').val() != "" ? (SFSI(".sfsi_subscribe_Popinner").find('input[name="email"]').css("text-align", SFSI("#sfsi_form_field_fontalign").val())) : '';
 
-    //Button customization
+    /*Button customization*/
     SFSI('input[name="sfsi_form_button_text"]').val() != "" ? (SFSI(".sfsi_subscribe_Popinner").find('input[name="subscribe"]').attr("value", SFSI('input[name="sfsi_form_button_text"]').val())) : '';
 
     SFSI('#sfsi_form_button_font').val() != "" ? (SFSI(".sfsi_subscribe_Popinner").find('input[name="subscribe"]').css("font-family", SFSI("#sfsi_form_button_font").val())) : '';
@@ -1959,7 +2201,7 @@ SFSI(document).ready(function (s) {
         sfsi_dismiss_notice(valueObj.btnClass, valueObj.action);
     });
 
-    //changes done {Monad}
+    /*changes done {Monad}*/
     SFSI(".tab_3_icns").on("click", ".cstomskins_upload", function () {
         SFSI(".cstmskins-overlay").show("slow", function () {
             e = 0;
@@ -1983,7 +2225,7 @@ SFSI(document).ready(function (s) {
 
         var s = SFSI(this).parent().find("input:radio:first");
         var inputName = s.attr("name");
-        // console.log(inputName);
+        /*console.log(inputName);*/
 
         var inputChecked = s.attr("checked");
 
@@ -2004,7 +2246,7 @@ SFSI(document).ready(function (s) {
                 break;
             case 'sfsi_icons_suppress_errors':
 
-                SFSI('input[name="sfsi_icons_suppress_errors"]').removeAttr('checked');
+                //SFSI('input[name="sfsi_icons_suppress_errors"]').removeAttr('checked');
 
                 if (s.val() == 'yes')
                     SFSI('input[name="sfsi_icons_suppress_errors"][value="yes"]').attr('checked', 'true');
@@ -2017,65 +2259,122 @@ SFSI(document).ready(function (s) {
                 } else {
                     jQuery('.sfsi_responsive_icon_option_li.sfsi_responsive_show').hide();
                 }
+            break;
         }
+    });
+    
+    /* Flat icon BG color */
+    SFSI( '#sfsi_rss_bgColor, #sfsi_email_bgColor, #sfsi_facebook_bgColor, #sfsi_twitter_bgColor, #sfsi_youtube_bgColor, #sfsi_pinterest_bgColor, #sfsi_linkedin_bgColor, #sfsi_snapchat_bgColor, #sfsi_whatsapp_bgColor, #sfsi_reddit_bgColor, #sfsi_fbmessenger_bgColor, #sfsi_ok_bgColor, #sfsi_telegram_bgColor, #sfsi_vk_bgColor, #sfsi_wechat_bgColor, #sfsi_weibo_bgColor, #sfsi_tiktok_bgColor' ).wpColorPicker({
+        defaultColor: true,
+        hide: true,
+        palettes: true,
+        change: function (event, ui) {
+            var currentClick = SFSI( this ),
+                currentId = currentClick.attr( 'id' ),
+                selectedColor = currentClick.val();
+
+            currentClick.parents( '.sfsi_icon_bgcolor' ).find( '.sfsi_icon_img_wrapper' ).css({ 'background': selectedColor });
+            SFSI( '.mouseover_' + currentId ).css({ 'background': selectedColor });
+        },
+        clear: function () {
+            var currentClick = SFSI( this ),
+                currentParent = currentClick.parents( '.sfsi_icon_bgcolor' ),
+                defaultBGColor = currentParent.find( '.sfsi_input_bgColor' ).attr( 'data-default-color' ),
+                currentId = currentClick.attr( 'id' );
+
+            currentParent.find( '.sfsi_icon_img_wrapper' ).css({ 'background': defaultBGColor });
+            SFSI( '.mouseover_' + currentId ).css({ 'background': defaultBGColor });
+        },
+    });
+
+    /* For gradient BG Colors */
+    SFSI( '#sfsi_instagram_bgColor' ).wpColorPicker({
+        defaultColor: false,
+        hide: true,
+        palettes: true,
+        change: function (event, ui) {
+            var currentClick = SFSI( this ),
+                currentId = currentClick.attr( 'id' ),
+                selectedColor = currentClick.val();
+
+            currentClick.parents( '.sfsi_icon_bgcolor' ).find( '.sfsi_icon_img_wrapper' ).css({ 'background': selectedColor });
+            SFSI( '.mouseover_' + currentId ).css({ 'background': selectedColor });
+        },
+        clear: function () {
+            var currentClick = SFSI( this ),
+                currentParent = currentClick.parents( '.sfsi_icon_bgcolor' ),
+                currentParentFindInput = currentParent.find( '.sfsi_input_bgColor' );
+                defaultBGColor = currentParentFindInput.attr( 'data-default-color-custom' ),
+                currentId = currentParentFindInput.attr( 'id' );
+
+            currentParent.find( '.sfsi_icon_img_wrapper' ).css({ 'background': defaultBGColor });
+            SFSI( '.mouseover_' + currentId ).css({ 'background': defaultBGColor });
+        },
     });
 
     SFSI('#sfsi_form_border_color').wpColorPicker({
-            defaultColor: false,
-            change: function (event, ui) {
-                create_suscriber_form()
-            },
-            clear: function () {
-                create_suscriber_form()
-            },
-            hide: true,
-            palettes: true
-        }),
-        SFSI('#sfsi_form_background').wpColorPicker({
-            defaultColor: false,
-            change: function (event, ui) {
-                create_suscriber_form()
-            },
-            clear: function () {
-                create_suscriber_form()
-            },
-            hide: true,
-            palettes: true
-        }),
-        SFSI('#sfsi_form_heading_fontcolor').wpColorPicker({
-            defaultColor: false,
-            change: function (event, ui) {
-                create_suscriber_form()
-            },
-            clear: function () {
-                create_suscriber_form()
-            },
-            hide: true,
-            palettes: true
-        }),
-        SFSI('#sfsi_form_button_fontcolor').wpColorPicker({
-            defaultColor: false,
-            change: function (event, ui) {
-                create_suscriber_form()
-            },
-            clear: function () {
-                create_suscriber_form()
-            },
-            hide: true,
-            palettes: true
-        }),
-        SFSI('#sfsi_form_button_background').wpColorPicker({
-            defaultColor: false,
-            change: function (event, ui) {
-                create_suscriber_form()
-            },
-            clear: function () {
-                create_suscriber_form()
-            },
-            hide: true,
-            palettes: true
-        });
-    //changes done {Monad}
+        defaultColor: false,
+        change: function (event, ui) {
+            create_suscriber_form()
+        },
+        clear: function () {
+            create_suscriber_form()
+        },
+        hide: true,
+        palettes: true
+    }),
+    SFSI('#sfsi_form_background').wpColorPicker({
+        defaultColor: false,
+        change: function (event, ui) {
+            create_suscriber_form()
+        },
+        clear: function () {
+            create_suscriber_form()
+        },
+        hide: true,
+        palettes: true
+    }),
+    SFSI('#sfsi_form_heading_fontcolor').wpColorPicker({
+        defaultColor: false,
+        change: function (event, ui) {
+            create_suscriber_form()
+        },
+        clear: function () {
+            create_suscriber_form()
+        },
+        hide: true,
+        palettes: true
+    }),
+    SFSI('#sfsi_form_button_fontcolor').wpColorPicker({
+        defaultColor: false,
+        change: function (event, ui) {
+            create_suscriber_form()
+        },
+        clear: function () {
+            create_suscriber_form()
+        },
+        hide: true,
+        palettes: true
+    }),
+    SFSI('#sfsi_form_button_background').wpColorPicker({
+        defaultColor: false,
+        change: function (event, ui) {
+            create_suscriber_form()
+        },
+        clear: function () {
+            create_suscriber_form()
+        },
+        hide: true,
+        palettes: true
+    });
+    /*changes done {Monad}*/
+
+    /* For Q3 share count */
+    SFSI( '#sfsi_responsive_counter_bg_color, #sfsi_responsive_counter_color' ).wpColorPicker({
+        defaultColor: false,
+        hide: true,
+        palettes: true
+    });
 
     function i() {
         SFSI(".uperror").html(""), afterLoad();
@@ -2206,7 +2505,7 @@ SFSI(document).ready(function (s) {
             SFSI(this).css("opacity", "1");
         }),
         SFSI("#sfsi_save1").on("click", function () {
-            // console.log('save1',sfsi_update_step1());
+            /*console.log('save1',sfsi_update_step1());*/
             sfsi_update_step1() && sfsicollapse(this);
         }),
         SFSI("#sfsi_save2").on("click", function () {
@@ -2275,15 +2574,9 @@ SFSI(document).ready(function (s) {
         SFSI("#sfsi_banner_global_upgrade").on("click", function () {
             sfsi_banner_global_upgrade_save();
         }),
-        SFSI("#sfsi_intro_btn_show_intro_id").on("click", function () {
-            sfsi_intro_banner_hide();
-        }),
-        SFSI("#sfsi_intro_btn_ok_got_it_id").on("click", function () {
-            sfsi_intro_banner_show();
-        }),
         SFSI("#save_all_settings").on("click", function () {
             return SFSI("#save_all_settings").text("Saving.."), SFSI(".save_button >a").css("pointer-events", "none"),
-                sfsi_update_step1(), sfsi_update_step8(), 1 == global_error ? (showErrorSuc("error", 'Some Selection error in "Which icons do you want to show on your site?" tab.', 8),
+                sfsi_update_step1(), sfsi_update_step8(), sfsi_update_step10(), 1 == global_error ? (showErrorSuc("error", 'Some Selection error in "Which icons do you want to show on your site?" tab.', 8),
                     global_error = 0, !1) : (sfsi_update_step2(), 1 == global_error ? (showErrorSuc("error", 'Some Selection error in "What do you want the icons to do?" tab.', 8),
                     global_error = 0, !1) : (sfsi_update_step3(), 1 == global_error ? (showErrorSuc("error", 'Some Selection error in "What design & animation do you want to give your icons?" tab.', 8),
                     global_error = 0, !1) : (sfsi_update_step4(), 1 == global_error ? (showErrorSuc("error", 'Some Selection error in "Do you want to display "counts" next to your icons?" tab.', 8),
@@ -2306,10 +2599,14 @@ SFSI(document).ready(function (s) {
             ("fbex-s2" == SFSI(this).attr("data-id") || "linkex-s2" == SFSI(this).attr("data-id")) && (SFSI("." + SFSI(this).attr("data-id")).hide(),
                 SFSI("." + SFSI(this).attr("data-id")).css("opacity", "1"), SFSI("." + SFSI(this).attr("data-id")).css("z-index", "1000")),
             SFSI("." + SFSI(this).attr("data-id")).show("slow");
+            SFSI('body').addClass( 'SFSI-overlay' );
         }),
         /*SFSI("#close_popup").live("click", function() {*/
         SFSI(document).on("click", '#close_popup', function () {
             SFSI(".read-overlay").hide("slow");
+            setTimeout(function(){
+                SFSI('body').removeClass( 'SFSI-overlay' );
+            },1000);
         });
 
     var e = 0;
@@ -2516,9 +2813,53 @@ SFSI(document).ready(function (s) {
                         }
                     })
                     break;
+                case 'sfsi_responsive_Pinterest_display':
+                    if (inputChecked) {
+                        SFSI('.sfsi_responsive_icon_pinterest_container').parents('a').show();
+                        var icon = inputName.replace('sfsi_responsive_', '').replace('_display', '');
+                    } else {
+                        SFSI('.sfsi_responsive_icon_pinterest_container').parents('a').hide();
+                    }
+                    window.sfsi_fittext_shouldDisplay = true;
+                    jQuery('.sfsi_responsive_icon_preview a').each(function (index, a_container) {
+                        if (jQuery(a_container).css('display') !== "none") {
+                            sfsi_fitText(jQuery(a_container).find('.sfsi_responsive_icon_item_container'));
+                        }
+                    })
+                    break;
             }
 
         });
+    
+    /* Change icon based on selected language*/
+    SFSI(document).on("change", '.lanOnchange', function () {
+        var currentDrpdown = SFSI(this).parents(".icons_size");
+        var nonce = SFSI('input[name="sfsi_lanOnchange_nonce"]').val();
+        var data = {
+            action: "sfsi_get_icon_preview",
+            nonce: nonce,
+            iconValue: SFSI(this).val(),
+            iconname: SFSI(this).attr("data-iconUrl")
+        };
+        var id = SFSI(this).attr('id');
+        if (id.indexOf('linkedin') != -1) {
+
+            currentDrpdown.children(".social-img-link").html('<img src="' + data.iconname + "/icon_" + data.iconValue + '.svg" >');
+            return;
+        }
+        if (id.indexOf('youtube') != -1) {
+            currentDrpdown.children(".social-img-link").html('<img src="' + data.iconname + "/icon_" + data.iconValue + '.svg">');
+            return;
+        }
+        SFSI.ajax({
+            url: sfsi_icon_ajax_object.ajax_url,
+            type: "post",
+            data: data,
+            success: function (s) {
+                currentDrpdown.children(".social-img-link").html(s);
+            }
+        });
+    });
 
     //*------------------------------- Sharing text & pcitures checkbox for showing section in Page, Post CLOSES -------------------------------------//
 
@@ -2546,6 +2887,28 @@ SFSI(document).ready(function (s) {
 
     });
 
+    // ********************************************* Show/Hide desktop-mobile setting div in  Question 7 STARTS **************************//
+
+    SFSI(document).on("click", '.pop_up_show .radio', function () {
+
+        var s = SFSI(this).parent().find("input:radio:first");
+
+        if ( s.attr("name") == "sfsi_Show_popupOn" ) {
+
+            if (s.val() == 'none') {
+                SFSI(".popupDesktopMobileLi").slideUp();
+            } else {
+                SFSI(".popupDesktopMobileLi").slideDown();
+            }
+
+            if (s.val() == 'somepages') {
+                SFSI(".popup_containter").slideDown();
+            } else {
+                SFSI(".popup_containter").slideUp();
+            }
+
+        }
+    });
     SFSI(document).on("click", '.radio', function () {
 
             var s = SFSI(this).parent().find("input:radio:first");
@@ -2603,15 +2966,15 @@ SFSI(document).ready(function (s) {
 
             var s = SFSI(this).parent().find("input:radio:first");
 
-            // if ("sfsi_icons_floatPosition" == s.attr("name")) {
-            //     SFSI('input[name="sfsi_icons_floatPosition"]').removeAttr("checked");
-            //     s.attr("checked", true);
-            // }
+            /*if ("sfsi_icons_floatPosition" == s.attr("name")) {
+                SFSI('input[name="sfsi_icons_floatPosition"]').removeAttr("checked");
+                s.attr("checked", true);
+            }
 
-            // if ("sfsi_disable_floaticons" == s.attr("name")) {
-            //     SFSI('input[name="sfsi_disable_floaticons"]').removeAttr("checked");
-            //     s.attr("checked", true);
-            // }
+            if ("sfsi_disable_floaticons" == s.attr("name")) {
+                SFSI('input[name="sfsi_disable_floaticons"]').removeAttr("checked");
+                s.attr("checked", true);
+            }*/
 
             "sfsi_popup_border_shadow" == s.attr("name") && sfsi_make_popBox();
         }), /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? SFSI("img.sfsi_wicon").on("click", function (s) {
@@ -2702,7 +3065,7 @@ SFSI(document).ready(function (s) {
                     SFSI('input[name="sfsi_icons_stick"][value="no"]').parent().find("span").attr("style", "0px -41px;"),
                     SFSI('input[name="sfsi_icons_stick"][value="yes"]').parent().find("span").attr("style", "0px -0px;")),
 
-                //("sfsi_icons_stick" == s.attr("name") && "yes" == s.val() || "sfsi_icons_float" == s.attr("name") && "no" == s.val()) && (SFSI(".float_options").slideUp("slow"),
+                /*("sfsi_icons_stick" == s.attr("name") && "yes" == s.val() || "sfsi_icons_float" == s.attr("name") && "no" == s.val()) && (SFSI(".float_options").slideUp("slow"),*/
                 ("sfsi_icons_stick" == s.attr("name") && "yes" == s.val()) && (SFSI(".float_options").slideUp("slow"),
 
                     SFSI('input[name="sfsi_icons_float"][value="no"]').prop("checked", !0), SFSI('input[name="sfsi_icons_float"][value="yes"]').prop("checked", !1),
@@ -2743,7 +3106,7 @@ SFSI(document).ready(function (s) {
         if (!error) {
 
             SFSI(this).css("pointer-events", "none");
-            // console.log("feedid",feedid);
+            /*console.log("feedid",feedid);*/
             if (feedid == "" || undefined == feedid) {
                 var nonce = SFSI(this).attr('data-nonce-fetch-feed-id');
                 e = {
@@ -2769,7 +3132,7 @@ SFSI(document).ready(function (s) {
 
                                 } else {
                                     jQuery('#calimingOptimizationForm input[name="feed_id"]').val(feedid);
-                                    // console.log("feedid",feedid,SFSI("#calimingOptimizationForm input[name='feed_id']"),SFSI('#calimingOptimizationForm input[name="feedid"]').val());
+                                    /*console.log("feedid",feedid,SFSI("#calimingOptimizationForm input[name='feed_id']"),SFSI('#calimingOptimizationForm input[name="feedid"]').val());*/
                                     SFSI('#calimingOptimizationForm').submit();
                                     SFSI(".sfsi_getMeFullAccess_class").css("pointer-events", "initial");
 
@@ -2828,16 +3191,16 @@ SFSI(document).ready(function (s) {
     });*/
     window.sfsi_initialization_checkbox_count = 0;
     window.sfsi_initialization_checkbox = setInterval(function () {
-        // console.log(jQuery('.radio_section.tb_4_ck>span.checkbox').length,jQuery('.radio_section.tb_4_ck>input.styled').length);
+        /*console.log(jQuery('.radio_section.tb_4_ck>span.checkbox').length,jQuery('.radio_section.tb_4_ck>input.styled').length);*/
         if (jQuery('.radio_section.tb_4_ck>span.checkbox').length < jQuery('.radio_section.tb_4_ck>input.styled').length) {
             window.sfsi_initialization_checkbox_count++;
-            // console.log('not initialized',window.sfsi_initialization_checkbox_count);
+            /*console.log('not initialized',window.sfsi_initialization_checkbox_count);*/
             if (window.sfsi_initialization_checkbox_count > 12) {
-                // alert('Some script from diffrent plugin is interfearing with "Ultimate Social Icons" js files and checkbox couldn\'t be initialized. ');
-                // window.clearInterval(window.sfsi_initialization_checkbox);
+                /*alert('Some script from diffrent plugin is interfearing with "Ultimate Social Icons" js files and checkbox couldn\'t be initialized. ');
+                window.clearInterval(window.sfsi_initialization_checkbox);*/
             }
         } else {
-            // console.log('all initialized',window.sfsi_initialization_checkbox_count);
+            /*console.log('all initialized',window.sfsi_initialization_checkbox_count);*/
             window.clearInterval(window.sfsi_initialization_checkbox);
         }
     }, 1000);
@@ -2845,7 +3208,7 @@ SFSI(document).ready(function (s) {
 
 });
 
-//for utube channel name and id
+/*for utube channel name and id*/
 function showhideutube(ref) {
     var chnlslctn = SFSI(ref).children("input").val();
     if (chnlslctn == "name") {
@@ -2875,7 +3238,7 @@ function checkforinfoslction(ref) {
 
 function checkforinfoslction_checkbox(ref) {
 
-//console.log(ref)
+/*console.log(ref)*/
     var pos = jQuery(ref).children(".checkbox").css("background-position");
 
     var elem = jQuery(ref).parent().children('.sfsi_right_info').find('.kckslctn');
@@ -2919,10 +3282,10 @@ SFSI('.sfsi_navigate_to_question7').on("click", function () {
 
     if (elem.hasClass('accordion-content-active')) {
 
-        // Cloase tab of Question 3
+        /*Cloase tab of Question 3*/
         elem.find('.sfsiColbtn').trigger('click');
 
-        // Open tab of Question 7
+        /*Open tab of Question 7*/
         if (!SFSI('#ui-id-14').hasClass('accordion-content-active')) {
             SFSI('#ui-id-13').trigger('click');
         }
@@ -2966,7 +3329,7 @@ SFSI(document).ready(function () {
     });
     SFSI('#sfsi_jivo_offline_chat #sfsi_sales form').submit(function (event) {
         event & event.preventDefault();
-        // console.log(event);
+        /*console.log(event);*/
         var target = SFSI(this).parents('.tab-content');
         var message = SFSI(this).find('textarea[name="question"]').val();
         var email = SFSI(this).find('input[name="email"]').val();
@@ -2974,12 +3337,12 @@ SFSI(document).ready(function () {
         var nonce = SFSI(this).find('input[name="nonce"]').val();
 
         if ("" === email || false === re.test(String(email).toLowerCase())) {
-            // console.log(SFSI(this).find('input[name="email"]'));
+            /*console.log(SFSI(this).find('input[name="email"]'));*/
             SFSI(this).find('input[name="email"]').css('background-color', 'red');
             SFSI(this).find('input[name="email"]').on('keyup', function () {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var email = SFSI(this).val();
-                // console.log(email,re.test(String(email).toLowerCase()) );
+                /*console.log(email,re.test(String(email).toLowerCase()) );*/
                 if ("" !== email && true === re.test(String(email).toLowerCase())) {
                     SFSI(this).css('background-color', '#fff');
                 }
@@ -3012,7 +3375,7 @@ function sfsi_close_offline_chat(e) {
 
 function sfsi_open_quick_checkout(e) {
     e && e.preventDefault();
-    // console.log(jQuery('.sfsi_quick-pay-box'));
+    /*console.log(jQuery('.sfsi_quick-pay-box'));*/
     jQuery('.sfsi_quick-pay-box').show();
 }
 
@@ -3029,14 +3392,14 @@ function sfsi_quickpay_container_click(event) {
 
 
 
-// <------------------------* Responsive icon *----------------------->
+/*<------------------------* Responsive icon *----------------------->*/
 
 function sfsi_responsive_icon_intraction_handler() {
     window.sfsi_fittext_shouldDisplay = true;
     SFSI('select[name="sfsi_responsive_icons_settings_edge_type"]').on('change', function () {
         $target_div = (SFSI(this).parent());
         if (SFSI(this).val() === "Round") {
-            // console.log('Round', 'Round', SFSI(this).val());
+            /*console.log('Round', 'Round', SFSI(this).val());*/
 
             $target_div.parent().children().css('display', 'inline-block');
             $target_div.parent().next().css("display", "inline-block");
@@ -3044,7 +3407,7 @@ function sfsi_responsive_icon_intraction_handler() {
             jQuery('.sfsi_responsive_icon_preview .sfsi_responsive_icon_item_container,.sfsi_responsive_icon_preview .sfsi_responsive_icons_count').css('border-radius', radius);
 
         } else {
-            // console.log('sharp', 'sharp', SFSI(this).val(), $target_div.parent().children(), $target_div.parent().children().hide());
+            /*console.log('sharp', 'sharp', SFSI(this).val(), $target_div.parent().children(), $target_div.parent().children().hide());*/
 
             $target_div.parent().children().hide();
             $target_div.show();
@@ -3112,7 +3475,7 @@ function sfsi_responsive_icon_intraction_handler() {
     });
     jQuery(document).on('change', 'input[name="sfsi_responsive_icons_settings_margin"]', function () {
         jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container a,.sfsi_responsive_icon_preview .sfsi_responsive_icons_count').css('margin-right', jQuery(this).val() + 'px');
-        // jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').css('width',(jQuery('.sfsi_responsive_icons').width()-(jQuery('.sfsi_responsive_icons_count').width()+jQuery(this).val()))+'px');
+        /*jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').css('width',(jQuery('.sfsi_responsive_icons').width()-(jQuery('.sfsi_responsive_icons_count').width()+jQuery(this).val()))+'px');*/
 
     });
     jQuery(document).on('change', 'select[name="sfsi_responsive_icons_settings_text_align"]', function () {
@@ -3216,8 +3579,8 @@ function sfsi_responsive_icon_intraction_handler() {
     jQuery('a.sfsi_responsive_custom_delete_btn').click(function (event) {
         event.preventDefault();
         var icon_num = jQuery(this).attr('data-id');
-        //reset the current block;
-        // var last_block = jQuery('.sfsi_responsive_custom_icon_4_container').clone();
+        /*reset the current block;
+        var last_block = jQuery('.sfsi_responsive_custom_icon_4_container').clone();*/
         var cur_block = jQuery('.sfsi_responsive_custom_icon_' + icon_num + '_container');
         cur_block.find('.sfsi_responsive_custom_delete_btn').hide();
         cur_block.find('input[name="sfsi_responsive_custom_' + icon_num + '_added"]').val('no');
@@ -3230,30 +3593,30 @@ function sfsi_responsive_icon_intraction_handler() {
             var prev_block = jQuery('.sfsi_responsive_custom_icon_' + (icon_num - 1) + '_container');
             prev_block.find('.sfsi_responsive_custom_delete_btn').show();
         }
-        // jQuery('.sfsi_responsive_custom_icon_container').each(function(index,custom_icon){
-        // 	var target= jQuery(custom_icon);
-        // 	target.find('.sfsi_responsive_custom_delete_btn');
-        // 	var custom_id = target.find('.sfsi_responsive_custom_delete_btn').attr('data-id');
-        // 	if(custom_id>icon_num){
-        // 		target.removeClass('sfsi_responsive_custom_icon_'+custom_id+'_container').addClass('sfsi_responsive_custom_icon_'+(custom_id-1)+'_container');
-        // 		target.find('input[name="sfsi_responsive_custom_'+custom_id+'_added"]').attr('name',"sfsi_responsive_custom_"+(custom_id-1)+"_added");
-        // 		target.find('#sfsi_responsive_'+custom_id+'_display').removeClass('sfsi_responsive_custom_'+custom_id+'_display').addClass('sfsi_responsive_custom_'+(custom_id-1)+'_display').attr('id','sfsi_responsive_'+(custom_id-1)+'_display').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_display').attr('data-custom-index',(custom_id-1));
-        // 		target.find('.sfsi_responsive_icon_item_container').removeClass('sfsi_responsive_icon_custom_'+custom_id+'_container').addClass('sfsi_responsive_icon_custom_'+(custom_id-1)+'_container');
-        // 		target.find('.sfsi_responsive_input').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_input');
-        // 		target.find('.sfsi_responsive_url_input').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_url_input');
-        // 		target.find('.sfsi_bg-color-picker').attr('name','sfsi_responsive_icon_'+(custom_id-1)+'_bg_color');
-        // 		target.find('.sfsi_logo_upload sfsi_logo_custom_'+custom_id+'_upload').removeClass('sfsi_logo_upload sfsi_logo_custom_'+custom_id+'_upload').addClass('sfsi_logo_upload sfsi_logo_custom_'+(custom_id-1)+'_upload');
-        // 		target.find('input[type="sfsi_responsive_icons_custom_'+custom_id+'_icon"]').attr('name','input[type="sfsi_responsive_icons_custom_'+(custom_id-1)+'_icon"]');				
-        // 		target.find('.sfsi_responsive_custom_delete_btn').attr('data-id',''+(custom_id-1));				
-        // 	}
-        // });
-        // // sfsi_backend_section_beforeafter_set_fixed_width();
-        //    // jQuery(window).on('resize',sfsi_backend_section_beforeafter_set_fixed_width);
-        // var new_block=jQuery('.sfsi_responsive_custom_icon_container').clone();
-        // jQuery('.sfsi_responsive_custom_icon_container').remove();
-        // jQuery('.sfsi_responsive_default_icon_container').parent().append(last_block).append();
-        // jQuery('.sfsi_responsive_default_icon_container').parent().append(new_block);
-        // return false;
+        /*jQuery('.sfsi_responsive_custom_icon_container').each(function(index,custom_icon){
+        	var target= jQuery(custom_icon);
+        	target.find('.sfsi_responsive_custom_delete_btn');
+        	var custom_id = target.find('.sfsi_responsive_custom_delete_btn').attr('data-id');
+        	if(custom_id>icon_num){
+        		target.removeClass('sfsi_responsive_custom_icon_'+custom_id+'_container').addClass('sfsi_responsive_custom_icon_'+(custom_id-1)+'_container');
+        		target.find('input[name="sfsi_responsive_custom_'+custom_id+'_added"]').attr('name',"sfsi_responsive_custom_"+(custom_id-1)+"_added");
+        		target.find('#sfsi_responsive_'+custom_id+'_display').removeClass('sfsi_responsive_custom_'+custom_id+'_display').addClass('sfsi_responsive_custom_'+(custom_id-1)+'_display').attr('id','sfsi_responsive_'+(custom_id-1)+'_display').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_display').attr('data-custom-index',(custom_id-1));
+        		target.find('.sfsi_responsive_icon_item_container').removeClass('sfsi_responsive_icon_custom_'+custom_id+'_container').addClass('sfsi_responsive_icon_custom_'+(custom_id-1)+'_container');
+        		target.find('.sfsi_responsive_input').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_input');
+        		target.find('.sfsi_responsive_url_input').attr('name','sfsi_responsive_custom_'+(custom_id-1)+'_url_input');
+        		target.find('.sfsi_bg-color-picker').attr('name','sfsi_responsive_icon_'+(custom_id-1)+'_bg_color');
+        		target.find('.sfsi_logo_upload sfsi_logo_custom_'+custom_id+'_upload').removeClass('sfsi_logo_upload sfsi_logo_custom_'+custom_id+'_upload').addClass('sfsi_logo_upload sfsi_logo_custom_'+(custom_id-1)+'_upload');
+        		target.find('input[type="sfsi_responsive_icons_custom_'+custom_id+'_icon"]').attr('name','input[type="sfsi_responsive_icons_custom_'+(custom_id-1)+'_icon"]');				
+        		target.find('.sfsi_responsive_custom_delete_btn').attr('data-id',''+(custom_id-1));				
+        	}
+        });
+        // sfsi_backend_section_beforeafter_set_fixed_width();
+           // jQuery(window).on('resize',sfsi_backend_section_beforeafter_set_fixed_width);
+        var new_block=jQuery('.sfsi_responsive_custom_icon_container').clone();
+        jQuery('.sfsi_responsive_custom_icon_container').remove();
+        jQuery('.sfsi_responsive_default_icon_container').parent().append(last_block).append();
+        jQuery('.sfsi_responsive_default_icon_container').parent().append(new_block);
+        return false;*/
     })
 }
 
@@ -3278,12 +3641,12 @@ function sfsi_responsive_icon_hide_responsive_options() {
     jQuery('.sfsi_PostsSettings_section').show();
     jQuery('.sfsi_choose_post_types_section').show();
     jQuery('.sfsi_not_responsive').show();
-    // jQuery('.sfsi_icn_listing8.sfsi_closerli').hide();
+    /*jQuery('.sfsi_icn_listing8.sfsi_closerli').hide();*/
 }
 
 function sfsi_responsive_icon_show_responsive_options() {
     jQuery('.sfsi_PostsSettings_section').hide();
-    // jQuery('.sfsi_PostsSettings_section').show();
+    /*jQuery('.sfsi_PostsSettings_section').show();*/
     jQuery('.sfsi_choose_post_types_section').hide();
     jQuery('.sfsi_not_responsive').hide();
     window.sfsi_fittext_shouldDisplay = true;
@@ -3296,8 +3659,7 @@ function sfsi_responsive_icon_show_responsive_options() {
 }
 
 function sfsi_scroll_to_div(option_id, scroll_selector) {
-    jQuery('#' + option_id + '.ui-accordion-header[aria-selected="false"]').click() //opened the option
-    //scroll to it.
+    jQuery('#' + option_id + '.ui-accordion-header[aria-selected="false"]').click();
     if (scroll_selector && scroll_selector !== '') {
         scroll_selector = scroll_selector;
     } else {
@@ -3328,11 +3690,11 @@ function sfsi_fitText(container) {
                 console.log(container_width, 'width of icons');
 
             }
-            // var container_img_width = container.find('img').width();
+            /*var container_img_width = container.find('img').width();*/
             var container_img_width = 70;
-            // var span=container.find('span').clone();
+            /*var span=container.find('span').clone();*/
             var span = container.find('span');
-            // var span_original_width = container.find('span').width();
+            /*var span_original_width = container.find('span').width();*/
             var span_original_width = container_width - (container_img_width)
             span
                 // .css('display','inline-block')
@@ -3462,15 +3824,15 @@ function sfsi_resize_icons_container() {
     sfsi_cloned_icon_list.css('width', '100%');
     jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').parent().append(sfsi_cloned_icon_list);
 
-    // sfsi_cloned_icon_list.css({
-    //       position: "absolute",
-    //       left: "-10000px"
-    //   }).appendTo("body");
+    /*sfsi_cloned_icon_list.css({
+          position: "absolute",
+          left: "-10000px"
+      }).appendTo("body");*/
     actual_width = sfsi_cloned_icon_list.width();
     count_width = jQuery('.sfsi_responsive_icon_preview .sfsi_responsive_icons_count').width();
     jQuery('.sfsi_responsive_cloned_list').remove();
     sfsi_inline_style = jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').attr('style');
-    // remove_width 
+    /*remove_width */
     sfsi_inline_style = sfsi_inline_style && sfsi_inline_style.replace(/width:auto($|!important|)(;|$)/g, '').replace(/width:\s*(-|)\d*\s*(px|%)\s*($|!important|)(;|$)/g, '');
     if (!(jQuery('.sfsi_responsive_icon_preview .sfsi_icons_container').hasClass('sfsi_responsive_without_counter_icons') && jQuery('.sfsi_icons_container').hasClass('sfsi_icons_container_box_fixed_container'))) {
         sfsi_inline_style += "width:" + (actual_width - count_width - 1) + 'px!important;'
@@ -3482,14 +3844,14 @@ function sfsi_resize_icons_container() {
 }
 
 function sfsi_togglbtmsection(show, hide, ref) {
-    // console.log(show,hide);
+    /*console.log(show,hide);*/
     jQuery(ref).parent("ul").children("li.clckbltglcls").each(function (index, element) {
         jQuery(this).children(".radio").css("background-position", "0px 0px");
         jQuery(this).children(".styled").attr("checked", "false");
     });
     jQuery(ref).children(".radio").css("background-position", "0px -41px");
     jQuery(ref).children(".styled").attr("checked", "true");
-    // console.log(show,hide);
+    /*console.log(show,hide);*/
 
     jQuery("." + show).show();
     jQuery("." + show).children(".radiodisplaysection").show();
@@ -3901,4 +4263,30 @@ function sfsi_banner_global_upgrade_save(){
 			}
 		}
 	});
+}
+
+sfsi_sticky_bar_define_url();
+
+function sfsi_sticky_bar_define_url() {
+    jQuery('.sfsi_premium_sticky_default_icon_container .sfsi_premium_sticky_default_url_toggler').click(function (event) {
+        event.preventDefault();
+        sfsi_sticky_open_url(event)
+    });
+    jQuery('.sfsi_premium_sticky_default_icon_container .sfsi_premium_sticky_default_url_hide').click(function (event) {
+        event.preventDefault();
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_custom_url_hide').hide();
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_url_input').hide();
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_default_url_hide').hide();
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_url_input').val("");
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_default_url_toggler').show();
+        jQuery(event.target).parent().parent().find('.sfsi_premium_sticky_custom_url_toggler').show();
+    });
+
+}
+
+function sfsi_sticky_open_url(event) {
+    jQuery(event.target).parent().find('.sfsi_premium_sticky_custom_url_hide').show();
+    jQuery(event.target).parent().find('.sfsi_premium_sticky_default_url_hide').show();
+    jQuery(event.target).parent().find('.sfsi_premium_sticky_url_input').show();
+    jQuery(event.target).hide();
 }

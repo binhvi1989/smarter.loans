@@ -2,13 +2,13 @@
 Contributors: ShortPixel
 Tags: convert webp, optimize images, image optimization, resize, compressor, image, avif, compression, optimize, image optimiser, image compression, compress pdf, compress jpg, compress png, performance, photography, smush, scale, pictures
 Requires at least: 4.2.0
-Tested up to: 5.7
-Requires PHP: 5.3
-Stable tag: 4.22.2
+Tested up to: 5.9
+Requires PHP: 5.6
+Stable tag: 4.22.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Speed up your website & boost your SEO by compressing old & new images and PDFs. AVIF & WebP convert and optimize support.
+Speed up your website & boost your SEO by compressing old & new images and PDFs. Optimize and convert WebP & AVIF.
 
 == Description ==
 
@@ -17,7 +17,7 @@ Speed up your website & boost your SEO by compressing old & new images and PDFs.
 Increase your website's SEO ranking, number of visitors and ultimately your sales by optimising any image or PDF document on your website.
 ShortPixel is an easy to use, lightweight, install-and-forget-about-it <a href="https://shortpixel.com" target="_blank">image optimization</a> plugin that can compress all your past images and PDF documents with a single click. New images are automatically resized/rescaled and optimized on the fly, in the background. It's also compatible with any gallery, slider or ecommerce plugin.
 
-**Ready for a quick DEMO? Test our plugin <a href="https://wpsandbox.net/" target="_blank">here</a>.**
+**Ready for a quick DEMO? Test our plugin <a href="https://demo.tastewp.com/shortpixel-image-optimiser" target="_blank">here</a> and <a href="https://wpsandbox.net/" target="_blank">here</a>.**
 Or you can create a staging copy of your site using <a href="https://wp-staging.com/" target="_blank">WP Staging</a> and test it there.
 
 Short Pixel uses minimal resources and works well with any shared, cloud, VPS or dedicated web hosting. It can optimize any image you have on your website even the images that aren't listed in Media Library like those in galleries like <a href="https://wordpress.org/plugins/nextgen-gallery/" target="_blank">NextGEN</a>, <a href="https://wordpress.org/plugins/modula-best-grid-gallery/" target="_blank">Modula</a> or added directly via FTP!
@@ -313,6 +313,53 @@ Alternatively, you can use this filter in your theme's functions.php file:
 9. Check other optimized images status - themes or other plugins' images. (Media>Other Media)
 
 == Changelog ==
+
+= 4.22.8 =
+Release date February 8th, 2022
+* Fix: an error was occurring on new installs when using PHP8;
+* Fix: when uploading an image through Gutenberg's image block, the optimization wasn't getting triggered;
+* Fix: wrong path for `picturefill.js` that was used only in certain cases on IE;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.7 =
+Release date January 17th, 2022
+* Fix: switched all requests to the API to https to avoid insecure warnings;
+* Fix: certain excludes by path were seen as regex-only and weren't processed correctly;
+* Fix: the upgrade pop-up was not considering properly AVIF & WebP when proposing upgrade options;
+* Fix: in certain cases, on Custom Media, there were some PHP Notices related to backups;
+* Fix: AVIF files weren't removed when deleting an image from the Media Library;
+* Fix: when the option to optimize images added in the front-end was enabled, some unnecessary calls to the backend were made in some cases;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.6 =
+Release date October 11th, 2021
+* Fix: the plugin is now checking for the `UPLOADS` constant when building the paths on MultiSite installs;
+* Fix: in certain specific cases, a fatal error was triggered when the backup couldn't be restored;
+* Fix: if the automatic Media Library optimization is disabled, the plugin will also disable the front-end processing option;
+* Fix: removed inaccurate statistics from the bulk screen summary until the next major release;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.5 =
+Release date August 31st, 2021
+* Fix: in some cases, the MIME type of other files than images were wrongly set to `image/jpg`;
+* Fix: when restoring from backup a PNG that was converted to JPG, the MIME type wasn't set back to `image/png`;
+* Fix: in case backup fails for any reason, the image in discussion will be skipped (so the original one won't get overwritten);
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.4 =
+Release date August 25th, 2021
+* Compat: Added a notification system for the cases when AVIF files cannot be delivered with the current server/host settings;
+* Compat: bumped the minimum supported PHP version to 5.6;
+* Language: 5 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
+
+= 4.22.3 =
+Release date July 28th, 2021
+* Fix: Error when using WordPress 5.8 Widget editor;
+* Fix: Error when using WP-Offload and WebP image could not be detected;
+* Fix: PNG2JPG when using WP without date directory format would incorrectly add ./ to filename;
+* Fix: Unregistered retina files could throw off optimization;
+* Fix: Easy Watermark plugin changed its main file, so it couldn't be properly detected;
+* Language: 0 new string added, 0 updated, 0 fuzzed, and 0 obsoleted.
 
 = 4.22.2 =
 Release date May 12th, 2021

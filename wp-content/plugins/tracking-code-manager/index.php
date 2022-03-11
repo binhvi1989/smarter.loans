@@ -3,12 +3,12 @@
 Plugin Name: Tracking Code Manager
 Plugin URI: http://intellywp.com/tracking-code-manager/
 Description: A plugin to manage ALL your tracking code and conversion pixels, simply. Compatible with Facebook Ads, Google Adwords, WooCommerce, Easy Digital Downloads, WP eCommerce.
-Author: IntellyWP
-Author URI: http://intellywp.com/
+Author: Data443
+Author URI: https://data443.com/
 Email: info@intellywp.com
-Version: 2.0.1
-WC requires at least: 3.0.0
-WC tested up to: 4
+Version: 2.0.5
+Requires at least: 3.6.0
+Requires PHP: 7.3
 */
 if(defined('TCMP_PLUGIN_NAME')) {
     function tcmp_admin_notices() {
@@ -26,7 +26,7 @@ define('TCMP_PLUGIN_PREFIX', 'TCMP_');
 define('TCMP_PLUGIN_FILE',__FILE__);
 define('TCMP_PLUGIN_SLUG', 'tracking-code-manager');
 define('TCMP_PLUGIN_NAME', 'Tracking Code Manager');
-define('TCMP_PLUGIN_VERSION', '2.0.1');
+define('TCMP_PLUGIN_VERSION', '2.0.5');
 define('TCMP_PLUGIN_AUTHOR', 'IntellyWP');
 
 define('TCMP_PLUGIN_DIR', dirname(__FILE__).'/');
@@ -64,6 +64,8 @@ define('TCMP_DEVICE_TYPE_MOBILE', 'mobile');
 define('TCMP_DEVICE_TYPE_TABLET', 'tablet');
 define('TCMP_DEVICE_TYPE_DESKTOP', 'desktop');
 define('TCMP_DEVICE_TYPE_ALL', 'all');
+
+define('TCMP_HOOK_PRIORITY_DEFAULT', 10);
 
 define('TCMP_TAB_EDITOR', 'editor');
 define('TCMP_TAB_EDITOR_URI', TCMP_PAGE_MANAGER.'&tab='.TCMP_TAB_EDITOR);

@@ -1,0 +1,21 @@
+{
+    "smarter.loans": {
+        "siteId": "vgODAJwHtuSHrPfFEcAkgebhklvwqDRr",
+        "siteSecret": "nPPyLfFkNULYO82OlZMP2KDWXT9QWFJKzJmz1bEQWbH3Bkl478qYflXlJKhFL3BQ",
+        "blogId": 1,
+        "compression": true,
+        "webhookToken": "edfaf03b86a1ee3649b4f92935efc4a0",
+        "home_url": "https:\/\/smarter.loans",
+        "admin_url": "https:\/\/smarter.loans\/wp-admin\/",
+        "hosting": "unknown",
+        "alwaysBuffer": true,
+        "isEzoicActive": false,
+        "isApoActive": false,
+        "isLateIntegrationInitRequired": false,
+        "isDlmActive": false,
+        "dlm_downloading_url": null,
+        "dlm_download_endpoint": null,
+        "pluginVersion": "1.5.9"
+    },
+    "config_path": "295de83c11d1778e1154c80dc983d640"
+}

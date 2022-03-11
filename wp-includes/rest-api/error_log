@@ -1,0 +1,12 @@
+[02-Jun-2018 08:06:57 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[02-Jun-2018 15:32:05 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[02-Jun-2018 21:43:55 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[03-Jun-2018 03:43:41 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[09-Aug-2018 04:54:55 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[07-Sep-2018 05:02:39 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[17-Nov-2018 12:41:15 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[21-Dec-2018 10:44:19 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[09-Feb-2019 22:08:14 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[17-Mar-2019 14:05:12 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[24-Apr-2019 16:56:30 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17
+[17-May-2019 07:20:00 UTC] PHP Fatal error:  Class 'WP_HTTP_Response' not found in /home/smarter/public_html/wp-includes/rest-api/class-wp-rest-response.php on line 17

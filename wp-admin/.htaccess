@@ -1,0 +1,9 @@
+#Block installation files
+<files install.php>
+Order allow,deny
+Deny from all
+</files>
+<files setup-config.php>
+Order allow,deny
+Deny from all
+</files>

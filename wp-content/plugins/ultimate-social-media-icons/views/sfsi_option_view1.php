@@ -2,70 +2,31 @@
 
 /* unserialize all saved option for first options */
 
-$option1 =  unserialize(get_option('sfsi_section1_options', false));
+$option1 = maybe_unserialize(get_option('sfsi_section1_options', false));
 
 /*
-	 * Sanitize, escape and validate values
-	 */
+ * Sanitize, escape and validate values
+ */
 
-$option1['sfsi_rss_display']         = (isset($option1['sfsi_rss_display']))
-
-    ? sanitize_text_field($option1['sfsi_rss_display'])
-
-    : 'yes';
-
-$option1['sfsi_email_display']         = (isset($option1['sfsi_email_display']))
-    ? sanitize_text_field($option1['sfsi_email_display'])
-    : 'yes';
-$option1['sfsi_facebook_display']     = (isset($option1['sfsi_facebook_display']))
-    ? sanitize_text_field($option1['sfsi_facebook_display'])
-    : 'yes';
-
-$option1['sfsi_twitter_display']     = (isset($option1['sfsi_twitter_display']))
-    ? sanitize_text_field($option1['sfsi_twitter_display'])
-    : 'yes';
-$option1['sfsi_youtube_display']     = (isset($option1['sfsi_youtube_display']))
-
-    ? sanitize_text_field($option1['sfsi_youtube_display'])
-
-    : 'no';
-
-$option1['sfsi_pinterest_display']     = (isset($option1['sfsi_pinterest_display']))
-    ? sanitize_text_field($option1['sfsi_pinterest_display'])
-    : 'no';
-
-$option1['sfsi_telegram_display']     = (isset($option1['sfsi_telegram_display']))
-    ? sanitize_text_field($option1['sfsi_telegram_display'])
-    : 'no';
-
-$option1['sfsi_vk_display']         = (isset($option1['sfsi_vk_display']))
-    ? sanitize_text_field($option1['sfsi_vk_display'])
-    : 'no';
-
-$option1['sfsi_ok_display']         = (isset($option1['sfsi_ok_display']))
-    ? sanitize_text_field($option1['sfsi_ok_display'])
-    : 'no';
-
-$option1['sfsi_wechat_display']     = (isset($option1['sfsi_wechat_display']))
-    ? sanitize_text_field($option1['sfsi_wechat_display'])
-    : 'no';
-
-$option1['sfsi_weibo_display']      = (isset($option1['sfsi_weibo_display']))
-    ? sanitize_text_field($option1['sfsi_weibo_display'])
-    : 'no';
-
-$option1['sfsi_linkedin_display']     = (isset($option1['sfsi_linkedin_display']))
-    ? sanitize_text_field($option1['sfsi_linkedin_display'])
-    : 'no';
-
-$option1['sfsi_instagram_display']     = (isset($option1['sfsi_instagram_display']))
-    ? sanitize_text_field($option1['sfsi_instagram_display'])
-    : 'no';
-$option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']))
-    ? sanitize_text_field($option1['sfsi_whatsapp_display'])
-    : 'no';
+$option1['sfsi_rss_display'] = isset( $option1['sfsi_rss_display'] ) ? sanitize_text_field( $option1['sfsi_rss_display'] ) : 'yes';
+$option1['sfsi_email_display'] = isset( $option1['sfsi_email_display'] ) ? sanitize_text_field( $option1['sfsi_email_display'] ) : 'yes';
+$option1['sfsi_facebook_display'] = isset( $option1['sfsi_facebook_display'] ) ? sanitize_text_field( $option1['sfsi_facebook_display'] ) : 'yes';
+$option1['sfsi_twitter_display'] = isset( $option1['sfsi_twitter_display'] ) ? sanitize_text_field( $option1['sfsi_twitter_display'] ) : 'yes';
+$option1['sfsi_youtube_display'] = isset( $option1['sfsi_youtube_display'] ) ? sanitize_text_field( $option1['sfsi_youtube_display'] ) : 'no';
+$option1['sfsi_pinterest_display'] = isset( $option1['sfsi_pinterest_display'] ) ? sanitize_text_field( $option1['sfsi_pinterest_display'] ) : 'no';
+$option1['sfsi_telegram_display'] = isset( $option1['sfsi_telegram_display'] ) ? sanitize_text_field( $option1['sfsi_telegram_display'] ) : 'no';
+$option1['sfsi_vk_display'] = isset( $option1['sfsi_vk_display'] ) ? sanitize_text_field( $option1['sfsi_vk_display'] ) : 'no';
+$option1['sfsi_ok_display'] = isset( $option1['sfsi_ok_display'] ) ? sanitize_text_field( $option1['sfsi_ok_display'] ) : 'no';
+$option1['sfsi_wechat_display'] = isset( $option1['sfsi_wechat_display'] ) ? sanitize_text_field( $option1['sfsi_wechat_display'] ) : 'no';
+$option1['sfsi_weibo_display'] = isset( $option1['sfsi_weibo_display'] ) ? sanitize_text_field( $option1['sfsi_weibo_display'] ) : 'no';
+$option1['sfsi_linkedin_display'] = isset( $option1['sfsi_linkedin_display'] ) ? sanitize_text_field( $option1['sfsi_linkedin_display'] ) : 'no';
+$option1['sfsi_instagram_display'] = isset( $option1['sfsi_instagram_display'] ) ? sanitize_text_field( $option1['sfsi_instagram_display'] ) : 'no';
+$option1['sfsi_whatsapp_display'] = isset( $option1['sfsi_whatsapp_display'] ) ? sanitize_text_field( $option1['sfsi_whatsapp_display'] ) : 'no';
+$option1['sfsi_snapchat_display'] = isset( $option1['sfsi_snapchat_display'] ) ? sanitize_text_field( $option1['sfsi_snapchat_display'] ) : 'no';
+$option1['sfsi_reddit_display'] = isset( $option1['sfsi_reddit_display'] ) ? sanitize_text_field( $option1['sfsi_reddit_display'] ) : 'no';
+$option1['sfsi_fbmessenger_display'] = isset( $option1['sfsi_fbmessenger_display'] ) ? sanitize_text_field( $option1['sfsi_fbmessenger_display'] ) : 'no';
+$option1['sfsi_tiktok_display'] = isset( $option1['sfsi_tiktok_display'] ) ? sanitize_text_field( $option1['sfsi_tiktok_display'] ) : 'no';
 ?>
-
 <!-- Section 1 "Which icons do you want to show on your site? " main div Start -->
 
 <div class="tab1">
@@ -80,7 +41,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <li class="gary_bg">
 
             <div class="radio_section tb_4_ck">
-                <input name="sfsi_rss_display" <?php echo ($option1['sfsi_rss_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_rss_display" type="checkbox" value="yes" class="styled" />
+                <input name="sfsi_rss_display" <?php echo ($option1['sfsi_rss_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_rss_display" type="checkbox" value="yes" class="styled" />
 
             </div>
 
@@ -105,7 +66,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <li class="gary_bg">
             <div class="radio_section tb_4_ck">
 
-                <input name="sfsi_email_display" <?php echo ($option1['sfsi_email_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_email_display" type="checkbox" value="yes" class="styled" />
+                <input name="sfsi_email_display" <?php echo ($option1['sfsi_email_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_email_display" type="checkbox" value="yes" class="styled" />
 
             </div>
 
@@ -141,7 +102,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
         <li class="gary_bg">
 
-            <div class="radio_section tb_4_ck"><input name="sfsi_facebook_display" <?php echo ($option1['sfsi_facebook_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_facebook_display" type="checkbox" value="yes" class="styled" /></div>
+            <div class="radio_section tb_4_ck"><input name="sfsi_facebook_display" <?php echo ($option1['sfsi_facebook_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_facebook_display" type="checkbox" value="yes" class="styled" /></div>
 
             <span class="sfsicls_facebook"><?php _e('Facebook','ultimate-social-media-icons') ?></span>
 
@@ -165,7 +126,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
         <li class="gary_bg">
 
-            <div class="radio_section tb_4_ck"><input name="sfsi_twitter_display" <?php echo ($option1['sfsi_twitter_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_twitter_display" type="checkbox" value="yes" class="styled" /></div>
+            <div class="radio_section tb_4_ck"><input name="sfsi_twitter_display" <?php echo ($option1['sfsi_twitter_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_twitter_display" type="checkbox" value="yes" class="styled" /></div>
 
             <span class="sfsicls_twt"><?php _e('Twitter','ultimate-social-media-icons') ?></span>
 
@@ -188,7 +149,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_youtube_display" <?php echo ($option1['sfsi_youtube_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_youtube_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_youtube_display" <?php echo ($option1['sfsi_youtube_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_youtube_display" type="checkbox" value="yes" class="styled" /></div>
                 <span class="sfsicls_utube"><?php _e('Youtube','ultimate-social-media-icons') ?></span>
             </div>
             <div class="right_info">
@@ -201,7 +162,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- LINKEDIN ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_linkedin_display" <?php echo ($option1['sfsi_linkedin_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_linkedin_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_linkedin_display" <?php echo ($option1['sfsi_linkedin_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_linkedin_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_linkdin"><?php _e('LinkedIn','ultimate-social-media-icons') ?></span>
             </div>
@@ -218,7 +179,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- PINTEREST ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_pinterest_display" <?php echo ($option1['sfsi_pinterest_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_pinterest_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_pinterest_display" <?php echo ($option1['sfsi_pinterest_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_pinterest_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_pinterest"><?php _e('Pinterest','ultimate-social-media-icons') ?></span>
 
@@ -226,7 +187,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Pinterest account (and you should set up one if you publish new pictures regularly – that can increase your traffic significantly).','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Pinterest account (and you should set up one if you publish new pictures regularly – that can increase your traffic significantly).','ultimate-social-media-icons') ?> </p>
 
             </div>
 
@@ -236,7 +197,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- INSTAGRAM ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_instagram_display" <?php echo ($option1['sfsi_instagram_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_instagram_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_instagram_display" <?php echo ($option1['sfsi_instagram_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_instagram_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_instagram"><?php _e('Instagram','ultimate-social-media-icons') ?></span>
 
@@ -244,7 +205,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have an Instagram account.','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have an Instagram account.','ultimate-social-media-icons') ?> </p>
 
             </div>
 
@@ -253,13 +214,13 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
          <!-- WHATSAPP ICON -->
          <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_whatsapp_display" <?php echo ($option1['sfsi_whatsapp_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_whatsapp_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_whatsapp_display" <?php echo ($option1['sfsi_whatsapp_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_whatsapp_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_whatsapp"><?php _e('WhatsApp','ultimate-social-media-icons') ?></span>
             </div>
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you want to allow users to share the page via WhatsApp.','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you want to allow users to share the page via WhatsApp.','ultimate-social-media-icons') ?> </p>
 
             </div>
 
@@ -268,7 +229,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- TELEGRAM ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_telegram_display" <?php echo ($option1['sfsi_telegram_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_telegram_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_telegram_display" <?php echo ($option1['sfsi_telegram_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_telegram_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_telegram"><?php _e('Telegram','ultimate-social-media-icons') ?></span>
 
@@ -276,7 +237,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Telegram account.','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Telegram account.','ultimate-social-media-icons') ?> </p>
 
             </div>
 
@@ -286,13 +247,13 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- VK ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_vk_display" <?php echo ($option1['sfsi_vk_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_vk_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_vk_display" <?php echo ($option1['sfsi_vk_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_vk_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_vk"><?php _e('VK','ultimate-social-media-icons') ?></span>
             </div>
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span> <?php _e('Show this icon if you have a VK account.','ultimate-social-media-icons') ?></p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span> <?php _e('Show this icon if you have a VK account.','ultimate-social-media-icons') ?></p>
 
             </div>
 
@@ -303,7 +264,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <li class="sfsi_vertically_center">
             <div>
 
-                <div class="radio_section tb_4_ck"><input name="sfsi_ok_display" <?php echo ($option1['sfsi_ok_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_ok_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_ok_display" <?php echo ($option1['sfsi_ok_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_ok_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_ok"><?php _e('Ok','ultimate-social-media-icons') ?></span>
 
@@ -311,7 +272,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have an OK account.','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have an OK account.','ultimate-social-media-icons') ?> </p>
 
             </div>
 
@@ -321,13 +282,13 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <!-- WECHAT ICON -->
         <li class="sfsi_vertically_center">
             <div>
-                <div class="radio_section tb_4_ck"><input name="sfsi_wechat_display" <?php echo ($option1['sfsi_wechat_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_wechat_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_wechat_display" <?php echo ($option1['sfsi_wechat_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_wechat_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_wechat"><?php _e('WeChat','ultimate-social-media-icons') ?></span>
             </div>
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span> <?php _e('Show this icon if you have a WeChat account.','ultimate-social-media-icons') ?></p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span> <?php _e('Show this icon if you have a WeChat account.','ultimate-social-media-icons') ?></p>
 
             </div>
 
@@ -337,7 +298,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
         <li class="sfsi_vertically_center">
             <div>
 
-                <div class="radio_section tb_4_ck"><input name="sfsi_weibo_display" <?php echo ($option1['sfsi_weibo_display'] == 'yes') ?  'checked="true"' : ''; ?> id="sfsi_weibo_display" type="checkbox" value="yes" class="styled" /></div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_weibo_display" <?php echo ($option1['sfsi_weibo_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_weibo_display" type="checkbox" value="yes" class="styled" /></div>
 
                 <span class="sfsicls_weibo"><?php _e('Weibo','ultimate-social-media-icons') ?></span>
 
@@ -345,12 +306,60 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
             <div class="right_info">
 
-                <p><span><?php _e('It depends:','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Weibo account.','ultimate-social-media-icons') ?> </p>
+                <p><span><?php _e('It depends: ','ultimate-social-media-icons') ?></span><?php _e('Show this icon if you have a Weibo account.','ultimate-social-media-icons') ?> </p>
 
             </div>
 
         </li>
-        <!-- END INSTAGRAM ICON -->
+        <!-- END WEIBO ICON -->
+
+        <!-- SNAPCHAT ICON -->
+        <li class="sfsi_vertically_center">
+            <div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_snapchat_display" <?php echo ($option1['sfsi_snapchat_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_snapchat_display" type="checkbox" value="yes" class="styled" /></div>
+                <span class="sfsicls_snapchat"><?php _e( 'Snapchat', 'ultimate-social-media-icons' ); ?></span>
+            </div>
+            <div class="right_info">
+                <p><span><?php _e( 'It depends: ', 'ultimate-social-media-icons' ); ?></span><?php _e( 'Show this icon if you have a Snapchat account.', 'ultimate-social-media-icons' ); ?></p>
+            </div>
+        </li>
+        <!-- END SNAPCHAT ICON -->
+
+        <!-- REDDIT ICON -->
+        <li class="sfsi_vertically_center">
+            <div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_reddit_display" <?php echo ($option1['sfsi_reddit_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_reddit_display" type="checkbox" value="yes" class="styled" /></div>
+                <span class="sfsicls_reddit"><?php _e( 'Reddit', 'ultimate-social-media-icons' ); ?></span>
+            </div>
+            <div class="right_info">
+                <p><span><?php _e( 'It depends: ', 'ultimate-social-media-icons' ); ?></span><?php _e( 'Show this icon if you have a Reddit account.', 'ultimate-social-media-icons' ); ?></p>
+            </div>
+        </li>
+        <!-- END REDDIT ICON -->
+
+        <!-- FACEBOOK MESSENGER ICON -->
+        <li class="sfsi_vertically_center">
+            <div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_fbmessenger_display" <?php echo ($option1['sfsi_fbmessenger_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_fbmessenger_display" type="checkbox" value="yes" class="styled" /></div>
+                <span class="sfsicls_fbmessenger"><?php _e( 'Facebook Messenger', 'ultimate-social-media-icons' ); ?></span>
+            </div>
+            <div class="right_info">
+                <p><span><?php _e( 'It depends: ', 'ultimate-social-media-icons' ); ?></span><?php _e( 'Show this icon if you have a Facebook account.', 'ultimate-social-media-icons' ); ?></p>
+            </div>
+        </li>
+        <!-- END FACEBOOK MESSENGER ICON -->
+
+        <!-- TIKTOK ICON -->
+        <li class="sfsi_vertically_center">
+            <div>
+                <div class="radio_section tb_4_ck"><input name="sfsi_tiktok_display" <?php echo ($option1['sfsi_tiktok_display'] == 'yes') ? 'checked="true"' : ''; ?> id="sfsi_tiktok_display" type="checkbox" value="yes" class="styled" /></div>
+                <span class="sfsicls_tiktok"><?php _e( 'TikTok', 'ultimate-social-media-icons' ); ?></span>
+            </div>
+            <div class="right_info">
+                <p><span><?php _e( 'It depends: ', 'ultimate-social-media-icons' ); ?></span><?php _e( 'Show this icon if you have a TikTok account.', 'ultimate-social-media-icons' ); ?></p>
+            </div>
+        </li>
+        <!-- END TIKTOK ICON -->
 
         <!-- Custom icon section start here -->
         <?php if (get_option('sfsi_custom_icons') == 'no') { ?>
@@ -387,15 +396,13 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
             <?php if ($count <= 5) : ?>
 
                 <li id="c<?php echo $new_element; ?>" class="custom bdr_btm_non sfsi_vertically_center">
-
                     <a class="pop-up" data-id="sfsi_quickpay-overlay" onclick="sfsi_open_quick_checkout(event)" target="_blank">
                         <div class="radio_section tb_4_ck" style="opacity:0.5">
-                            <input type="checkbox" onclick="return false;  value=" yes" class="styled" disabled="true" />
+                            <input type="checkbox" onclick="return false;"  value="yes" class="styled" disabled="true" />
                         </div>
 
                         <span class="custom-img" style="opacity:0.5">
-                            <img src="<?php echo SFSI_PLUGURL . 'images/custom.png'; ?>" id="CImg_<?php echo $new_element; ?> " alt="error" />
-
+                            <img src="<?php echo SFSI_PLUGURL . 'images/custom.png'; ?>" id="CImg_<?php echo $new_element; ?>" alt="" />
                         </span>
 
                         <span class="custom custom-txt" style="font-weight:normal;opacity:0.5;margin-left:4px"><?php _e('Custom Icon ','ultimate-social-media-icons') ?> </span>
@@ -529,274 +536,153 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
             <div class="sfsi_prem_icons_added">
 
                 <div class="sf_si_prmium_head">
-                <h2><?php _e('New:','ultimate-social-media-icons') ?> <span><?php _e('In our Premium Plugin we added icons for:','ultimate-social-media-icons') ?> </span></h2>
+                    <h2><?php 
+                        printf(
+                            __( '%1$sNew%2$sIn our Premium Plugin we added icons for:', 'ultimate-social-media-icons' ),
+                            '<span>',
+                            '</span>'
+                        );
+                    ?></h2>
                 </div>
-
-                <div class="sfsi_premium_row">
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/snapchat.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Snapchat','ultimate-social-media-icons') ?></span>
-
+                <div class="sfsi_premium_row_wrapper">
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Skyrock', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/skyrock.png'; ?>" id="CImg" alt="<?php _e( 'Skyrock', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Shopping cart', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/shopping_cart.png'; ?>" id="CImg" alt="<?php _e( 'Shopping cart', 'ultimate-social-media-icons' ); ?>" /></span>
                     </div>
 
-                    <!-- <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/whatsapp.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text">WhatsApp or Phone</span>
-
-                    </div> -->
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/yummly.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Yummly','ultimate-social-media-icons') ?></span>
-
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'iTalki', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/italki.png'; ?>" id="CImg" alt="<?php _e( 'iTalki', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Mix.com', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/mix.png'; ?>" id="CImg" alt="<?php _e( 'Mix.com', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'iHeart', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/iheart.png'; ?>" id="CImg" alt="<?php _e( 'iHeart', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Buffer', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/buffer.png'; ?>" id="CImg" alt="<?php _e( 'Buffer', 'ultimate-social-media-icons' ); ?>" /></span>
                     </div>
 
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/yelp.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Yelp','ultimate-social-media-icons') ?></span>
-
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Parler', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/parler.png'; ?>" id="CImg" alt="<?php _e( 'Parler', 'ultimate-social-media-icons' ); ?>" /></span>
                     </div>
 
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/print.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Print','ultimate-social-media-icons') ?></span>
-
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Soundcloud', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/soundcloud.png'; ?>" id="CImg" alt="<?php _e( 'Soundcloud', 'ultimate-social-media-icons' ); ?>" /></span>
                     </div>
 
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/messenger.png'; ?>" id="CImg" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Messenger','ultimate-social-media-icons') ?></span>
-
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Behance', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/behance.png'; ?>" id="CImg" alt="<?php _e( 'Behance', 'ultimate-social-media-icons' ); ?>" /></span>
                     </div>
 
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Steem', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/steem.png'; ?>" id="CImg" alt="<?php _e( 'Steem', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Print', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/print.png'; ?>" id="CImg" alt="<?php _e( 'Print', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Houzz', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/houzz.png'; ?>" id="CImg" alt="<?php _e( 'Houzz', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Tumblr', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/tumblr.png'; ?>" id="CImg" alt="<?php _e( 'Tumblr', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Flicker', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/flicker.png'; ?>" id="CImg" alt="<?php _e( 'Flicker', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Yum', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/yum.png'; ?>" id="CImg" alt="<?php _e( 'Yum', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Amazon', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/amazon.png'; ?>" id="CImg" alt="<?php _e( 'Amazon', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Blogger', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/blogger.png'; ?>" id="CImg" alt="<?php _e( 'Blogger', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Skype', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/skype.png'; ?>" id="CImg" alt="<?php _e( 'Skype', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Steam', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/steam.png'; ?>" id="CImg" alt="<?php _e( 'Steam', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Vimeo', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/vimeo.png'; ?>" id="CImg" alt="<?php _e( 'Vimeo', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Spotify', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/spotify.png'; ?>" id="CImg" alt="<?php _e( 'Spotify', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Xing', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/xing.png'; ?>" id="CImg" alt="<?php _e( 'Xing', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Twitch', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/twitch.png'; ?>" id="CImg" alt="<?php _e( 'Twitch', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Phone', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/phone.png'; ?>" id="CImg" alt="<?php _e( 'Phone', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'TripAdvisor', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/tripadvisor.png'; ?>" id="CImg" alt="<?php _e( 'TripAdvisor', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
+                    <div class="sfsi_prem_banner_rowlisting">
+                        <span class="sfsicls_prem_text"><?php _e( 'Yelp', 'ultimate-social-media-icons' ); ?></span>
+                        <span><img src="<?php echo SFSI_PLUGURL . 'images/banner/yelp.png'; ?>" id="CImg" alt="<?php _e( 'Yelp', 'ultimate-social-media-icons' ); ?>" /></span>
+                    </div>
                 </div>
-
-                <div class="sfsi_premium_row">
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/soundcloud.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Soundcloud','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/skype.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Skype','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/flickr.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Flickr','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/buffer.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Buffer','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/blogger.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Blogger','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/reddit.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Reddit','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                </div>
-
-                <div class="sfsi_premium_row">
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/vimeo.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Vimeo','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/tumblr.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Tumblr','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/houzz.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text">Houzz<?php _e('Houzz','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/xing.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Xing','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/twitch.png'; ?>" id="CImg" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Twitch','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/amazon.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Amazon','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                </div>
-
-                <div class="sfsi_premium_row">
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/angieslist.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Angie’s List','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                    <div class="sfsi_prem_cmn_rowlisting">
-
-                        <span>
-
-                            <img src="<?php echo SFSI_PLUGURL . 'images/steam.png'; ?>" id="CImg" alt="error" />
-
-                        </span>
-
-                        <span class="sfsicls_prem_text"><?php _e('Steam','ultimate-social-media-icons') ?></span>
-
-                    </div>
-
-                </div>
-
                 <!--<div class="sfsi_need_another_one_link">
 
                     <p>Need another one?<a href="mailto:biz@ultimatelysocial.com"> Tell us</a></p>
 
                 </div>-->
 
-                <div class="sfsi_need_another_tell_us" style="padding-top:20px">
-
-                <a href="https://www.ultimatelysocial.com/all-platforms/" target="_blank"><?php _e('...and many more! See them here','ultimate-social-media-icons') ?></a>
+                <div class="sfsi_need_another_tell_us">
+                    <span class="star">&#9733;</span><?php 
+                        printf(
+                            __( '...and&nbsp;%1$smany more!%2$s&nbsp;See them&nbsp;%3$shere%4$s', 'ultimate-social-media-icons' ),
+                            '<span class="sbold">',
+                            '</span>',
+                            '<a href="https://www.ultimatelysocial.com/all-platforms/" target="_blank">',
+                            '</a>'
+                        );
+                    ?>
 
                     <!--<a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_platforms&utm_medium=banner" target="_blank">See all features Premium Plugin</a>-->
 
@@ -818,7 +704,7 @@ $option1['sfsi_whatsapp_display']     = (isset($option1['sfsi_whatsapp_display']
 
     <div class="save_button tab_1_sav">
 
-        <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" class="loader-img" alt="error" />
+        <img src="<?php echo SFSI_PLUGURL ?>images/ajax-loader.gif" class="loader-img" alt="loader" />
 
         <?php $nonce = wp_create_nonce("update_step1"); ?>
 

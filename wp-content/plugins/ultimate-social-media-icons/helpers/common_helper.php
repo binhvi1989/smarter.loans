@@ -3,7 +3,7 @@ if(!function_exists('sfsi_get_displayed_std_desktop_icons')){
 
     function sfsi_get_displayed_std_desktop_icons($option1=false){
 
-        $option1 =  false !== $option1 && is_array($option1) ? $option1 : unserialize(get_option('sfsi_section1_options',false));
+        $option1 =  false !== $option1 && is_array($option1) ? $option1 : maybe_unserialize(get_option('sfsi_section1_options',false));
 
         $arrDisplay = array();
 
@@ -28,7 +28,7 @@ if(!function_exists('sfsi_get_displayed_custom_desktop_icons')){
 
     function sfsi_get_displayed_custom_desktop_icons($option1=false){
         
-        $option1 = false != $option1 && is_array($option1) ? $option1 : unserialize(get_option('sfsi_section1_options',false));
+        $option1 = false != $option1 && is_array($option1) ? $option1 : maybe_unserialize(get_option('sfsi_section1_options',false));
 
         $arrDisplay = array();
 
@@ -55,7 +55,7 @@ if(!function_exists('sfsi_icon_get_icon_image')){
 
         $icon = false;
 
-        $option3 = unserialize(get_option('sfsi_section3_options',false));
+        $option3 = maybe_unserialize(get_option('sfsi_section3_options',false));
 
         if(isset($option3['sfsi_actvite_theme']) && !empty($option3['sfsi_actvite_theme'])){
 
@@ -112,7 +112,13 @@ if(!function_exists('sfsi_icon_get_icon_image')){
                 else
                 {
                     $iconImgName = false != $iconImgName ? $iconImgName: $icon_name;
-                    $icon = $icons_baseUrl.$active_theme."_".$iconImgName.".png";
+
+                    /* Replace PNG to GIF for Animated style */
+                    if( $active_theme == 'animated_icons' ) {
+                        $icon = $icons_baseUrl.$active_theme."_".$iconImgName.".gif";
+                    } else {
+                        $icon = $icons_baseUrl.$active_theme."_".$iconImgName.".png";
+                    }
                 }
 
             endif;      
@@ -136,6 +142,10 @@ if(!function_exists('sfsi_icon_generate_other_icon_effect_admin_html')){
         $displayIconClass   = "hide";
 
         $arruploadDir   = wp_upload_dir();
+        $sfsi_flat_icon_color = '';
+        $sfsi_flat_theme_flag = false;
+        $option3 = maybe_unserialize( get_option( 'sfsi_section3_options', false ) );
+        $active_theme = ( isset( $option3['sfsi_actvite_theme'] ) && !empty( $option3['sfsi_actvite_theme'] ) ) ? $option3['sfsi_actvite_theme'] : '' ;
 
         if( isset($iconName) && !empty($iconName)){ 
 
@@ -169,6 +179,13 @@ if(!function_exists('sfsi_icon_generate_other_icon_effect_admin_html')){
                 $activeIconImgUrl   = sfsi_icon_get_icon_image($iconName); 
 
                 $iconNameStr = $iconName;
+
+                /* Flat icon */
+                
+                if( $active_theme == 'flat' ) {
+                    $sfsi_flat_theme_flag = true;
+                    $sfsi_flat_icon_color = sfsi_flat_icon_color( $iconName, $option3 );
+                }
             }
             if(false != $iconImgVal && !filter_var($iconImgVal, FILTER_VALIDATE_URL)){
 
@@ -181,11 +198,17 @@ if(!function_exists('sfsi_icon_generate_other_icon_effect_admin_html')){
             $attrIconName = 'data-iconname="'.$iconName.'"';
 
             ?>
-            <div <?php echo $attrCustomIconIndex;?><?php echo $attrIconName; ?> class="col-md-3 bottommargin20 <?php echo $displayIconClass; ?>">
+            <div <?php echo $attrCustomIconIndex;?><?php echo $attrIconName; ?> class="col-md-3 bottommargin20 <?php echo $displayIconClass.' '.$active_theme; ?>">
 
                 <label <?php echo $attrCustomIconSrNo; ?> class="mouseover_other_icon_label"><?php echo ucfirst($iconNameStr); ?> </label>
 
-                <img data-defaultImg="<?php echo $defaultIconImgUrl; ?>" class="mouseover_other_icon_img" src="<?php echo $activeIconImgUrl; ?>" alt="error">
+                <?php if ( $sfsi_flat_theme_flag ) { ?>
+                    <span class="sfsi_icon_img_wrapper mouseover_sfsi_<?php echo esc_attr( $iconName ); ?>_bgColor" <?php echo esc_html( $sfsi_flat_icon_color ); ?>>
+                        <img data-defaultImg="<?php echo $defaultIconImgUrl; ?>" class="mouseover_other_icon_img" src="<?php echo $activeIconImgUrl; ?>" alt="" />
+                    </span>
+                <?php } else { ?>
+                    <img data-defaultImg="<?php echo $defaultIconImgUrl; ?>" class="mouseover_other_icon_img" src="<?php echo $activeIconImgUrl; ?>" alt="" />
+                <?php } ?>
 
                 <input <?php echo $attrCustomIconIndex; ?><?php echo $attrIconName; ?> type="hidden" value="<?php echo $iconImgVal; ?>" name="mouseover_other_icon_<?php echo $iconName; ?>">
 
@@ -200,4 +223,162 @@ if(!function_exists('sfsi_icon_generate_other_icon_effect_admin_html')){
         }
 
     } 
+}
+
+function sfsi_flat_icon_color( $iconName, $option3 ) {
+
+    $sfsi_icon_bgColor = $sfsi_icon_bgColor_style = '';
+    if ( $iconName ) {
+
+        switch ( $iconName ) {
+            case "rss":
+                if ( isset( $option3['sfsi_rss_bgColor'] ) && $option3['sfsi_rss_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_rss_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#f2721f';
+                }
+            break;
+
+            case "email":
+                if ( isset( $option3['sfsi_email_bgColor'] ) && $option3['sfsi_email_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_email_bgColor'];
+                } else {
+                    $option2 = maybe_unserialize( get_option( 'sfsi_section2_options', false ) );
+                    if ($option2['sfsi_rss_icons'] == "sfsi") {
+                        $sfsi_icon_bgColor = '#05B04E';
+                    } elseif ($option2['sfsi_rss_icons'] == "email") {
+                        $sfsi_icon_bgColor = '#343D44';
+                    } else {
+                        $sfsi_icon_bgColor = '#16CB30';
+                    }
+                }
+            break;
+
+            case "facebook":
+                if ( isset( $option3['sfsi_facebook_bgColor'] ) && $option3['sfsi_facebook_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_facebook_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#336699';
+                }
+            break;
+
+            case "twitter":
+                if ( isset( $option3['sfsi_twitter_bgColor'] ) && $option3['sfsi_twitter_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_twitter_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#00ACEC';
+                }
+            break;
+
+            case "youtube":
+                if ( isset( $option3['sfsi_youtube_bgColor'] ) && $option3['sfsi_youtube_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_youtube_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#c33';
+                }
+            break;
+
+            case "pinterest":
+                if ( isset( $option3['sfsi_pinterest_bgColor'] ) && $option3['sfsi_pinterest_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_pinterest_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#CC3333';
+                }
+            break;
+
+            case "linkedin":
+                if ( isset( $option3['sfsi_linkedin_bgColor'] ) && $option3['sfsi_linkedin_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_linkedin_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#0877B5';
+                }
+            break;
+
+            case "instagram":
+                if ( isset( $option3['sfsi_instagram_bgColor'] ) && $option3['sfsi_instagram_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_instagram_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = 'radial-gradient(circle farthest-corner at 35% 90%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, rgba(0, 0, 0, 0)), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)';
+                }
+            break;
+
+            case "snapchat":
+                if ( isset( $option3['sfsi_snapchat_bgColor'] ) && $option3['sfsi_snapchat_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_snapchat_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#EDEC1F';
+                }
+            break;
+
+            case "whatsapp":
+                if ( isset( $option3['sfsi_whatsapp_bgColor'] ) && $option3['sfsi_whatsapp_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_whatsapp_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#3ED946';
+                }
+            break;
+
+            case "reddit":
+                if ( isset( $option3['sfsi_reddit_bgColor'] ) && $option3['sfsi_reddit_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_reddit_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#FF642C';
+                }
+            break;
+
+            case "fbmessenger":
+                if ( isset( $option3['sfsi_fbmessenger_bgColor'] ) && $option3['sfsi_fbmessenger_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_fbmessenger_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#447BBF';
+                }
+            break;
+
+            case "ok":
+                if ( isset( $option3['sfsi_ok_bgColor'] ) && $option3['sfsi_ok_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_ok_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#F58220';
+                }
+            break;
+
+            case "telegram":
+                if ( isset( $option3['sfsi_telegram_bgColor'] ) && $option3['sfsi_telegram_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_telegram_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#33A1D1';
+                }
+            break;
+
+            case "vk":
+                if ( isset( $option3['sfsi_vk_bgColor'] ) && $option3['sfsi_vk_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_vk_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#4E77A2';
+                }
+            break;
+
+            case "weibo":
+                if ( isset( $option3['sfsi_weibo_bgColor'] ) && $option3['sfsi_weibo_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_weibo_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#E6162D';
+                }
+            break;
+
+            case "wechat":
+                if ( isset( $option3['sfsi_wechat_bgColor'] ) && $option3['sfsi_wechat_bgColor'] != '' ) {
+                    $sfsi_icon_bgColor = $option3['sfsi_wechat_bgColor'];
+                } else {
+                    $sfsi_icon_bgColor = '#4BAD33';
+                }
+            break;
+        }
+
+        if ( $sfsi_icon_bgColor ) {
+            $sfsi_icon_bgColor_style = "style=background:" . $sfsi_icon_bgColor . ";";
+        }
+    }
+
+    return $sfsi_icon_bgColor_style;
 }

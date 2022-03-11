@@ -42,10 +42,30 @@ class Rate_My_Post_Public {
 	}
 
 	//---------------------------------------------------
+	// PRELOAD FONTS
+	//---------------------------------------------------
+	public function preload_fonts() {
+		$preload = true;
+
+		if( has_filter('rmp_font_preload') ) {
+			$preload = apply_filters( 'rmp_font_preload', $preload );
+		}
+
+		if( !$preload ) {
+			return;
+		}
+
+		echo '<link rel="preload" href="' . plugin_dir_url( __FILE__ ) . 'css/fonts/ratemypost.ttf" type="font/ttf" as="font" crossorigin="anonymous">';
+	}
+
+	//---------------------------------------------------
 	// PUBLIC JS
 	//---------------------------------------------------
 
 	public function enqueue_scripts() {
+		if ( $this->is_amp_page() ) {
+			return;
+		}
 		// Litespeed cache compatibility
 		$this->litespeed_nonce();
 		// plugin options
@@ -557,7 +577,18 @@ class Rate_My_Post_Public {
 		if( $this->is_amp_page() && $this->is_amp_enabled() &&  $add_amp_style ) {
 			ob_start();
 			include plugin_dir_path( __FILE__ ) . 'templates/amp-css.php';
-			echo trim( preg_replace('/\t+/', '', $this->remove_line_breaks( ob_get_clean() ) ) );
+			$rmp_amp_css = trim( preg_replace('/\t+/', '', $this->remove_line_breaks( ob_get_clean() ) ) );
+			// AMP Legacy Theme.
+			if ( function_exists( 'amp_is_legacy' ) && amp_is_legacy() || ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) ) {
+				echo $rmp_amp_css;// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			} else {
+				?>
+				<style type="text/css">
+					<?php echo $rmp_amp_css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</style>
+				<?php
+
+			}
 		}
 	}
 
@@ -1088,6 +1119,8 @@ class Rate_My_Post_Public {
 			'error' => false,
 		);
 
+		return $data;
+
 		if( ! wp_verify_nonce( $nonce, 'rmp_public_nonce' ) ) {
 			$data['error'] = esc_html__( 'Invalid WP token!', 'rate-my-post' );
 			$data['valid'] = false;
@@ -1392,6 +1425,11 @@ class Rate_My_Post_Public {
   public static function top_rated_posts( $max_posts = 10, $required_rating = 1,  $required_votes = 1 ) {
     $rated_posts = array();
     $top_rated_posts = array();
+		$defaultImageSize = 'medium';
+
+		if( has_filter('rmp_thumbnail_size') ) {
+      $defaultImageSize = apply_filters( 'rmp_thumbnail_size', $defaultImageSize );
+    }
 
     // get post types for the query
     $registered_post_types = get_post_types( array( 'public' => true ) );
@@ -1436,7 +1474,7 @@ class Rate_My_Post_Public {
         $avg_rating = $value / 10;
         $title = get_the_title( $post_id );
         $link = get_the_permalink( $post_id );
-        $thumb = get_the_post_thumbnail_url( $post_id );
+        $thumb = get_the_post_thumbnail_url( $post_id, $defaultImageSize );
         $votes = Rate_My_Post_Common::get_vote_count( $post_id );
 
         $top_rated_posts[] = array(

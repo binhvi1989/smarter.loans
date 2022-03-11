@@ -1,8 +1,0 @@
-[22-Dec-2020 09:26:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function plugins_url() in /home/smarter/public_html/wp-content/plugins/tracking-code-manager/index.php:33
-Stack trace:
-#0 {main}
-  thrown in /home/smarter/public_html/wp-content/plugins/tracking-code-manager/index.php on line 33
-[26-Dec-2020 04:38:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function plugins_url() in /home/smarter/public_html/wp-content/plugins/tracking-code-manager/index.php:33
-Stack trace:
-#0 {main}
-  thrown in /home/smarter/public_html/wp-content/plugins/tracking-code-manager/index.php on line 33

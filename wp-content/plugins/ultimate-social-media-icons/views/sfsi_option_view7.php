@@ -2,7 +2,7 @@
 
 /* unserialize all saved option for  section 7 options */
 
-$option7 =  unserialize(get_option('sfsi_section7_options', false));
+$option7 = maybe_unserialize(get_option('sfsi_section7_options', false));
 while(is_string($option7)){
 	$option7 =  @unserialize($option7);
 	if(false == $option7){
@@ -37,9 +37,6 @@ $option7['sfsi_popup_fontColor'] 		= (isset($option7['sfsi_popup_fontColor'])) ?
 $option7['sfsi_Show_popupOn'] 			= (isset($option7['sfsi_Show_popupOn'])) ? sanitize_text_field($option7['sfsi_Show_popupOn']) : '';
 
 $option7['sfsi_Shown_pop'] 				= (isset($option7['sfsi_Shown_pop'])) ? sanitize_text_field($option7['sfsi_Shown_pop']) : '';
-
-$option7['sfsi_Shown_popupOnceTime'] 	= (isset($option7['sfsi_Shown_popupOnceTime'])) ? intval($option7['sfsi_Shown_popupOnceTime']) : '';
-
 ?>
 
 <!-- Section 7 "Do you want to display a pop-up, asking people to subscribe?" main div Start -->
@@ -252,6 +249,35 @@ $option7['sfsi_Shown_popupOnceTime'] 	= (isset($option7['sfsi_Shown_popupOnceTim
 
 			</li>
 
+			<li class="snapchat_section">
+				<div>
+					<img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_snapchat.png" height="50px" alt="snapchat" />
+					<span class="sfsi_Cdisplay" id="sfsi_snapchat_countsDisplay"><?php _e("12k",'ultimate-social-media-icons') ?></span>
+				</div>
+			</li>
+
+			<li class="reddit_section">
+				<div>
+					<img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_reddit.png" height="50px" alt="reddit" />
+					<span class="sfsi_Cdisplay" id="sfsi_reddit_countsDisplay"><?php _e("12k",'ultimate-social-media-icons') ?></span>
+				</div>
+			</li>
+
+			<li class="fbmessenger_section">
+				<div>
+					<img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_fbmessenger.png" height="50px" alt="fbmessenger" />
+					<span class="sfsi_Cdisplay" id="sfsi_fbmessenger_countsDisplay"><?php _e("12k",'ultimate-social-media-icons') ?></span>
+				</div>
+			</li>
+
+			<li class="tiktok_section">
+				<div>
+					<img src="<?php echo SFSI_PLUGURL ?>images/icons_theme/default/default_tiktok.png" height="50px" alt="tiktok" />
+					<span class="sfsi_Cdisplay" id="sfsi_tiktok_countsDisplay"><?php _e("12k",'ultimate-social-media-icons') ?></span>
+				</div>
+
+			</li>
+
 			<?php
 
 			if (isset($icons) && !empty($icons)) {
@@ -392,7 +418,7 @@ $option7['sfsi_Shown_popupOnceTime'] 	= (isset($option7['sfsi_Shown_popupOnceTim
 
 			<div class="row_tab">
 
-				<label><?php _e("Border",'ultimate-social-media-icons') ?><br /><?php _e("Thickness:<",'ultimate-social-media-icons') ?>/label>
+				<label><?php _e("Border",'ultimate-social-media-icons') ?><br /><?php _e("Thickness:",'ultimate-social-media-icons') ?></label>
 
 				<div class="field" style="margin-top:0px;">
 
@@ -427,84 +453,97 @@ $option7['sfsi_Shown_popupOnceTime'] 	= (isset($option7['sfsi_Shown_popupOnceTim
 
 	<div class="row">
 
-		<h4><?php _e("Where shall the pop-up be shown?",'ultimate-social-media-icons') ?></a></h4>
+		<h4><?php _e( 'Where shall the pop-up be shown?', 'ultimate-social-media-icons') ?></a></h4>
 
 		<div class="pop_up_show">
 
-			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'none') ?  'checked="true"' : ''; ?> type="radio" value="none" class="styled" /><label><?php _e("Nowhere",'ultimate-social-media-icons') ?></a></label>
+			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'none') ?  'checked="true"' : ''; ?> type="radio" value="none" class="styled" /><label><?php _e("Nowhere",'ultimate-social-media-icons') ?></label>
 
 		</div>
 
 		<div class="pop_up_show">
 
-			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'everypage') ?  'checked="true"' : ''; ?> type="radio" value="everypage" class="styled" /><label><?php _e("On all pages",'ultimate-social-media-icons') ?></a></label>
+			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'everypage') ?  'checked="true"' : ''; ?> type="radio" value="everypage" class="styled" />
+			<label><?php _e("On all pages",'ultimate-social-media-icons') ?></label>
 
 		</div>
 
 		<div class="pop_up_show">
-
-			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'blogpage') ?  'checked="true"' : ''; ?> type="radio" value="blogpage" class="styled" /><label><?php _e("On some pages",'ultimate-social-media-icons') ?></a></label>
-
-		</div>
-
-		<div class="pop_up_show">
-
-			<input name="sfsi_Show_popupOn" <?php echo ($option7['sfsi_Show_popupOn'] == 'selectedpage') ?  'checked="true"' : ''; ?> type="radio" value="selectedpage" class="styled" /><label><?php _e("On selected pages only",'ultimate-social-media-icons') ?></label>
-
-			<div class="field" style="width:50%">
-
-				<select multiple="multiple" name="sfsi_Show_popupOn_PageIDs" id="sfsi_Show_popupOn_PageIDs" style="width:60%;min-height: 150px;">
-
-					<?php
-
-					$select		= (isset($option7['sfsi_Show_popupOn_PageIDs']))
-
-						? unserialize($option7['sfsi_Show_popupOn_PageIDs'])
-
-						: array();
-
-					$get_pages 	= get_pages(array(
-
-						'offset' => 1,
-
-						'hierarchical' => 1,
-
-						'sort_order' => 'DESC',
-
-						'sort_column' => 'post_date',
-
-						'posts_per_page' => 200,
-
-						'post_status' => 'publish'
-
-					));
-
-					if ($get_pages) {
-
-						foreach ($get_pages as $page) {
-
-							$attr = is_array($select) && in_array($page->ID, $select) ? 'selected="selected" class="sel-active"' : '';
-
-							printf(
-
-								'<option value="%s"  %s style="margin-bottom:3px;">%s</option>',
-
-								$page->ID,
-
-								$attr,
-
-								$page->post_title
-
-							);
-						}
-					}
-
-					?>
-
-				</select><br /><?php _e("Please hold the CTRL key to select multiple pages.",'ultimate-social-media-icons') ?>
-
+			<div class="popup_somepages">
+				<input name="sfsi_Show_popupOn" <?php echo ( isset( $option7['sfsi_Show_popupOn'] ) && ( $option7['sfsi_Show_popupOn'] == 'somepages' || $option7['sfsi_Show_popupOn'] == 'selectedpage' || $option7['sfsi_Show_popupOn'] == 'blogpage' ) ) ? 'checked="true"' : ''; ?> type="radio" value="somepages" class="styled" />
+				<label><?php _e( 'On some pages', 'ultimate-social-media-icons' ); ?></label>
 			</div>
+			<div class="popup_containter" style="<?php echo ( isset( $option7['sfsi_Show_popupOn'] ) && ( $option7['sfsi_Show_popupOn'] == 'somepages' || $option7['sfsi_Show_popupOn'] == 'selectedpage' || $option7['sfsi_Show_popupOn'] == 'blogpage' ) ) ? 'display:block;' : 'display:none;';?>">
+				<div class="pop_up_show">
+					<input name="sfsi_Show_popupOn_somepages_blogpage" <?php echo ( ( isset( $option7['sfsi_Show_popupOn_somepages_blogpage'] ) && $option7['sfsi_Show_popupOn_somepages_blogpage'] == 'blogpage' ) || ( isset( $option7['sfsi_Show_popupOn'] ) && $option7['sfsi_Show_popupOn'] == 'blogpage' ) ) ? 'checked="true"' : ''; ?> type="checkbox" value="blogpage" class="styled" />
+					<label><?php _e( 'All blog posts', 'ultimate-social-media-icons' ); ?></label>
+				</div>
+				<div class="pop_up_show">
+					<input name="sfsi_Show_popupOn_somepages_selectedpage" <?php echo ( ( isset( $option7['sfsi_Show_popupOn_somepages_selectedpage'] ) && $option7['sfsi_Show_popupOn_somepages_selectedpage'] == 'selectedpage' ) || ( isset( $option7['sfsi_Show_popupOn'] ) && $option7['sfsi_Show_popupOn'] == 'selectedpage' ) ) ? 'checked="true"' : ''; ?> type="checkbox" value="selectedpage" class="styled" /><label><?php _e( 'Selected pages', 'ultimate-social-media-icons') ?></label>
 
+					<div class="field" style="width:50%">
+
+						<select multiple="multiple" name="sfsi_Show_popupOn_PageIDs" id="sfsi_Show_popupOn_PageIDs" style="width:60%;min-height: 150px;">
+							<?php
+								$select = isset( $option7['sfsi_Show_popupOn_PageIDs'] ) ? unserialize( $option7['sfsi_Show_popupOn_PageIDs'] ) : array();
+
+								$get_pages 	= get_pages(array(
+									'offset' => 1,
+									'hierarchical' => 1,
+									'sort_order' => 'DESC',
+									'sort_column' => 'post_date',
+									'posts_per_page' => 200,
+									'post_status' => 'publish'
+								));
+
+								if ($get_pages) {
+									foreach ($get_pages as $page) {
+										$attr = is_array($select) && in_array($page->ID, $select) ? 'selected="selected" class="sel-active"' : '';
+
+										printf(
+											'<option value="%s"  %s style="margin-bottom:3px;">%s</option>',
+											$page->ID,
+											$attr,
+											$page->post_title
+										);
+									}
+								}
+							?>
+						</select><br />
+						<?php _e( 'Please hold the CTRL key to select multiple pages.', 'ultimate-social-media-icons' ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="pop_up_show">
+
+			<?php $popupDesktopMobile = ( $option7['sfsi_Show_popupOn'] != 'none' ) ? 'display:block' : ''; ?>
+
+			<div class="sfsi_show_desktop_mobile_setting_li popupDesktopMobileLi" style="<?php echo esc_attr( $popupDesktopMobile ); ?>">
+
+				<ul class="sfsi_icn_listing8 sfsi_closerli popupDesktopMobileUl">
+					<li>
+						<div class="sfsidesktopmbilelabel">
+							<h4 class="sfsi_toglepstpgspn" style="color: #5a6570 !important;font-family: 'helveticaneue-light';"><?php _e( 'Show on:', 'ultimate-social-media-icons' ); ?></h4>
+						</div>
+					</li>
+					<li>
+						<div class="radio_section tb_4_ck">
+							<input name="sfsi_popup_show_on_desktop" type="checkbox" value="yes" class="styled" <?php echo ( !isset( $option7['sfsi_popup_show_on_desktop'] ) || ( isset( $option7['sfsi_popup_show_on_desktop'] ) || $option7['sfsi_popup_show_on_desktop'] == 'yes' ) ) ? 'checked="true"' : ''; ?>>
+						</div>
+						<label>
+							<?php _e( 'Desktop', 'ultimate-social-media-icons' ); ?>
+						</label>
+					</li>
+					<li>
+						<div class="radio_section tb_4_ck">
+							<input name="sfsi_popup_show_on_mobile"  type="checkbox" value="yes" class="styled" <?php echo ( !isset( $option7['sfsi_popup_show_on_mobile'] ) || ( isset( $option7['sfsi_popup_show_on_mobile'] ) && $option7['sfsi_popup_show_on_mobile'] == 'yes' ) ) ? 'checked="true"' : ''; ?>>
+						</div>
+						<label><?php  _e( 'Mobile', 'ultimate-social-media-icons' ); ?></label>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 	</div>
@@ -514,29 +553,79 @@ $option7['sfsi_Shown_popupOnceTime'] 	= (isset($option7['sfsi_Shown_popupOnceTim
 		<h4><?php _e("When shall the pop-up be shown?",'ultimate-social-media-icons') ?></h4>
 
 		<div class="pop_up_show">
-
-			<input name="sfsi_Shown_pop" <?php echo ($option7['sfsi_Shown_pop'] == 'once') ?  'checked="true"' : ''; ?> type="radio" value="once" class="styled" /><label><?php _e("Once",'ultimate-social-media-icons') ?> <input name="sfsi_Shown_popupOnceTime" type="text" value="<?php echo ($option7['sfsi_Shown_popupOnceTime'] != '') ?  $option7['sfsi_Shown_popupOnceTime'] : ''; ?>" class="seconds" /> <?php _e("seconds after the user arrived on the site",'ultimate-social-media-icons') ?></label>
-
+			<input name="sfsi_Shown_pop" <?php echo ($option7['sfsi_Shown_pop'] == 'once') ?  'checked="true"' : ''; ?> type="checkbox" value="once" class="styled" /><label><?php _e("Once",'ultimate-social-media-icons') ?> <input name="sfsi_Shown_popupOnceTime" type="text" value="<?php echo ($option7['sfsi_Shown_popupOnceTime'] != '') ?  $option7['sfsi_Shown_popupOnceTime'] : ''; ?>" class="seconds" /> <?php _e("seconds after the user arrived on the site",'ultimate-social-media-icons') ?></label>
 		</div>
-
 		<div class="pop_up_show">
-
-			<input name="sfsi_Shown_pop" <?php echo ($option7['sfsi_Shown_pop'] == 'ETscroll') ?  'checked="true"' : ''; ?> type="radio" value="ETscroll" class="styled" /><label><?php _e("Every time user scrolls to the end of the page",'ultimate-social-media-icons') ?></label>
-
+			<input name="sfsi_Shown_pop" <?php echo ($option7['sfsi_Shown_pop'] == 'ETscroll') ?  'checked="true"' : ''; ?> type="checkbox" value="ETscroll" class="styled" /><label><?php _e("Every time user scrolls to the end of the page",'ultimate-social-media-icons') ?></label>
 		</div>
-
+		<div class="pop_up_show pop_up_show_q7 sfsi-max-content clear">
+			<label class="sfsi_tooltip_premium d-flex flex-row align-items-center pl-0">
+				<div class="sfsiicnsdvwrp" style="margin-right: 20px; width: auto;">
+					<span class="checkbox" style="background-position:0px 0px!important;"></span>
+				</div>
+				<div class="sfsicnwrp">
+					<?php
+						_e( 'When the user leaves the page (i.e. moves over the top part in their browser)', 'ultimate-social-media-icons' );
+						echo sfsi_premium_tooltip_content( 'tp-checkbox-link' );
+					?>
+				</div>
+			</label>
+		</div>
 		<!-- <div class="sfsi_prem_show">
+			<p class=sfsi_prem_plu_desc><b>New :</b> The Premium Plugin also allows you to show the pop-up when a user tries to <b>leave your page</b>. Also, you can <b>limit how often the pop-up is shown </b>to the same user (e.g. only once per day) <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_popup_options&utm_medium=banner" target="_blank">Check it out</a></p>
+		</div> -->
+	</div>
 
-            <p class=sfsi_prem_plu_desc><b>New :</b> The Premium Plugin also allows you to show the pop-up when a user tries to <b>leave your page</b>. Also, you can <b>limit how often the pop-up is shown </b>to the same user (e.g. only once per day) <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_popup_options&utm_medium=banner" target="_blank">Check it out</a></p>
-
-        </div> -->
-
-		<div class="bannerPopupQue6 sfsi_new_prmium_follw" style="margin-top: 38px;">
-
-			<p><b><?php _e("New:",'ultimate-social-media-icons') ?> </b><?php _e("The Premium Plugin allows you to do much more with the pop-up, e.g. you can: show it when users try to leave your page, limit how often the pop-up is shown to the same user (e.g. only once per day), select to show the subscription form in the pop-up (which you designed in question 9).",'ultimate-social-media-icons') ?>  <a style="cursor:pointer;border-bottom: 1px solid #12a252;color: #12a252 !important;font-weight:bold"  class="pop-up" data-id="sfsi_quickpay-overlay" onclick="sfsi_open_quick_checkout(event)" class="sfisi_font_bold" target="_blank"><?php _e(" Go premium now",'ultimate-social-media-icons') ?></a><a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_popup_options&utm_medium=banner" class="sfsi_font_inherit" target="_blank"><?php _e(" or learn more.",'ultimate-social-media-icons') ?> </a></p>
-
+	<div class="row popupq8 checkboxpopupq8">
+		<h4><?php  _e( 'After showing the pop-up, when shall it disappear again?', 'ultimate-social-media-icons' ); ?></h4>
+		<div class="pop_up_show pop_up_show_q7 sfsi-max-content clear">
+			<label class="sfsi_tooltip_premium d-flex flex-row align-items-center pl-0">
+				<div class="sfsiicnsdvwrp" style="margin-right: 20px; width: auto;">
+					<span class="checkbox" style="background-position:0px 0px!important;"></span>
+				</div>
+				<div class="sfsicnwrp">
+					<?php
+						_e( 'When user scrolls', 'ultimate-social-media-icons' );
+						echo sfsi_premium_tooltip_content( 'tp-checkbox-link' );
+					?>
+				</div>
+			</label>
 		</div>
+		<div class="pop_up_show pop_up_show_q7 sfsi-max-content clear">
+			<label class="sfsi_tooltip_premium d-flex flex-row align-items-center pl-0">
+				<div class="sfsiicnsdvwrp" style="margin-right: 20px; width: auto;">
+					<span class="checkbox" style="background-position:0px 0px!important;"></span>
+				</div>
+				<div class="sfsicnwrp">
+					<?php
+						_e( 'When the user clicks outside of the pop-up area', 'ultimate-social-media-icons' );
+						echo sfsi_premium_tooltip_content( 'tp-checkbox-link' );
+					?>
+				</div>
+			</label>
+		</div>
+	</div>
 
+	<div class="row popupq8">
+		<h4><?php _e( 'Do you want to set a limit on how often the pop-up is shown?', 'ultimate-social-media-icons' ); ?></h4>
+		<div class="pop_up_show sfsi_plus_popup_timelimit_radioCheck">
+			<span class="radio" style="background-position:0px -41px!important;"></span>
+			<?php /* ?><input checked name="sfsi_plus_popup_limit" type="radio" value="no" checked="true" class="styled"/><?php */ ?>
+			<label><?php  _e( 'No', 'ultimate-social-media-icons' ); ?></label>
+		</div>
+		<div class="pop_up_show sfsi_plus_popup_timelimit_radioCheck">
+		    <label class="sfsi_tooltip_premium sfsi_tooltip_premium_small d-flex flex-row align-items-center pl-0">
+				<div class="sfsiicnsdvwrp" style="margin-right: 20px; width: auto;">
+					<span class="radio" style="background-position:0px 0px!important;"></span>
+				</div>
+				<div class="sfsicnwrp mt-0">
+					<?php
+						_e( 'Yes', 'ultimate-social-media-icons' );
+						echo sfsi_premium_tooltip_content( 'sfsi_tooltip_text_premium_small' );
+					?>
+				</div>
+			</label>
+		</div>
 	</div>
 
 	<?php sfsi_ask_for_help(7); ?>

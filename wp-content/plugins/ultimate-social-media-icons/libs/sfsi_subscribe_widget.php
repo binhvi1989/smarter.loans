@@ -1,19 +1,17 @@
 <?php
 // Creating the widget 
-class subscriber_widget extends WP_Widget
-{
+class subscriber_widget extends WP_Widget {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct(
 			// Base ID of your widget
 			'subscriber_widget',
 
 			// Widget name will appear in UI
-			__('Ultimate Social Subscribe Form', 'subscriber_widget_domain'),
+			__( 'Ultimate Social Subscribe Form', 'subscriber_widget_domain' ),
 
 			// Widget description
-			array('description' => __('Ultimate Social Subscribe Form', 'subscriber_widget_domain'),)
+			array('description' => __( 'Ultimate Social Subscribe Form', 'subscriber_widget_domain' ),)
 		);
 	}
 
@@ -70,7 +68,7 @@ class subscriber_widget extends WP_Widget
 	add_shortcode("USM_form", "sfsi_get_subscriberForm");
 	function sfsi_get_subscriberForm()
 	{
-		$option8 = unserialize(get_option('sfsi_section8_options', false));
+		$option8 = maybe_unserialize(get_option('sfsi_section8_options', false));
 		$sfsi_feediid = sanitize_text_field(get_option('sfsi_feed_id'));
 		if ($sfsi_feediid == "") {
 			$url = "https://api.follow.it/subscribe";
