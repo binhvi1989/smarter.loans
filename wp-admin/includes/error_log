@@ -1,1 +1,0 @@
-[30-Sep-2018 05:38:49 UTC] PHP Fatal error:  Class 'WP_Filesystem_Base' not found in /home/smarter/public_html/wp-admin/includes/class-wp-filesystem-ssh2.php on line 36
